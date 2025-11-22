@@ -5,9 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       /* Prevent flash of white background while CSS loads */
-      html.dark { background-color: #111827; color: #ffffff; }
-      html.dark body { background-color: #111827; }
-      html.dark header { background-color: #111827; }
+      html.dark {
+        background-color: #111827;
+        color: #ffffff;
+      }
+      html.dark body {
+        background-color: #111827;
+      }
+      html.dark header {
+        background-color: #111827;
+      }
     </style>
     <script>
       // Prevent flash of white by checking theme immediately
@@ -18,8 +25,10 @@
         }
       })()
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="https://cdn.tailwindcss.com">
+</script>
+    <script src="https://cdn.tailwindcss.com?plugins=typography">
+</script>
     <script>
       tailwind.config = {
         darkMode: 'class',
@@ -61,16 +70,17 @@
     {{ if true }} {{ $style := resources.Get "css/syntax.css" | resources.Minify
     }}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}" />
-    {{ end }}
-    {{ $mainStyle := resources.Get "css/main.css" | resources.Minify }}
+    {{ end }} {{ $mainStyle := resources.Get "css/main.css" | resources.Minify
+    }}
     <link rel="stylesheet" href="{{ $mainStyle.RelPermalink }}" />
     {{ if .Param "math" }} {{ partialCached "math.html" . }} {{ end }}
     <title data-pagefind-meta="title">{{.Site.Title}}</title>
     <script
       defer
-      data-domain="datasciencesouth.com"
+      data-domain=""
       src="https://plausible.io/js/script.js"
-    ></script>
+    >
+</script>
     <script>
       window.plausible =
         window.plausible ||
@@ -80,45 +90,42 @@
     </script>
     <script>
       // Dark mode toggle functionality
-      const themeToggle = document.addEventListener(
-        'DOMContentLoaded',
-        function () {
-          const themeToggle = document.getElementById('theme-toggle')
-          const sunIcon = document.getElementById('sun-icon')
-          const moonIcon = document.getElementById('moon-icon')
-          const html = document.documentElement
+      const themeToggle = document.addEventListener('DOMContentLoaded', function () {
+        const themeToggle = document.getElementById('theme-toggle')
+        const sunIcon = document.getElementById('sun-icon')
+        const moonIcon = document.getElementById('moon-icon')
+        const html = document.documentElement
 
-          // Check for saved theme preference or default to light mode
-          const currentTheme = localStorage.getItem('theme') || 'light'
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light'
 
-          if (currentTheme === 'dark') {
-            html.classList.add('dark')
-            sunIcon.classList.remove('hidden')
-            moonIcon.classList.add('hidden')
-          } else {
+        if (currentTheme === 'dark') {
+          html.classList.add('dark')
+          sunIcon.classList.remove('hidden')
+          moonIcon.classList.add('hidden')
+        } else {
+          html.classList.remove('dark')
+          sunIcon.classList.add('hidden')
+          moonIcon.classList.remove('hidden')
+        }
+
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', function () {
+          if (html.classList.contains('dark')) {
+            // Switch to light mode
             html.classList.remove('dark')
             sunIcon.classList.add('hidden')
             moonIcon.classList.remove('hidden')
+            localStorage.setItem('theme', 'light')
+          } else {
+            // Switch to dark mode
+            html.classList.add('dark')
+            sunIcon.classList.remove('hidden')
+            moonIcon.classList.add('hidden')
+            localStorage.setItem('theme', 'dark')
           }
-
-          // Toggle theme on button click
-          themeToggle.addEventListener('click', function () {
-            if (html.classList.contains('dark')) {
-              // Switch to light mode
-              html.classList.remove('dark')
-              sunIcon.classList.add('hidden')
-              moonIcon.classList.remove('hidden')
-              localStorage.setItem('theme', 'light')
-            } else {
-              // Switch to dark mode
-              html.classList.add('dark')
-              sunIcon.classList.remove('hidden')
-              moonIcon.classList.add('hidden')
-              localStorage.setItem('theme', 'dark')
-            }
-          })
-        }
-      )
+        })
+      })
     </script>
   </head>
   <body
@@ -160,7 +167,7 @@
           </a>
           {{ partial "dark-mode-toggle.html" . }}
           <a
-            href="https://github.com/ADGEfficiency/data-science-south"
+            href="https://github.com/ADGEfficiency/adgefficiency.com"
             target="_blank"
             rel="noopener noreferrer"
             class="hidden sm:block text-white p-2 rounded-lg hover:bg-emerald-500 hover:text-emerald-50 hover:-translate-y-1 hover:shadow-lg transition-all duration-200"
@@ -186,6 +193,7 @@
       </div>
     </header>
     {{ block "main" . }}{{ end }}
-    <script src="/js/copyCode.js"></script>
+    <script src="/js/copyCode.js">
+</script>
   </body>
 </html>
