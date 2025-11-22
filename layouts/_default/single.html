@@ -5,7 +5,7 @@
      {{ end }}>
     <div class="flex-1 max-w-3xl p-2 rounded-lg overflow-x-auto">
         <h1 class="text-3xl font-bold mb-6">{{ .Title }}</h1>
-        {{ if or (in .File.Path "blog") (in .File.Path "lessons") }}
+        {{ if or (in .File.Path "blog") (in .File.Path "lessons") (in .File.Path "talks") }}
         <div class="mb-6">
             {{ partial "content-metadata.html" . }}
         </div>

@@ -4,7 +4,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', function () {
-  const DEFAULT_STATE = 'collapsed'
+  const DEFAULT_STATE = 'expanded' // 'expanded' or 'collapsed'
   // Get DOM elements
   const competencyViewBtn = document.getElementById('competency-view-btn')
   const createdYearViewBtn = document.getElementById('created-year-view-btn')
