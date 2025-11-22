@@ -26,5 +26,5 @@ title = 'ADGEfficiency'
   competency = "competencies"
 
 [params]
-  mainSections = ["lessons"]
+  mainSections = ["lessons", "blog", "talks"]
   math = true

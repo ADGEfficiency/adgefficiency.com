@@ -42,7 +42,7 @@
     {{/* Competency view */}}
     <div id="competency-view">
       {{/* Get all regular pages (lessons and blog posts) */}} {{ $allPages :=
-      where .Site.RegularPages "Type" "in" (slice "lessons" "blog") }} {{/*
+      where .Site.RegularPages "Type" "in" (slice "lessons" "blog" "talks") }} {{/*
       Collect all unique competencies dynamically */}} {{ $competenciesSet :=
       slice }} {{ range $allPages }} {{ range .Params.competencies }} {{
       $competenciesSet = $competenciesSet | append . }} {{ end }} {{ end }} {{
