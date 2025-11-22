@@ -6,10 +6,17 @@
   <div class="p-4 rounded-lg max-w-4xl mx-auto">
     {{/* Introduction text */}}
     <div class="">
+      <p class="text-gray-700 dark:text-gray-300 mb-4">Welcome to the professional blog of <a href="/about" class="text-blue-600 dark:text-blue-400 hover:underline">Adam Green</a> 👋</p>
       <div class="prose prose-blue dark:prose-invert max-w-none">{{ .Content }}</div>
     </div>
     {{/* View toggle controls - aligned with content */}}
     <div class="mb-4 flex gap-4 items-center flex-wrap" id="view-controls">
+      <button
+        id="toggle-all-btn"
+        class="px-4 py-2 text-sm rounded text-gray-700 dark:text-gray-400 hover:bg-gray-800 dark:hover:bg-gray-600 hover:text-white transition-colors duration-200"
+      >
+        Expand All
+      </button>
       <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Organize by:</span>
       <button
         id="created-year-view-btn"
@@ -29,14 +36,6 @@
       >
         Topic
       </button>
-      <div class="ml-auto">
-        <button
-          id="toggle-all-btn"
-          class="px-4 py-2 text-sm rounded text-gray-700 dark:text-gray-400 hover:bg-gray-800 dark:hover:bg-gray-600 hover:text-white transition-colors duration-200"
-        >
-          Expand All
-        </button>
-      </div>
     </div>
     <div id="content-area" class="opacity-0 transition-opacity duration-200">
     {{/* Competency view */}}
