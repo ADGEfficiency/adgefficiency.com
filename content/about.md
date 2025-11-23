@@ -10,6 +10,8 @@ I am interested in the different outcomes we get when we design and optimize ene
 
 I've worked across all three of the core data roles - data analyst, scientist and engineer.
 
+I wear three hats - energy professional, data professional (with a focus on data science), mentor (I enjoy helping others).
+
 Currently I'm working as a Lead Data Scientist at Meridian Energy.
 
 ## Connect

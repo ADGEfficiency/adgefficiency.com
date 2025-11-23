@@ -1,5 +1,5 @@
 ---
-title: "A Glance at Q-Learning"
+title: "Data Science Festival London: A Glance at Q-Learning"
 description: "Introduction to Q-Learning reinforcement learning algorithm"
 date_created: 2017-06-01
 event: "Data Science Festival"

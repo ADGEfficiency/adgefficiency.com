@@ -1,6 +1,6 @@
 ---
 title: "energy-py"
-description: "Reinforcement learning for energy systems with energy-py"
+description: "Berlin Machine Learning Group: Reinforcement learning for energy systems with energy-py"
 date_created: 2018-01-01
 event: "Berlin Machine Learning Group"
 competencies:

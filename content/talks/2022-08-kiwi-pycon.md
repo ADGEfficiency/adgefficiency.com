@@ -1,13 +1,12 @@
 ---
-title: "An Introduction to Distributed Computation in Python"
+title: "Kiwi Pycon 2022: An Introduction to Distributed Computation in Python"
 description: "Introduction to distributed computation in Python, covering tools and techniques for parallel processing"
 date_created: 2022-08-01
 event: "Kiwi PyCon 2022"
 competencies:
   - Software Engineering
   - Python
-materials: "https://github.com/ADGEfficiency/intro-to-distributed-computation-in-python"
-youtube: "x_NBHIi-Yf0"
+github: https://github.com/ADGEfficiency/intro-to-distributed-computation-in-python
 ---
 
 An introduction to distributed computation in Python, presented at Kiwi PyCon 2022.

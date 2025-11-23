@@ -1,5 +1,5 @@
 ---
-title: "A Glance at Q-Learning"
+title: "Berlin Machine Learning Group: A Glance at Q-Learning"
 description: "Introduction to Q-Learning reinforcement learning algorithm"
 date_created: 2017-04-01
 event: "Berlin Machine Learning Group"
