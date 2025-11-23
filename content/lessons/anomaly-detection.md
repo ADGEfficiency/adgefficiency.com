@@ -3,8 +3,8 @@ id: talk
 aliases: []
 tags: []
 competencies:
-  - Analytics
   - Machine Learning
+  - Time Series
 title: Anomaly Detection
 description: Find interesting data with rules, distance and machine learning based anomaly detection.
 date_created: 2025-08-16

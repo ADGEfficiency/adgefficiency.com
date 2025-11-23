@@ -4,7 +4,6 @@ description: Attention and Multi-Head Attention in NumPy.
 date_created: 2024-04-24
 date_updated: 2024-04-24
 competencies:
-- Analytics
 - Machine Learning
 ---
 

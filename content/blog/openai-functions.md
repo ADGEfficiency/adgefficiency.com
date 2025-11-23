@@ -4,7 +4,6 @@ description: 'Why this new feature is a game changer for developers.'
 date_created: '2023-08-15'
 date_updated: '2023-08-15'
 competencies:
-- Analytics
 - Software Engineering
 - Machine Learning
 ---
@@ -102,8 +101,10 @@ At the heart of our function call is the JSON schema we want the LLM response to
 ```python
 import pydantic
 
+
 class Evaluation(pydantic.BaseModel):
     """Assessment of a piece of natural language."""
+
     grammar_errors: list[str] = pydantic.Field(
         default_factory=list, description="grammatical mistakes"
     )
@@ -111,8 +112,7 @@ class Evaluation(pydantic.BaseModel):
         default_factory=list, description="spelling mistakes"
     )
     corrected_text: str = pydantic.Field(
-        description="the correct text",
-        default="a sentence to evaluate"
+        description="the correct text", default="a sentence to evaluate"
     )
 ```
 
@@ -200,10 +200,7 @@ response = openai.ChatCompletion.create(
             "role": "system",
             "content": "You are proof reading text.",
         },
-        {
-            "role": "user",
-            "content": prompt
-        },
+        {"role": "user", "content": prompt},
     ],
     functions=functions,
     temperature=0,
@@ -220,9 +217,7 @@ After receiving the response from the API, we can pull out the evaluation from t
 import json
 
 choice = response["choices"][0]
-evaluation = json.loads(
-    choice["message"]["function_call"]["arguments"]
-)
+evaluation = json.loads(choice["message"]["function_call"]["arguments"])
 print(evaluation)
 ```
 
@@ -263,6 +258,7 @@ We could extend our evaluation to also check if the text is hard to read, by add
 
 ```python
 import pydantic
+
 
 class Evaluation(pydantic.BaseModel):
     """Assessment of a piece of natural language."""
@@ -351,14 +347,9 @@ if __name__ == "__main__":
             {
                 "role": "system",
                 "content": "You are proof reading text.",
-
             },
-            {
-                "role": "user",
-                "content": prompt
-            },
+            {"role": "user", "content": prompt},
         ],
-
         functions=functions,
         temperature=0,
     )

@@ -7,6 +7,7 @@ competencies:
   - Machine Learning
   - Energy
   - Python
+  - Reinforcement Learning
 meetup: "https://www.meetup.com/berlin-machine-learning/events/246637693/"
 slides: "https://gitpitch.com/ADGEfficiency/energy-py-talk"
 github: "https://github.com/ADGEfficiency/energy-py-talk"

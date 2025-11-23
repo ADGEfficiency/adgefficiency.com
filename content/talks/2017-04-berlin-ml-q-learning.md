@@ -5,7 +5,7 @@ date_created: 2017-04-01
 event: "Berlin Machine Learning Group"
 competencies:
   - Machine Learning
-  - Math/Algorithms
+  - Reinforcement Learning
 meetup: "https://www.meetup.com/berlin-machine-learning/events/234989414/"
 ---
 

@@ -4,7 +4,6 @@ description: "Common mistakes made by data scientists and how to avoid them"
 date_created: 2019-01-01
 event: "Data Science Retreat Demo Day"
 competencies:
-  - Soft Skills
   - Machine Learning
 blog_post: "http://www.adgefficiency.com/mistakes-talk/"
 dsr_talk: "https://www.canva.com/design/DADlQld9yF0/share/preview?token=DoG2rySn8x8KGT5xMyoe6A&role=EDITOR&utm_content=DADlQld9yF0&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton"

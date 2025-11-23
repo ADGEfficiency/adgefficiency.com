@@ -5,7 +5,7 @@ date_created: 2017-06-01
 event: "Data Science Festival"
 competencies:
   - Machine Learning
-  - Math/Algorithms
+  - Reinforcement Learning
 meetup: "https://www.datasciencefestival.com/adam-green-glance-q-learning/"
 youtube: "25NPjJ6hBmI"
 ---
