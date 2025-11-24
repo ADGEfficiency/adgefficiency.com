@@ -7,7 +7,10 @@ competencies:
   - Software Engineering
   - Python
 aliases:
-  - 2018-10-07-defaultdict
+  - /2018-10-07-defaultdict
+  - /defaultdict
+  - /blog/2018-10-07-defaultdict
+  - /blog/defaultdict
 mathjax: true
 ---
 

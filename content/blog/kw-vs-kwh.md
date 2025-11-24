@@ -6,8 +6,10 @@ date_updated: 2025-09-05
 competencies:
   - Energy
 aliases:
-- energy-basics-kw-vs-kwh
-- /energy-basics-kw-vs-kwh
+  - /energy-basics-kw-vs-kwh
+  - /kw-vs-kwh
+  - /blog/energy-basics-kw-vs-kwh
+  - /blog/kw-vs-kwh
 
 ---
 

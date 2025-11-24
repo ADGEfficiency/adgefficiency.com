@@ -8,7 +8,10 @@ competencies:
   - Energy
   - Time Series
 aliases:
-  - 2022-11-19-typical-year-forecasting-electricity-prices
+  - /2022-11-19-typical-year-forecasting-electricity-prices
+  - /typical-year-forecasting-electricity-prices
+  - /blog/2022-11-19-typical-year-forecasting-electricity-prices
+  - /blog/typical-year-forecasting-electricity-prices
 ---
 
 **Energy prices are volatile** - the price of gas, oil and electricity can all change significantly year on year.

@@ -8,7 +8,10 @@ competencies:
   - Machine Learning
   - Reinforcement Learning
 aliases:
-- 2018-07-07-dqn-debugging
+  - /2018-07-07-dqn-debugging
+  - /dqn-debugging
+  - /blog/2018-07-07-dqn-debugging
+  - /blog/dqn-debugging
 
 ---
 

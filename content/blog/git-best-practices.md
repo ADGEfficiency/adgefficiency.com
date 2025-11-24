@@ -5,6 +5,9 @@ date_created: 2024-05-01
 date_updated: 2024-05-01
 competencies:
 - Software Engineering
+aliases:
+  - /git-best-practices
+  - /blog/git-best-practices
 ---
 
 ## Commit Messages

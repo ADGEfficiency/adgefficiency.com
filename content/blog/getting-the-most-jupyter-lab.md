@@ -5,6 +5,9 @@ date_created: 2020-11-05
 date_updated: 2020-11-05
 competencies:
 - Software Engineering
+aliases:
+  - /getting-the-most-jupyter-lab
+  - /blog/getting-the-most-jupyter-lab
 ---
 
 Notebooks are a common tool among data scientists - many data professionals write all their code in notebooks.

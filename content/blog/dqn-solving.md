@@ -8,7 +8,10 @@ competencies:
   - Machine Learning
   - Reinforcement Learning
 aliases:
-- 2018-10-31-dqn-solving
+  - /2018-10-31-dqn-solving
+  - /dqn-solving
+  - /blog/2018-10-31-dqn-solving
+  - /blog/dqn-solving
 
 ---
 

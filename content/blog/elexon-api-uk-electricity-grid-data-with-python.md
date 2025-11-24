@@ -8,8 +8,10 @@ competencies:
   - Energy
   - Time Series
 aliases:
-  - 2022-03-23-elexon-api-uk-electricity-grid-data-with-python
-  - elexon-api-uk-electricity-grid-data-with-python
+  - /2022-03-23-elexon-api-uk-electricity-grid-data-with-python
+  - /elexon-api-uk-electricity-grid-data-with-python
+  - /blog/2022-03-23-elexon-api-uk-electricity-grid-data-with-python
+  - /blog/elexon-api-uk-electricity-grid-data-with-python
 
 ---
 

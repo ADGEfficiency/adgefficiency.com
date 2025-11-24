@@ -6,6 +6,9 @@ date_updated: '2023-08-15'
 competencies:
 - Software Engineering
 - Machine Learning
+aliases:
+  - /openai-functions
+  - /blog/openai-functions
 ---
 
 **OpenAI function calling is a game changer for developers**.

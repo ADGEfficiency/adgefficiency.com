@@ -6,8 +6,10 @@ date_updated: 2025-09-04
 competencies:
 - Energy
 aliases:
-- energy-basics-hhv-versus-lhv
-- /energy-basics-hhv-versus-lhv
+  - /energy-basics-hhv-versus-lhv
+  - /hhv-versus-lhv
+  - /blog/energy-basics-hhv-versus-lhv
+  - /blog/hhv-versus-lhv
 
 ---
 

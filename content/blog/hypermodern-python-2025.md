@@ -8,7 +8,8 @@ competencies:
 - Python
 slug: hypermodern-python
 aliases:
-- "/blog/hypermodern-python-2025"
+  - /hypermodern-python-2025
+  - /blog/hypermodern-python-2025
 ---
 
 **Every Python developer is challenged by the size and velocity of the Python ecosystem** 😤

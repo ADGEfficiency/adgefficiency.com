@@ -7,8 +7,12 @@ competencies:
   - Energy
   - Time Series
 aliases:
-- 2019-02-11-energy-py-linear-forecast-quality
-- energy-py-linear-forecast-quality
+  - /2019-02-11-energy-py-linear-forecast-quality
+  - /energy-py-linear-forecast-quality
+  - /measuring-forecast-accuracy-linear-programming
+  - /blog/2019-02-11-energy-py-linear-forecast-quality
+  - /blog/energy-py-linear-forecast-quality
+  - /blog/measuring-forecast-accuracy-linear-programming
 github: https://github.com/ADGEfficiency/energy-py-linear
 
 ---

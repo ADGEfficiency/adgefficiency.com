@@ -7,8 +7,10 @@ competencies:
   - Machine Learning
   - Software Engineering
 aliases:
-- 2019-05-01-tf2-lstm-hidden
-- tf2-lstm-hidden
+  - /2019-05-01-tf2-lstm-hidden
+  - /tf2-lstm-hidden
+  - /blog/2019-05-01-tf2-lstm-hidden
+  - /blog/tf2-lstm-hidden
 
 ---
 

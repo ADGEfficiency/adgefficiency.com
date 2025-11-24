@@ -5,6 +5,9 @@ date_created: 2024-04-24
 date_updated: 2024-04-24
 competencies:
 - Machine Learning
+aliases:
+  - /attention-from-scratch
+  - /blog/attention-from-scratch
 ---
 
 ## Embedding Words

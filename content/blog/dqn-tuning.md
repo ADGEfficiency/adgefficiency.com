@@ -8,8 +8,10 @@ competencies:
   - Machine Learning
   - Reinforcement Learning
 aliases:
-- 2018-07-08-dqn-tuning
-- dqn-tuning
+  - /2018-07-08-dqn-tuning
+  - /dqn-tuning
+  - /blog/2018-07-08-dqn-tuning
+  - /blog/dqn-tuning
 
 ---
 

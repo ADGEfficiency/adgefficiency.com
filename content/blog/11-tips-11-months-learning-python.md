@@ -7,7 +7,10 @@ competencies:
   - Software Engineering
   - Python
 aliases:
-- 2017-09-04-11-tips-11-months-learning-python
+  - /2017-09-04-11-tips-11-months-learning-python
+  - /11-tips-11-months-learning-python
+  - /blog/2017-09-04-11-tips-11-months-learning-python
+  - /blog/11-tips-11-months-learning-python
 ---
 
 I've been learning Python for around eleven months - it's been a wonderful journey!

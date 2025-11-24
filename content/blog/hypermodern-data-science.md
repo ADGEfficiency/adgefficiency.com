@@ -7,7 +7,8 @@ competencies:
 - Machine Learning
 slug: hypermodern-data-science
 aliases:
-- "/blog/hypermodern-data-science-2025"
+  - /hypermodern-data-science-2025
+  - /blog/hypermodern-data-science-2025
 ---
 
 **The data science ecosystem moves fast, with new frameworks and tools emerging constantly** 🚀

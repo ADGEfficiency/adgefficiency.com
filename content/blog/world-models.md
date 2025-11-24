@@ -8,7 +8,10 @@ competencies:
   - Machine Learning
   - Reinforcement Learning
 aliases:
-  - 2020-04-25-world-models
+  - /2020-04-25-world-models
+  - /world-models
+  - /blog/2020-04-25-world-models
+  - /blog/world-models
 ---
 
 {{< img

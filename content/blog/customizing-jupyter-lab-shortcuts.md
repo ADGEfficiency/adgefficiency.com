@@ -5,6 +5,9 @@ date_created: 2020-12-06
 date_updated: 2020-12-06
 competencies:
 - Software Engineering
+aliases:
+  - /customizing-jupyter-lab-shortcuts
+  - /blog/customizing-jupyter-lab-shortcuts
 ---
 
 Notebooks are a popular tool among data scientists - many data professionals write all their Python code in notebooks.

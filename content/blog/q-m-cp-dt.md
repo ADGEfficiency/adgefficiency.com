@@ -6,8 +6,10 @@ date_updated: 2025-09-01
 competencies:
 - Energy
 aliases:
-- energy-basics-q-m-cp-dt
-- /energy-basics-q-m-cp-dt
+  - /energy-basics-q-m-cp-dt
+  - /q-m-cp-dt
+  - /blog/energy-basics-q-m-cp-dt
+  - /blog/q-m-cp-dt
 
 ---
 

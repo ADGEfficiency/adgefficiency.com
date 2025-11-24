@@ -6,8 +6,9 @@ date_updated: 2023-02-25
 competencies:
 - Software Engineering
 - Python
-
-
+aliases:
+  - /hypermodern-python-2023
+  - /blog/hypermodern-python-2023
 ---
 
 **Every Python developer is challenged by the size and velocity of the Python ecosystem** 😤

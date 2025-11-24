@@ -7,6 +7,7 @@ competencies:
   - Energy
 aliases:
   - /jevons-paradox
+  - /blog/jevons-paradox
 ---
 
 It's intuitive that improving energy efficiency will reduce energy use.

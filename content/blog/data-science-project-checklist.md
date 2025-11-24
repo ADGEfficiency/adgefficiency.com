@@ -5,6 +5,9 @@ date_created: 2020-10-16
 date_updated: 2020-10-16
 competencies:
 - Soft Skills
+aliases:
+  - /data-science-project-checklist
+  - /blog/data-science-project-checklist
 ---
 
 ## Why a Checklist?

@@ -7,7 +7,10 @@ github: https://github.com/ADGEfficiency/energy-py-linear
 competencies:
 - Energy
 aliases:
-- 2019-02-06-intro-energy-py-linear
+  - /2019-02-06-intro-energy-py-linear
+  - /energy-py-linear
+  - /blog/2019-02-06-intro-energy-py-linear
+  - /blog/energy-py-linear
 
 ---
 

@@ -6,8 +6,10 @@ date_updated: 2025-09-22
 competencies:
   - Energy
 aliases:
-- 2018-08-13-hackers-aemo
-- hackers-aemo
+  - /2018-08-13-hackers-aemo
+  - /hackers-aemo
+  - /blog/2018-08-13-hackers-aemo
+  - /blog/hackers-aemo
 
 ---
 

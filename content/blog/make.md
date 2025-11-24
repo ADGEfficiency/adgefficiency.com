@@ -5,6 +5,9 @@ date_created: 2022-01-20
 date_updated: '2023-12-05'
 competencies:
 - Software Engineering
+aliases:
+  - /make
+  - /blog/make
 ---
 
 ## What is `make`?

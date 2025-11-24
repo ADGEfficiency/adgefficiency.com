@@ -6,8 +6,10 @@ date_updated: 2025-10-05
 competencies:
   - Energy
 aliases:
-  - 2022-03-24-what-is-the-uk-imbalance-price
-  - what-is-the-uk-imbalance-price
+  - /2022-03-24-what-is-the-uk-imbalance-price
+  - /what-is-the-uk-imbalance-price
+  - /blog/2022-03-24-what-is-the-uk-imbalance-price
+  - /blog/what-is-the-uk-imbalance-price
 
 ---
 

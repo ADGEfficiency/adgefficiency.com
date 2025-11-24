@@ -5,7 +5,9 @@ date_created: 2023-03-25
 date_updated: 2023-03-25
 competencies:
 - Software Engineering
-
+aliases:
+  - /hypermodern-terminal
+  - /blog/hypermodern-terminal
 ---
 
 **All developers use terminals; for some, their entire workflow is in the terminal**.

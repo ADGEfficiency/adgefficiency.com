@@ -9,7 +9,10 @@ competencies:
   - Machine Learning
   - Reinforcement Learning
 aliases:
-- 2017-04-03-energy-py-reinforcement-learning-for-energy-systems
+  - /2017-04-03-energy-py-reinforcement-learning-for-energy-systems
+  - /energy-py
+  - /blog/2017-04-03-energy-py-reinforcement-learning-for-energy-systems
+  - /blog/energy-py
 
 ---
 

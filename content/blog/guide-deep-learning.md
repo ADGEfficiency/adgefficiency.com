@@ -6,7 +6,10 @@ date_updated: 2025-10-30
 competencies:
   - Machine Learning
 aliases:
-  - 2020-11-16-guide-deep-learning
+  - /2020-11-16-guide-deep-learning
+  - /guide-deep-learning
+  - /blog/2020-11-16-guide-deep-learning
+  - /blog/guide-deep-learning
 ---
 
 **This post is about four fundamental neural network layer architectures** - the building blocks that machine learning engineers use to construct deep learning models.

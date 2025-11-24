@@ -6,8 +6,10 @@ competencies:
   - Energy
 description: Explaining the relationship between gas turbines and ambient temperature.
 aliases:
-- energy-basics-ambient-temperature-impact-on-gas-turbine-performance
-- /energy-basics-ambient-temperature-impact-on-gas-turbine-performance
+  - /energy-basics-ambient-temperature-impact-on-gas-turbine-performance
+  - /ambient-temperature-impact-on-gas-turbine-performance
+  - /blog/energy-basics-ambient-temperature-impact-on-gas-turbine-performance
+  - /blog/ambient-temperature-impact-on-gas-turbine-performance
 
 ---
 
