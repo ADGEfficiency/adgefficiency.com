@@ -74,7 +74,7 @@
     }}
     <link rel="stylesheet" href="{{ $mainStyle.RelPermalink }}" />
     {{ if .Param "math" }} {{ partialCached "math.html" . }} {{ end }}
-    <title data-pagefind-meta="title">{{.Site.Title}}</title>
+    <title data-pagefind-meta="title">{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
     <!-- Privacy-friendly analytics by Plausible -->
     <script async src="https://plausible.io/js/pa-dEfzLb_QY6OrH1VhpwBwL.js"></script>
     <script>
