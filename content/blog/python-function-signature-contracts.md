@@ -33,7 +33,7 @@ A contract is an agreement between two parties. In programming, a function signa
 
 Too much freedom in how a function is used increases the number of mistakes a function caller can make when using a function.  Less freedom, defined in a contract, reduces the number of mistakes a caller can make.
 
-## Solution 1: Constraining Parameter Passing: `/` and `*` Syntax
+## Solution 1: Constraining Parameter Passing with `/` and `*` Syntax
 
 **The first solution to tightening the function signature contract is to constrain how callers can pass parameters using `/` and `*` in your function signature**.
 

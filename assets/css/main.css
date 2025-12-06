@@ -63,3 +63,43 @@ figure.highlight {
 figure.highlight:hover .copy-code-btn {
   opacity: 1;
 }
+
+/* Pagefind Search Styles */
+#search-input-wrapper {
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#pagefind-results::-webkit-scrollbar {
+  width: 8px;
+}
+
+#pagefind-results::-webkit-scrollbar-track {
+  background: #374151;
+}
+
+#pagefind-results::-webkit-scrollbar-thumb {
+  background: #4B5563;
+  border-radius: 4px;
+}
+
+#pagefind-results::-webkit-scrollbar-thumb:hover {
+  background: #6B7280;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
