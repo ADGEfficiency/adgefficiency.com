@@ -33,7 +33,7 @@ A contract is an agreement between two parties. In programming, a function signa
 
 Too much freedom in how a function is used increases the number of mistakes a function caller can make when using a function.  Less freedom, defined in a contract, reduces the number of mistakes a caller can make.
 
-## Solution One: Constraining Parameter Passing: `/` and `*` Syntax
+## Solution 1: Constraining Parameter Passing: `/` and `*` Syntax
 
 **The first solution to tightening the function signature contract is to constrain how callers can pass parameters using `/` and `*` in your function signature**.
 
@@ -77,7 +77,7 @@ In the function above:
 - We can pass `mode` as either positional or keyword
 - We can only pass ` encoding` as a keyword
 
-## Solution Two: Using `Typevar` for Multiple Return Types
+## Solution 2: Using `Typevar` for Multiple Return Types
 
 **The second solution to tightening function signature contracts is to use `TypeVar` from the `typing` module to create generic functions that preserve type information through the function.**
 
@@ -173,7 +173,7 @@ def get_sound(animal: T) -> T:
 
 TypeVar is for "same type in, same type out" - one polymorphic contract that preserves type information through your function.
 
-## Solution Three: Overloading For Multiple Function Signatures
+## Solution 3: Overloading For Multiple Function Signatures
 
 **The third solution to tightening function signature contracts is to use `@overload` from the `typing` module to declare multiple function signatures for a single implementation.**
 
