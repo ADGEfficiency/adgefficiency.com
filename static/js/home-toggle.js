@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Load user's preferred view from localStorage
-  const savedView = localStorage.getItem('home-view-preference') || 'competency'
+  const savedView = localStorage.getItem('home-view-preference') || 'created-year'
 
   // Initialize collapsible sections functionality
   initializeCollapsibleSections()
