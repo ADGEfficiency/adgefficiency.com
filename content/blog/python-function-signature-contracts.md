@@ -14,7 +14,7 @@ aliases:
 
 This blog post covers three ways to strengthen your Python function signatures:
 
-1. **Positional/keyword constraints (`/` and `*`)**
+1. **Positional and keyword constraints (`/` and `*`)**
 2. **Generic functions with `TypeVar`**
 3. **Function overloading with `@overload`**
 
