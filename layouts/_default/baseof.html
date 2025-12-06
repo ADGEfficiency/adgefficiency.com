@@ -73,12 +73,27 @@
     {{ end }} {{ $mainStyle := resources.Get "css/main.css" | resources.Minify
     }}
     <link rel="stylesheet" href="{{ $mainStyle.RelPermalink }}" />
+    <!-- Pagefind Search Assets -->
+    <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
     {{ if .Param "math" }} {{ partialCached "math.html" . }} {{ end }}
-    <title data-pagefind-meta="title">{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+    <title data-pagefind-meta="title">{{ .Title }}</title>
     <!-- Privacy-friendly analytics by Plausible -->
-    <script async src="https://plausible.io/js/pa-dEfzLb_QY6OrH1VhpwBwL.js"></script>
+    <script
+      async
+      src="https://plausible.io/js/pa-dEfzLb_QY6OrH1VhpwBwL.js"
+    >
+</script>
     <script>
-      window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+      ;((window.plausible =
+        window.plausible ||
+        function () {
+          ;(plausible.q = plausible.q || []).push(arguments)
+        }),
+        (plausible.init =
+          plausible.init ||
+          function (i) {
+            plausible.o = i || {}
+          }))
       plausible.init()
     </script>
     <script>
@@ -140,7 +155,13 @@
           href="/"
           class="group inline-flex items-center py-1 px-2 rounded-lg hover:bg-emerald-500 hover:text-emerald-50 hover:-translate-y-1 hover:shadow-lg transition-all duration-200"
         >
-          <img src="/logos/light.svg" alt="" width="48" height="48" class="flex-shrink-0" />
+          <img
+            src="/logos/light.svg"
+            alt=""
+            width="48"
+            height="48"
+            class="flex-shrink-0"
+          />
           <span
             class="text-white max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs group-hover:ml-2 group-hover:text-emerald-50 transition-all duration-300"
           >
@@ -148,6 +169,7 @@
           </span>
         </a>
         <div class="flex items-center space-x-4">
+          {{ partial "search.html" . }}
           <a
             href="/about"
             class="group flex items-center text-white p-2 rounded-lg hover:bg-emerald-500 hover:text-emerald-50 hover:-translate-y-1 hover:shadow-lg transition-all duration-200"
@@ -168,7 +190,10 @@
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
-            <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs group-hover:ml-2 transition-all duration-300">About</span>
+            <span
+              class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs group-hover:ml-2 transition-all duration-300"
+              >Who Am I</span
+            >
           </a>
           {{ partial "dark-mode-toggle.html" . }}
           <a
@@ -194,13 +219,18 @@
                 d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
               ></path>
             </svg>
-            <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs group-hover:ml-2 transition-all duration-300">GitHub</span>
+            <span
+              class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs group-hover:ml-2 transition-all duration-300"
+              >Source</span
+            >
           </a>
         </div>
       </div>
     </header>
     {{ block "main" . }}{{ end }}
     <script src="/js/copyCode.js">
+</script>
+    <script src="/js/search.js">
 </script>
   </body>
 </html>

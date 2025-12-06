@@ -1,0 +1,38 @@
+<div id="search-container" class="relative flex items-center">
+  <button
+    id="search-toggle"
+    type="button"
+    class="flex-shrink-0 flex items-center text-white p-2 rounded-lg hover:bg-emerald-500 hover:text-emerald-50 hover:-translate-y-1 hover:shadow-lg transition-all duration-200"
+    aria-label="Search this site"
+    aria-expanded="false"
+    aria-controls="pagefind-search-input"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="flex-shrink-0"
+    >
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.35-4.35"></path>
+    </svg>
+  </button>
+  <input
+    type="search"
+    id="pagefind-search-input"
+    placeholder="Search..."
+    autocomplete="off"
+    class="max-w-0 overflow-hidden whitespace-nowrap bg-gray-800 dark:bg-gray-900 text-white placeholder-gray-400 focus:outline-none transition-all duration-300 border-none outline-none rounded-lg"
+    aria-label="Search input"
+    role="search"
+  />
+
+  <div id="pagefind-results" class="hidden absolute top-full right-0 mt-2 w-[600px] max-w-[calc(100vw-2rem)] max-h-96 overflow-y-auto bg-gray-800 dark:bg-gray-900 rounded-lg shadow-xl border-2 border-gray-700 z-50" aria-live="polite" aria-atomic="true">
+  </div>
+</div>
