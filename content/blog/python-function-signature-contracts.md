@@ -257,19 +257,19 @@ This blog post covers three ways to strengthen your Python function signatures:
 1. **Positional/keyword constraints (`/` and `*`)**
 
 - Restrict how parameters can be passed to prevent fragile calling patterns
-- Prevents fragile refactoring
+- Prevents fragile refactoring and allows clearer contracts
 - Start with keyword-only for boolean or configuration parameters, add positional-only when parameter names are unstable or meaningless
 
 2. **Generic functions with `TypeVar`**:
 
 - Preserve type information through functions with "same type in, same type out" contracts
-- Prevents lost type information
+- Prevents lost type information through functions and allows polymorphic behavior
 - Use when you need to preserve type information through a function (lists, dictionaries, generic containers)
 
 3. **Function overloading with `@overload`**
 
 - Declare different return types based on input values
-- Prevents ambiguous return types
+- Prevents ambiguous return types and allows specific contracts based on input
 - Use when return types vary based on input values (mode parameters, optional flags)
 
 ---
