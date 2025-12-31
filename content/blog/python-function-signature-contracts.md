@@ -6,7 +6,7 @@ competencies:
 - Software Engineering
 date_created: 2025-10-13
 date_updated: 2025-10-13
-description: Three tips to write better function signatures with positional & keyword parameters, generic functions and function overloads.
+description: Write better Python functions with better parameters, generic functions and function overloads.
 aliases:
   - /python-function-signature-contracts
   - /blog/python-function-signature-contracts
