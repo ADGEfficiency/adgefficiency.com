@@ -898,6 +898,35 @@ To github.com:ADGEfficiency/the-repo-name.git
  * [new branch]      tech/requirements -> tech/requirements
 ```
 
+### Rebasing
+
+**Rebasing is an alternative to merging that rewrites commit history to create a linear, cleaner project timeline**.
+
+It takes all of your local commits off the branch, pulls in all of the upstream changes, then reapplies your commits one by one on top of the new base.
+
+### Rebase vs Merge
+
+The key difference between rebasing and merging:
+
+- **Merge**: Brute force approach that smooshes all of that branch onto your branch and creates a new merge commit
+- **Rebase**: Surgery approach that step-by-step rewinds time on both branches and pulls that branch's commits into your timeline
+
+### When to Use Rebase
+
+Rebasing works best in specific scenarios:
+
+- **Small atomic commits**: Rebasing is great when the branch you're rebasing onto has small, rational, atomic commits - if it doesn't, you're probably better off just merging it
+- **Before pushing**: Almost always use rebase if the changes are still not pushed to a remote repository
+- **Never after PR opened**: It's basically never a good idea to rebase after a pull request has been opened
+
+### Why Rebase is Worse for Collaboration
+
+The fact that rebase requires a force push if you have already pushed to a remote makes it worse for collaboration:
+
+- **Force push requirement**: You need to use `git push --force` to overwrite remote history
+- **Conflicts with other developers**: Other developers working on the same branch will have problems
+- **PR disruption**: Rebasing after opening a PR can confuse reviewers and break the PR history
+
 ## What To Do When Things Go Wrong
 
 **Even experienced developers make mistakes with Git**. Knowing how to fix common issues will save you time and frustration.

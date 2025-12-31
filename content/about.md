@@ -11,6 +11,7 @@ I've worked:
 - Across all three of the core data roles - data analyst, scientist and engineer
 - For large energy companies and small clean-tech startups
 - On AWS and Azure
+- With the Serverless, AWS CDK, and Databricks Asset Bundle Infrastructure-as-Code tools
 
 I wear three hats:
 
