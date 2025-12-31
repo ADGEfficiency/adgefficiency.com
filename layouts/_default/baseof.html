@@ -76,7 +76,7 @@
     <!-- Pagefind Search Assets -->
     <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
     {{ if .Param "math" }} {{ partialCached "math.html" . }} {{ end }}
-    <title data-pagefind-meta="title">{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}</title>
+    <title data-pagefind-meta="title">{{ if .IsHome }}Adam Green | {{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
     <!-- Privacy-friendly analytics by Plausible -->
     <script
       async
