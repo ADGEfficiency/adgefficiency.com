@@ -1,6 +1,6 @@
 <div class="flex-1 max-w-64 p-2 rounded-lg sticky top-20 h-fit">
   {{ $mainSections := slice (dict "title" "Blog" "url" "/blog/") (dict "title"
-  "Competencies" "url" "/competencies/") }} {{ range $mainSections }}
+  "Competencies" "url" "/competencies/") (dict "title" "RSS" "url" "/index.xml") }} {{ range $mainSections }}
   <h2 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">
     <a
       href="{{ .url }}"

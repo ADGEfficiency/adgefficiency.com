@@ -63,7 +63,9 @@ document.addEventListener('DOMContentLoaded', function () {
     resultsContainer.innerHTML = '<div class="p-4 text-gray-400">Searching...</div>'
 
     try {
-      const search = await pagefind.search(term)
+      const search = await pagefind.search(term, {
+        sort: { priority: 'desc' }
+      })
 
       if (search.results.length === 0) {
         resultsContainer.innerHTML = '<div class="p-4 text-gray-400">No results found</div>'
@@ -105,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
           return `
             <a
               href="${url}"
-              class="block p-4 hover:bg-gray-700 dark:hover:bg-gray-800 transition-colors border-b border-gray-700 last:border-b-0"
+              class="block p-4 hover:bg-gray-700 dark:hover:bg-gray-800 transition-colors"
             >
               <div class="font-semibold text-white mb-2">${data.meta.title || 'Untitled'}</div>
               <div class="flex flex-wrap items-center gap-2">

@@ -1,34 +1,48 @@
 {{ define "main" }}
-<div class="container mx-auto p-4 pt-6 flex flex-row justify-center gap-4 min-h-[calc(100vh-8rem)]">
-    <div class="flex-1 max-w-3xl p-2 rounded-lg overflow-x-auto" data-pagefind-body>
-        <h1 class="text-3xl font-bold mb-6">{{ .Title }}</h1>
-
-        {{/* Hidden metadata for Pagefind search */}}
-        <div data-pagefind-meta="type" style="display:none">
-          {{ if in .File.Path "blog" }}Blog{{ else if in .File.Path "lessons" }}Lesson{{ else if in .File.Path "talks" }}Talk{{ end }}
-        </div>
-        {{ range .Params.competencies }}
-        <div data-pagefind-meta="competency" style="display:none">{{ . }}</div>
-        {{ end }}
-        <div data-pagefind-meta="url" style="display:none">{{ .RelPermalink }}</div>
-
-        {{ if or (in .File.Path "blog") (in .File.Path "lessons") (in .File.Path "talks") }}
-        <div class="mb-6" data-pagefind-ignore>
-            {{ partial "content-metadata.html" . }}
-        </div>
-        {{ end }}
-        <div class="prose dark:prose-invert max-w-none [&_h1]:scroll-mt-20 [&_h2]:scroll-mt-20 [&_h3]:scroll-mt-20 [&_h4]:scroll-mt-20">
-            {{ .Content }}
-        </div>
+<div
+  class="container mx-auto p-4 pt-6 flex flex-row justify-center gap-4 min-h-[calc(100vh-8rem)]"
+>
+  <div
+    class="flex-1 max-w-3xl p-2 rounded-lg overflow-x-auto"
+    data-pagefind-body
+  >
+    <h1 class="text-3xl font-bold mb-6" data-pagefind-weight="100">
+      {{ .Title }}
+    </h1>
+    {{/* Hidden metadata for Pagefind search */}}
+    <div data-pagefind-meta="type" style="display: none">
+      {{ if in .File.Path "blog" }}Blog{{ else if in .File.Path "lessons"
+      }}Lesson{{ else if in .File.Path "talks" }}Talk{{ end }}
     </div>
-    <div class="hidden lg:block flex-1 max-w-64 p-2 rounded-lg sticky top-20 h-fit">
-        {{ partial "right-sidebar.html" . }}
+    {{ range .Params.competencies }}
+    <div data-pagefind-meta="competency" style="display: none">{{ . }}</div>
+    {{ end }}
+    <div data-pagefind-meta="url" style="display: none">
+      {{ .RelPermalink }}
     </div>
+    {{ if .Params.priority }}
+    <div data-pagefind-sort="priority">{{ .Params.priority }}</div>
+    {{ end }} {{ if or (in .File.Path "blog") (in .File.Path "lessons") (in
+    .File.Path "talks") }}
+    <div class="mb-6" data-pagefind-ignore>
+      {{ partial "content-metadata.html" . }}
+    </div>
+    {{ end }}
+    <div
+      class="prose dark:prose-invert max-w-none [&_h1]:scroll-mt-20 [&_h2]:scroll-mt-20 [&_h3]:scroll-mt-20 [&_h4]:scroll-mt-20"
+    >
+      {{ .Content }}
+    </div>
+  </div>
+  <div
+    class="hidden lg:block flex-1 max-w-64 p-2 rounded-lg sticky top-20 h-fit"
+  >
+    {{ partial "right-sidebar.html" . }}
+  </div>
 </div>
 {{ if .Store.Get "hasMermaid" }}
 <script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
-  mermaid.initialize({startOnLoad: true});
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs'
+  mermaid.initialize({ startOnLoad: true })
 </script>
-{{ end }}
-{{ end }}
+{{ end }} {{ end }}

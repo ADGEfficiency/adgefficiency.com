@@ -6,7 +6,7 @@ competencies:
 - Software Engineering
 date_created: 2025-10-13
 date_updated: 2025-10-13
-description: Three tips to write better function signatures with positional & keyword parameters, generic functions and function overloads.
+description: Write better Python functions with better parameters, generic functions and function overloads.
 aliases:
   - /python-function-signature-contracts
   - /blog/python-function-signature-contracts
@@ -14,9 +14,9 @@ aliases:
 
 This blog post covers three ways to strengthen your Python function signatures:
 
-1. **Positional and keyword constraints (`/` and `*`)**
-2. **Generic functions with `TypeVar`**
-3. **Function overloading with `@overload`**
+1. [**Constraining Parameter Passing with `/` and `*` Syntax**](#solution-1-constraining-parameter-passing-with--and--syntax)
+2. [**Using `TypeVar` for Multiple Return Types**](#solution-2-using-typevar-for-multiple-return-types)
+3. [**Overloading For Multiple Function Signatures**](#solution-3-overloading-for-multiple-function-signatures)
 
 ## Preamble
 
