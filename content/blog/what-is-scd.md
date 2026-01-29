@@ -1,52 +1,46 @@
 ---
-draft: true
-title: What are/is Slowly Changing Dimensions (SCD)?
-description: TODO
+title: What are Slowly Changing Dimensions (SCD)?
+description: Slowly changing dimensions (SCD) are a group of techniques used to track changes to data.
 date_created: 2025-12-31
 competencies:
   - Data Engineering
 ---
 
-Slowly changing dimensions (SCD) are a group of techniques used to track changes to a row of data.
+Slowly changing dimensions (SCD) are a group of techniques used to track changes to a row of data. There are seven types from Type 0 to Type 6, which trade off accuracy, data complexity and database performance:
 
-There are six techniques from Type 1 to Type 6, which trade off accuracy, data complexity, database performance:
-
-- Type 0: Never update
-- Type 1: Overwrite, with no history kept
-- Type 2: Add new row with version & data tracking
-- Type 3: Add column for previous value, limited history
-- Type 4: Keep history in separate table
-- Type 6: Hybrid of types 1, 2, and 3
-
-Type 2 is the most common when you need audit trails or point-in-time analysis.
+- **Type 0**: Never update
+- **Type 1**: Overwrite, with no history kept
+- **Type 2**: Add new row with version & date tracking
+- **Type 3**: Add column for previous value, limited history
+- **Type 4**: Keep history in separate table
+- **Type 5**: Mini-dimension plus embedded current values
+- **Type 6**: Hybrid of types 1, 2, and 3
 
 ## Type 0
 
-Only use for immutable data. If your data changes - avoid.
+Only use for immutable data. If your data changes (i.e. is not immutable) - avoid using this.
 
 ## Type 1
 
 Actively harmful to data integrity, should be avoided except in very specific cases.
 
-Only use for correcting data entry problems, or things that aren't worth keeping (like typos in a name).
-
-Avoid
+Only use for correcting data entry problems, or things that aren't worth keeping (like typos in a name). Avoid.
 
 ## Type 2
 
-Type 2 is the most common when you need audit trails or point-in-time analysis.
+Type 2 is the most common when you need audit trails or point-in-time analysis. Gold standard for analytics & reporting.
 
 A common type of SCD is SCD Type 2, where a row has (in addition to other columns):
 
-- Start date
-- End date
-- Is current flag
+- **Start date**: When this version of the row became active
+- **End date**: When this version was superseded
+- **Is current flag**: Whether this is the latest version
 
 Updating an existing row in a SCD type 2 table:
 
-1. Insert a new row
-2. Update the old row `is_current` flag to `False`
-3. Update the old row `end_date`
+1. **Insert**: Add a new row with the updated values
+2. **Flag**: Set the old row `is_current` to `False`
+3. **Close**: Set the old row `end_date` to the change date
 
 This will allow you to maintain a history of changes to your data over time.
 
@@ -71,7 +65,7 @@ sk  | customer_id | name  | region     | start_date | end_date   | is_current
 
 When ingesting data like this, you need:
 
-```
+```sql
 SELECT sk FROM dim_customer
 WHERE customer_id = 1001
   AND transaction_date >= start_date
@@ -84,39 +78,42 @@ When you load a fact with a transaction date in the past, after the dimension ha
 
 You can also skip surrogate keys in facts and do the date-range join at query time instead. Simpler ETL, but slower queries and easier to get wrong.
 
-Risk dropping all current period facts if you don't handle the null `end_date` in a join of fact & dimensions.
+Risks of skipping surrogate keys:
 
-Risk facts joining to multiple dimensions if the historical periods overlap.
-
-Gold standard for analytics & reporting.
+- **Null end dates**: Drop all current period facts if you don't handle the null `end_date` in a join of fact & dimensions
+- **Overlapping periods**: Facts join to multiple dimensions if the historical periods overlap
 
 ## Type 3
 
-Limited, can't know history at arbitrary past dates
-
-Avoid
+Add column for previous value. Limited history, can't know history at arbitrary past dates. Avoid.
 
 ## Type 4
 
-Good for historic, best when dimensions change a lot, and you often only want the current state (ie `is_current`)
+Keep history in a separate table. Good for historical data, best when dimensions change a lot, and you often only want the current state (i.e. `is_current`).
+
+## Type 5
+
+Hybrid of Types 1 and 4. Uses a mini-dimension table for frequently changing attributes, with the current mini-dimension key also embedded in the main dimension (Type 1 overwrite). Useful when a small set of attributes change often and you need both current and historical views.
 
 ## Type 6
 
-Good when you want to access the current value on the historical row, without needing a self join (like you would for Type2)
+Combination of Types 1, 2, and 3. Good when you want to access the current value on the historical row, without needing a self join (like you would for Type 2).
 
 ## Deletes
 
-SCDs typically focus on updates. What happens when a dimension record is deleted? Options:
+SCDs typically focus on updates.
 
-Soft delete (flag)
-Keep row with "deleted" status
-Actually delete (breaks referential integrity)
+When a dimension record is deleted, options are:
 
----
+- **Soft delete**: Flag the row as deleted
+- **Status marker**: Keep row with "deleted" status
+- **Hard delete**: Actually delete (breaks referential integrity)
 
-TODO - example in DuckDB SQL for the power MW of a hydro turbine - OR do I leave this for later???
+## Example in DuckDB SQL
 
-```
+The example below shows a hydro turbine that is upgraded from 25 MW to 32 MW capacity, and how to track that with SCD Type 2:
+
+```sql
 -- Create dimension table with SCD Type 2
 CREATE TABLE dim_turbine (
     sk INTEGER PRIMARY KEY,
@@ -177,7 +174,7 @@ SELECT * FROM dim_turbine WHERE is_current = true;
 SELECT * FROM dim_turbine WHERE turbine_id = 'HT-001' ORDER BY start_date;
 ```
 
-```
+```shell-session
 $ duckdb < scd.sql
 ┌─────────────────┬────────────┬──────────────────┬────────────────┬─────────────────────┐
 │ generation_date │    name    │ capacity_at_time │ generation_mwh │ capacity_factor_pct │
@@ -191,16 +188,13 @@ $ duckdb < scd.sql
 │  sk   │ turbine_id │    name    │   power_mw    │ start_date │ end_date │ is_current │
 │ int32 │  varchar   │  varchar   │ decimal(10,2) │    date    │   date   │  boolean   │
 ├───────┼────────────┼────────────┼───────────────┼────────────┼──────────┼────────────┤
-│     2 │ HT-001     │ Karapiro 1 │         32.00 │ 2024-07-01 │          │ true       │
+│     2 │ HT-001     │ Karapiro 1 │         32.00 │ 2024-07-01 │ NULL     │ true       │
 └───────┴────────────┴────────────┴───────────────┴────────────┴──────────┴────────────┘
 ┌───────┬────────────┬────────────┬───────────────┬────────────┬────────────┬────────────┐
 │  sk   │ turbine_id │    name    │   power_mw    │ start_date │  end_date  │ is_current │
 │ int32 │  varchar   │  varchar   │ decimal(10,2) │    date    │    date    │  boolean   │
 ├───────┼────────────┼────────────┼───────────────┼────────────┼────────────┼────────────┤
 │     1 │ HT-001     │ Karapiro 1 │         25.00 │ 2020-01-01 │ 2024-07-01 │ false      │
-│     2 │ HT-001     │ Karapiro 1 │         32.00 │ 2024-07-01 │            │ true       │
+│     2 │ HT-001     │ Karapiro 1 │         32.00 │ 2024-07-01 │ NULL       │ true       │
 └───────┴────────────┴────────────┴───────────────┴────────────┴────────────┴────────────┘
 ```
-
-TODO
-- change karapiro to benmore or something
