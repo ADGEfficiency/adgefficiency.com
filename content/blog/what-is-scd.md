@@ -1,12 +1,14 @@
 ---
 title: What are Slowly Changing Dimensions (SCD)?
 description: Slowly changing dimensions (SCD) are a group of techniques used to track changes to data.
-date_created: 2025-12-31
+date_created: 2026-01-30
 competencies:
   - Data Engineering
 ---
 
-Slowly changing dimensions (SCD) are a group of techniques used to track changes to a row of data. There are seven types from Type 0 to Type 6, which trade off accuracy, data complexity and database performance:
+**Slowly changing dimensions (SCD) are a group of techniques used to track changes to a row of data**.
+
+There are seven SCD types from Type 0 to Type 6, which trade off accuracy, data complexity and database performance:
 
 - **Type 0**: Never update
 - **Type 1**: Overwrite, with no history kept
@@ -18,19 +20,23 @@ Slowly changing dimensions (SCD) are a group of techniques used to track changes
 
 ## Type 0
 
-Only use for immutable data. If your data changes (i.e. is not immutable) - avoid using this.
+**Type 0 is never updating your data**.
+
+You should only use this for immutable data. If your data changes, avoid using this.
 
 ## Type 1
 
-Actively harmful to data integrity, should be avoided except in very specific cases.
+**Type 1 overwrites existing data with no history**.
 
-Only use for correcting data entry problems, or things that aren't worth keeping (like typos in a name). Avoid.
+This is actively harmful to data integrity, should be avoided except in very specific cases.
+
+You should only use this for correcting data entry problems, or things that aren't worth keeping (like typos in a name).
 
 ## Type 2
 
-Type 2 is the most common when you need audit trails or point-in-time analysis. Gold standard for analytics & reporting.
+**Type 2 adds extra rows and columns to track history**. SCD Type 2 is the gold standard for analytics.  It enables audit trails and point-in-time analysis.
 
-A common type of SCD is SCD Type 2, where a row has (in addition to other columns):
+In SCD Type 2 a row has (in addition to the data columns):
 
 - **Start date**: When this version of the row became active
 - **End date**: When this version was superseded
@@ -63,7 +69,7 @@ sk  | customer_id | name  | region     | start_date | end_date   | is_current
 2   | 1001        | Alice | Texas      | 2024-06-01 | NULL       | true
 ```
 
-When ingesting data like this, you need:
+When reading data like this, you need to join on the date range to get the correct dimension record for the fact's date:
 
 ```sql
 SELECT sk FROM dim_customer
@@ -198,3 +204,19 @@ $ duckdb < scd.sql
 │     2 │ HT-001     │ Karapiro 1 │         32.00 │ 2024-07-01 │ NULL       │ true       │
 └───────┴────────────┴────────────┴───────────────┴────────────┴────────────┴────────────┘
 ```
+
+## Summary
+
+**Slowly changing dimensions are techniques for tracking how data changes over time, with each type trading off simplicity against historical accuracy**.
+
+- **Type 0**: Never update, only for truly immutable data
+- **Type 1**: Overwrite with no history, only for correcting errors
+- **Type 2**: Add rows with date tracking, the gold standard for analytics
+- **Type 3**: Add column for previous value, too limited to be useful
+- **Type 4**: Separate history table, good when dimensions change frequently
+- **Type 5**: Mini-dimension with embedded current values, hybrid of Types 1 and 4
+- **Type 6**: Hybrid of Types 1, 2, and 3, gives current values on historical rows
+
+**For most analytics use cases, Type 2 is the right choice**. It enables audit trails, point-in-time analysis, and works well with surrogate keys and modern ETL tools like dbt snapshots.
+
+Thanks for reading!
