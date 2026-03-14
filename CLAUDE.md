@@ -65,6 +65,7 @@ None
 - Use `bash` for shell scripts or commands without output
 - Use title annotations for file-specific code: ````python { title = "filename.py" }````
 - When showing terminal output after a command, use `shell-session` with `$` prefix
+- Use `import pulp; pulp.LpVariable` rather than `from pulp import LpVariable`
 
 ### Tables
 - Use markdown tables for structured comparisons and data

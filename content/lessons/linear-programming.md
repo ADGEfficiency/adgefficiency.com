@@ -4,7 +4,7 @@ description: Solve constrained optimization problems by defining an objective fu
 date_created: 2026-03-13
 date_updated: 2026-03-13
 competencies:
-  - Algorithms
+  - Optimization
   - Energy
 ---
 

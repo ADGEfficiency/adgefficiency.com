@@ -6,6 +6,7 @@ date_updated: 2025-11-01
 competencies:
   - Energy
   - Time Series
+  - Optimization
 aliases:
   - /2019-02-11-energy-py-linear-forecast-quality
   - /energy-py-linear-forecast-quality
