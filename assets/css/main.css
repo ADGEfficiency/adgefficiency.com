@@ -56,12 +56,48 @@ body {
   background-color: #10B981;
 }
 
-figure.highlight {
+figure.code-block {
   position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #30363d;
+  margin: 1.25em 0;
 }
 
-figure.highlight:hover .copy-code-btn {
+figure.code-block:hover .copy-code-btn {
   opacity: 1;
+}
+
+figure.code-block pre {
+  margin: 0 !important;
+  border-radius: 0 !important;
+  border: none !important;
+}
+
+.code-titlebar {
+  background: #161b22;
+  padding: 0.4rem 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid #30363d;
+  margin: 0;
+}
+
+.code-titlebar-icon {
+  color: #79c0ff;
+  font-family: monospace;
+  font-size: 0.85rem;
+}
+
+.code-titlebar.config .code-titlebar-icon {
+  color: #e3b341;
+}
+
+.code-titlebar-label {
+  color: #8b949e;
+  font-size: 0.8rem;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* Pagefind Search Styles */
@@ -126,6 +162,37 @@ figure.highlight:hover .copy-code-btn {
   color: #8b949e;
   font-size: 0.8rem;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.terminal-block {
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #30363d;
+  margin: 1.25em 0;
+  position: relative;
+}
+
+.terminal-block pre {
+  background: #0d1117 !important;
+  margin: 0 !important;
+  padding: 1rem !important;
+  border-radius: 0 !important;
+  border: none !important;
+}
+
+.terminal-block code {
+  color: #8b949e !important;
+  background: transparent !important;
+  padding: 0 !important;
+  font-size: 0.875rem;
+}
+
+.terminal-block:hover .copy-code-btn {
+  opacity: 1;
+}
+
+.output-block:hover .copy-code-btn {
+  opacity: 1;
 }
 
 .output-block pre {

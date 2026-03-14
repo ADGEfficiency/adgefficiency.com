@@ -1,9 +1,16 @@
-<figure class="highlight">
-  {{- with .Attributes.title }}
-  <figcaption class="bg-blue-200 p-2 rounded">
-    <span>{{ . | markdownify }}</span>
-  </figcaption>
-  {{- end }} {{- if transform.CanHighlight .Type }}
+<figure class="code-block">
+  {{- if .Type }}
+  {{- $configLangs := slice "yaml" "toml" "json" "ini" "xml" "dockerfile" "makefile" }}
+  {{- $icon := "&lt;/&gt;" }}
+  {{- if in $configLangs (lower .Type) }}
+    {{- $icon = "{}" }}
+  {{- end }}
+  <div class="code-titlebar{{ if in $configLangs (lower .Type) }} config{{ end }}">
+    <span class="code-titlebar-icon">{{ $icon | safeHTML }}</span>
+    <span class="code-titlebar-label">{{ .Type }}{{ with .Attributes.title }} {{ . }}{{ end }}</span>
+  </div>
+  {{- end }}
+  {{- if transform.CanHighlight .Type }}
   <pre
     tabindex="0"
     class="chroma"
@@ -15,6 +22,6 @@
   {{- else }}
   <pre
     tabindex="0"
-  ><code class="language-{{ .Type }}" data-lang="{{ .Type }}">{{ .Inner }}</code></pre>
+  ><code{{ with .Type }} class="language-{{ . }}" data-lang="{{ . }}"{{ end }}>{{ .Inner }}</code></pre>
   {{- end }}
 </figure>

@@ -6,8 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const pre = codeBlock.parentElement
     const figure = pre.parentElement
 
-    if (figure.classList.contains('output-block')) return
-
     // Create copy button
     const copyButton = document.createElement('button')
     copyButton.className = 'copy-code-btn'
