@@ -105,7 +105,7 @@ If we map this problem onto our three components, we have:
 
 We will define these three assets using a `dataclass`, which serves to document our program better than a list of dictionaries would:
 
-```python
+```python { title = "dispatch.py" }
 import dataclasses
 
 import pulp
@@ -149,7 +149,7 @@ for v in variables:
     print(f"{v.name} {v.varValue}")
 ```
 
-```output 
+```output
 Optimal
 wind 10.0
 gas 0.0

@@ -97,6 +97,52 @@ figure.highlight:hover .copy-code-btn {
   background: #6B7280;
 }
 
+/* Output block terminal chrome */
+.output-block {
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #30363d;
+  margin: 1.25em 0;
+  position: relative;
+}
+
+.output-titlebar {
+  background: #161b22;
+  padding: 0.4rem 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid #30363d;
+  margin: 0;
+}
+
+.output-prompt {
+  color: #7ee787;
+  font-family: monospace;
+  font-size: 0.85rem;
+}
+
+.output-title {
+  color: #8b949e;
+  font-size: 0.8rem;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.output-block pre {
+  background: #0d1117 !important;
+  margin: 0 !important;
+  padding: 1rem !important;
+  border-radius: 0 !important;
+  border: none !important;
+}
+
+.output-block code {
+  color: #8b949e !important;
+  background: transparent !important;
+  padding: 0 !important;
+  font-size: 0.875rem;
+}
+
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
