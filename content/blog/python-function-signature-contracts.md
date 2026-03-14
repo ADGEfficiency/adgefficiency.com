@@ -18,7 +18,7 @@ This blog post covers three ways to strengthen your Python function signatures:
 2. [**Using `TypeVar` for Multiple Return Types**](#solution-2-using-typevar-for-multiple-return-types)
 3. [**Overloading For Multiple Function Signatures**](#solution-3-overloading-for-multiple-function-signatures)
 
-## Preamble
+## Typing in Python
 
 Typing is an intermediate level Python topic.  Adding types to your Python program allows you to:
 

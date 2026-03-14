@@ -7,6 +7,7 @@ competencies:
   - Software Engineering
   - Python
 github: https://github.com/ADGEfficiency/intro-to-distributed-computation-in-python
+youtube: x_NBHIi-Yf0
 ---
 
 An introduction to distributed computation in Python, presented at Kiwi PyCon 2022.

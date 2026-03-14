@@ -1,6 +1,6 @@
 ---
 title: Find a Data Job
-description: Find your next role as a a data professional.
+description: Find your next role as a data professional.
 date_created: 2025-04-06
 date_updated: 2025-04-06
 competencies:
