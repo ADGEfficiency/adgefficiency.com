@@ -16,7 +16,10 @@
     <span class="px-2 py-1 text-xs rounded bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-200">Talk</span>
     {{ end }}
 
-    {{/* 2. Competency tags */}}
+    {{/* 2. Reading time */}}
+    <span class="px-2 py-1 text-xs rounded bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200">{{ .ReadingTime }} min read</span>
+
+    {{/* 3. Competency tags */}}
     {{ range .Params.competencies }}
     <span class="px-2 py-1 text-xs rounded bg-green-100 dark:bg-green-800 text-green-700 dark:text-green-200">{{ . }}</span>
     {{ end }}

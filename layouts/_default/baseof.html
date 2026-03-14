@@ -284,9 +284,9 @@
           var articleTop = articleRect.top + window.scrollY
           var articleBottom = articleTop + article.offsetHeight
           var viewportBottom = window.scrollY + window.innerHeight
-          var scrolled = viewportBottom - articleTop
-          var total = article.offsetHeight
-          var pct = Math.min(100, Math.max(0, (scrolled / total) * 100))
+          var scrolled = window.scrollY - articleTop
+          var total = article.offsetHeight - window.innerHeight
+          var pct = total > 0 ? Math.min(100, Math.max(0, (scrolled / total) * 100)) : 0
           ring.style.strokeDashoffset = circumference - (pct / 100) * circumference
           label.textContent = Math.round(pct) + '%'
         }
