@@ -228,6 +228,24 @@
       </div>
     </header>
     {{ block "main" . }}{{ end }}
+    {{ partial "footer.html" . }}
+    <button
+      id="back-to-top"
+      class="fixed bottom-6 right-6 z-50 p-3 rounded-full bg-gray-800 text-white shadow-lg hover:bg-gray-700 hover:-translate-y-1 transition-all duration-200"
+      aria-label="Back to top"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
+    </button>
+    <script>
+      ;(function () {
+        var btn = document.getElementById('back-to-top')
+btn.addEventListener('click', function () {
+          window.scrollTo({ top: 0, behavior: 'smooth' })
+        })
+      })()
+    </script>
     <script src="/js/copyCode.js">
 </script>
     <script src="/js/search.js">
