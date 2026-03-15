@@ -2,7 +2,7 @@
 title: Bash Shell
 description: Learn how to use a shell, write shell scripts, and configure your shell environment.
 date_created: 2025-01-13
-date_updated: 2025-01-13
+date_updated: 2026-03-15
 competencies:
 - "Software Engineering"
 ---
@@ -1518,6 +1518,39 @@ function greet {
 greet "adam"
 ```
 
+## Working with Background Jobs
+
+**Background jobs let you run processes without blocking your terminal**.
+
+Start a command in the background by appending `&`:
+
+```bash
+some-command &
+```
+
+If a process is already running, suspend it with `Ctrl+Z`, then resume it in the background:
+
+```bash
+bg
+```
+
+### Managing Jobs
+
+```bash
+jobs        # list background jobs
+fg %1       # bring job 1 to foreground
+fg          # bring the most recent job to foreground
+```
+
+### Suppressing Output
+
+Background jobs still print to your terminal by default.  Redirect output to silence them:
+
+```bash
+some-command > /dev/null 2>&1 &
+```
+
+
 ## Summary
 
 In this lesson we've covered:
@@ -1533,6 +1566,7 @@ In this lesson we've covered:
 - **File operations**: Creating, viewing, moving, and deleting files and directories with `touch`, `cat`, `mv`, `rm` and more
 - **Redirection and pipes**: Connecting programs together using `|`, `>`, `>>`, and `<` to build powerful command pipelines
 - **Shell scripting**: Writing reusable scripts with commands, variables, command-line arguments, and functions
+- **Background jobs**: Running processes without blocking your terminal using `&`, `Ctrl+Z`/`bg`, and `jobs`/`fg`
 
 These skills form the foundation for many data science workflows, enabling everything from automated data processing to CI/CD pipelines and Docker deployments.
 

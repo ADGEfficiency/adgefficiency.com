@@ -10,7 +10,9 @@ competencies:
 
 ## What is Linear Programming?
 
-**Linear programming (LP) is a method for finding the best outcome in a mathematical model where the objective and constraints are linear**.
+**Linear programming (LP) is a method for finding optimal solutions to problems that can be expressed as linear relationships**.  
+
+It's applicable to any problem that can be approximated as linear - in practice it's used widely across many domains, from supply chain management to energy systems.
 
 Every linear program has three components:
 
@@ -20,13 +22,62 @@ Every linear program has three components:
 
 ## What is Mixed Integer Linear Programming?
 
-**Mixed-integer programming (MILP) is a type of linear programming where some decision variables are constrained to be integers**.  
+**Mixed-integer linear programming (MILP) is a type of linear programming where some decision variables are constrained to be integers**.  When all decision variables are continuous, you have a linear program (LP). When some must be integers, you have a mixed-integer program (MIP).
 
-It's a more advanced application of linear programming that allows us to model problems with discrete choices, like how many units of a product to produce or whether to build a facility.
+Integer variables let you model discrete choices — how many units to produce, whether to build a facility, or which routes to activate.  This makes MILP a much more expressive modelling tool than LP, so many practical optimization problems end up as MILPs.
 
-MILP is a much more expressive modelling tool than LP, so many practical applications of LP end up being MILP models.  There is a tradeoff for this, as MILP problems are much harder to solve than LP problems — the solver must search over combinations of integer values, which can be exponentially slower.
+The trade-off is speed.  LPs are fast to solve — the simplex algorithm finds an optimal solution in polynomial time in practice.  MIPs are harder because the solver must search over combinations of integer values, which can be exponentially slower.
 
-### Solvers vs. Solver Libraries
+In this lesson, the electricity dispatch and transportation problems are pure LPs — all variables are continuous quantities.  The diet problem is a MIP because we set `cat='Integer'` on the apple and orange variables, forcing the solver to find whole-number quantities of fruit.
+
+## What Do We Mean By Linear?
+
+Linearity concerns how things change.  In a linear system, the system changes at the same rate at all points, while in a nonlinear system, the system changes at different rates at different points.
+
+A linear program assumes no non-linear relationships exist — or that any non-linear relationship can be adequately approximated by a linear one.
+
+For working with linear programs, the linear restriction means that:
+
+- No variable can be multiplied by another variable (e.g. `x * y` is not linear)
+- No variable can be raised to a power (e.g. `x^2` is not linear)
+- No discontinuous functions (e.g. `if x > 5: ...` is not linear)
+
+No discontinuous functions is a big restriction on how you can write a program - it means no `if` statements in the linear program (note - this does not mean no `if` statements in your code!).
+
+You can use `if` statements in your Python code to build different versions of the problem — you just can't use them inside the optimization model itself:
+
+```python
+# OK - Python if statement decides which constraint to add
+if include_capacity_limit:
+    problem += generation <= 100
+
+# OK - Python if statement decides which objective to use
+if minimize_cost:
+    problem += cost
+else:
+    problem += -revenue
+```
+
+```python
+# NOT OK - conditional logic inside the optimization
+# "if generation > 50, then price = 30" is a discontinuous function
+# and cannot be expressed as a linear constraint
+problem += price == 30 if generation > 50 else 50
+```
+
+The first examples are fine because Python evaluates the `if` before the solver runs — the solver only sees the resulting linear constraints.  The second is not linear because the solver would need to evaluate a conditional during optimization.
+
+## Why Learn Mixed Integer Linear Programming?
+
+Mixed integer linear programming is a technique I picked up during my chemical engineering Masters degree - it's been the most useful optimization technique I've learned.  I've used it at every company I've worked at - across large energy utilities and at small startups.
+
+Unlike more general optimization methods (such as gradient descent), LP is guaranteed to find a global optimum, and practically runs deterministically.
+
+- **Global optimum**: LP & MILP solvers find the best solution, not just a local one
+- **Fast**: LP solves in polynomial time in practice, even for large problems
+- **Deterministic**: Given the same problem, LP & MILP solvers always return the same solution
+
+## Solvers vs. Solver Libraries
 
 **A solver is the engine that finds the optimal solution — a solver library is the Python interface you use to define the problem**.
 
@@ -34,19 +85,9 @@ A solver is a compiled, optimized program that implements algorithms like simple
 
 PuLP, Pyomo, and OR-Tools are solver libraries.  GLPK, CBC, CPLEX, and Gurobi are solvers.  Most solver libraries can talk to multiple solvers — you can define a problem in PuLP and solve it with CBC for free or switch to Gurobi for better performance on large problems.
 
-### LP vs. MILP
-
-**When all decision variables are continuous, you have a linear program (LP). When some variables must be integers, you have a mixed-integer program (MIP)**.
-
-The distinction matters because LPs are fast to solve — the simplex algorithm finds an optimal solution in polynomial time in practice. MIPs are much harder because the solver must search over combinations of integer values, which can be exponentially slower.
-
-In this lesson, the electricity dispatch and transportation problems are pure LPs — all variables are continuous quantities.  The diet problem is a MIP because we set `cat='Integer'` on the apple and orange variables, forcing the solver to find whole-number quantities of fruit.
-
-**In PuLP, the only difference is the `cat` parameter** on `LpVariable` — set `'Continuous'` (the default) for LP or `'Integer'` for MIP.
-
 ### This Lesson
 
-This lesson will show you how to create
+This lesson will show you how to create and solve linear programs in Python using PuLP.
 
 Install the following Python packages to run the examples.
 
@@ -58,9 +99,14 @@ This lesson covers three examples:
 
 1. **Electricity Asset Dispatch**: Minimize generation cost subject to meeting demand, with scenario analysis over demand and price
 2. **Diet Cost Minimization**: Minimize cost of a fruit diet subject to nutritional requirements
-3. **Cargo Assignment**: Minimize shipping cost from ports to markets (exercise)
+3. **Cargo Assignment**: Minimize shipping cost from ports to markets (worked example)
 
 ### Resources
+
+Tutorials:
+
+- [Linear Programming Tricks - AIMMS Modeling Guide](https://download.aimms.com/aimms/download/manuals/AIMMS3OM_LinearProgrammingTricks.pdf)
+- [Linear programming notes — Michel Goemans (MIT)](https://math.mit.edu/~goemans/18310S15/lpnotes310.pdf)
 
 Solver libraries:
 
@@ -69,31 +115,17 @@ Solver libraries:
 - [Google OR-Tools](https://developers.google.com/optimization)
 - [scipy.optimize.linprog](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linprog.html)
 
-Tutorials:
-
-- [Linear programming notes — Michel Goemans (MIT)](https://math.mit.edu/~goemans/18310S15/lpnotes310.pdf)
-
-## Why Learn Mixed Integer Linear Programming?
-
-TODO
-
-Linear programming (LP) is a tool I picked up during my chemical engineering Masters degree - it's been the most useful optimization technique I've learned.
-
-Unlike more general optimization methods (such as gradient descent). LP converges to a global optimum, and practically runs deterministically.
-
-- **Global Optimum Guarantee**: LP & MILP solvers find the best solution, not just a local one
-- **Fast**: LP solves in polynomial time in practice, even for large problems
-- **Deterministic**: Given the same problem, LP & MILP solvers will always return the same solution
-
 ## PuLP Cheat Sheet
 
 | Component   | Represents                            | PuLP API                          |
 |-------------|---------------------------------------|-----------------------------------|
-| Objective   | Thing we want to minimize or maximize | `prob += expr` (first addition)   |
+| Objective   | Thing we want to minimize or maximize | `prob += expr`                    |
 | Variables   | Things we can change                  | `LpVariable(name, lowBound, cat)` |
 | Constraints | Rules we must follow                  | `prob += expr >= value`           |
 
 ## Example - Electricity Dispatch
+
+Our first example is a simplified electricity dispatch problem.  We have a demand for electricity that we need to meet, and we have several assets that can generate electricity at different costs and with different capacity limits.  We want to find the cheapest way to meet our demand.
 
 We have three assets in our electricity grid — a wind turbine, a gas turbine, and a coal plant.
 
@@ -105,7 +137,7 @@ If we map this problem onto our three components, we have:
 
 We will define these three assets using a `dataclass`, which serves to document our program better than a list of dictionaries would:
 
-```python { title = "dispatch.py" }
+```python
 import dataclasses
 
 import pulp
@@ -183,7 +215,7 @@ for demand in [10, 50, 100]:
     print("")
 ```
 
-```output 
+```output
 demand=10
   wind 10.0
   gas 0.0
@@ -229,7 +261,7 @@ for coal_price in [10, 50, 100]:
     print("")
 ```
 
-```output 
+```output
 coal_price=10
   wind 0.0
   gas 0.0
@@ -250,7 +282,7 @@ When coal is cheap at 10/MWh, it undercuts wind and takes all the dispatch. At 5
 
 ## Example - Diet Cost Optimization
 
-*This example been adapted from [Linear programming - Michel Goemans](https://math.mit.edu/~goemans/18310S15/lpnotes310.pdf).*
+*This example has been adapted from [Linear programming - Michel Goemans](https://math.mit.edu/~goemans/18310S15/lpnotes310.pdf).*
 
 We live in a town with two types of fruit (apples and oranges) and three types of nutrients (starch, proteins, vitamins).  We want a diet that is cheap while satisfying our dietary requirements of 8g of starch, 15g of proteins, and 3g of vitamins per day.
 
@@ -286,15 +318,17 @@ for v in (apples, oranges):
     print(f"{v.name}: {v.varValue}")
 ```
 
-```output 
+```output
 Problem is Optimal, your diet cost is 2.4
 apples: 4.0
 oranges: 0.0
 ```
 
+The solver picks only apples because the protein constraint is the binding one — we need 15g, and apples provide 4g each versus 2g for oranges.  Four apples deliver 16g of protein at $2.40, while reaching 15g with oranges would require 8 at $2.80.
+
 Setting `lowBound=0` on our variables is important — without it the solver can use negative quantities of fruit to satisfy constraints, which is not physically meaningful.
 
-**With a working model, sensitivity analysis is a natural next step** — varying costs or nutritional requirements to see how the optimal diet changes.
+**With a working model, sensitivity analysis is a natural next step** — varying costs or nutritional requirements to see how the optimal diet changes, just as we varied demand and price in the electricity dispatch example above.
 
 ## Example - Cargo Assignment
 
@@ -354,7 +388,7 @@ for p in range(len(ports)):
             print(f'port {p} -> market {m}: {val:.1f}')
 ```
 
-```output 
+```output
 port 1 -> market 2: 5.0
 port 2 -> market 0: 20.0
 port 3 -> market 1: 10.0
@@ -364,11 +398,95 @@ port 3 -> market 1: 10.0
 
 ## Full Code Snippets
 
+Complete standalone scripts for each example, ready to copy and run.
+
 ### Electricity Dispatch
+
+```python
+import dataclasses
+
+import pulp
+
+
+@dataclasses.dataclass
+class Asset:
+    name: str
+    price: float
+    limit: int
+
+
+assets = [
+    Asset("wind", 30, 25),
+    Asset("gas", 70, 50),
+    Asset("coal", 50, 100),
+]
+
+problem = pulp.LpProblem("cost-minimization", pulp.LpMinimize)
+variables = [pulp.LpVariable(a.name, 0, a.limit) for a in assets]
+
+demand = 10
+problem += sum(variables) == demand
+problem += sum(a.price * v for a, v in zip(assets, variables))
+
+problem.solve()
+print(pulp.LpStatus[problem.status])
+for v in variables:
+    print(f"{v.name} {v.varValue}")
+```
 
 ### Diet Cost Optimization
 
+```python
+import pulp
+
+prob = pulp.LpProblem("diet_problem", pulp.LpMinimize)
+apples = pulp.LpVariable("apples", cat="Integer", lowBound=0)
+oranges = pulp.LpVariable("oranges", cat="Integer", lowBound=0)
+
+prob += apples * 0.6 + oranges * 0.35
+
+prob += apples * 5 + oranges * 7 >= 8
+prob += apples * 4 + oranges * 2 >= 15
+prob += apples * 2 + oranges * 1 >= 3
+
+prob.solve()
+print(
+    f"Problem is {pulp.LpStatus[prob.status]}, your diet cost is {prob.objective.value()}"
+)
+for v in (apples, oranges):
+    print(f"{v.name}: {v.varValue}")
+```
+
 ### Cargo Assignment
+
+```python
+import numpy as np
+import pulp
+
+ports = [20, 30, 30, 50]
+markets = [20, 10, 5]
+
+np.random.seed(42)
+port_to_market_cost = np.random.uniform(0, 1, size=len(ports) * len(markets)).reshape(len(ports), len(markets))
+
+problem = pulp.LpProblem('transportation', pulp.LpMinimize)
+
+x = [[pulp.LpVariable(f'port{p}_market{m}', 0) for m in range(len(markets))] for p in range(len(ports))]
+
+problem += pulp.lpSum(x[p][m] * port_to_market_cost[p][m] for p in range(len(ports)) for m in range(len(markets)))
+
+for m in range(len(markets)):
+    problem += pulp.lpSum(x[p][m] for p in range(len(ports))) >= markets[m]
+
+for p in range(len(ports)):
+    problem += pulp.lpSum(x[p][m] for m in range(len(markets))) <= ports[p]
+
+problem.solve()
+for p in range(len(ports)):
+    for m in range(len(markets)):
+        if (val := x[p][m].varValue) > 0:
+            print(f'port {p} -> market {m}: {val:.1f}')
+```
 
 ## Summary
 
@@ -378,5 +496,7 @@ port 3 -> market 1: 10.0
 - **LP vs MILP**: When all variables are continuous you have an LP, when some must be integers you have a MILP — the solver handles both, but MILP is harder
 - **Scenario analysis**: Once you have a working model, varying inputs like demand or price reveals how the optimal solution changes
 - **Solver libraries**: PuLP lets you define problems in Python and pass them to solvers like CBC or Gurobi
+
+---
 
 Thanks for reading!
