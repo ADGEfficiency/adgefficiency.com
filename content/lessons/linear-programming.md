@@ -75,7 +75,46 @@ Unlike more general optimization methods (such as gradient descent), LP is guara
 
 - **Global optimum**: LP & MILP solvers find the best solution, not just a local one
 - **Fast**: LP solves in polynomial time in practice, even for large problems
-- **Deterministic**: Given the same problem, LP & MILP solvers always return the same solution
+- **Deterministic**: LP solvers always return the same solution; MILP solvers are deterministic given the same settings and version
+
+## Infeasibility
+
+**A problem is infeasible when no solution satisfies all constraints simultaneously**.  This happens when constraints contradict each other — for example, requiring a variable to be both greater than 10 and less than 5.
+
+```python
+import pulp
+
+problem = pulp.LpProblem("infeasible", pulp.LpMinimize)
+x = pulp.LpVariable("x", 0, 10)
+y = pulp.LpVariable("y", 0, 10)
+
+problem += x + y
+problem += x + y >= 25
+
+problem.solve()
+print(pulp.LpStatus[problem.status])
+```
+
+```output
+Infeasible
+```
+
+Here `x` and `y` can each be at most 10, so `x + y` can never reach 25.  The solver reports `Infeasible` instead of `Optimal` — the variable values are meaningless, and the solver is telling you that no combination of decisions can satisfy your constraints.
+
+### Debugging Infeasibility
+
+**In small problems, infeasibility is easy to spot — in large problems with hundreds of constraints, it can be difficult to find the conflicting constraints**.
+
+The standard debugging technique is to find an **Irreducible Infeasible Set (IIS)** — the smallest subset of constraints that still conflict.  Removing any single constraint from the IIS makes the remaining set feasible, so the IIS pinpoints exactly where the contradiction lies.
+
+PuLP's default CBC solver does not compute an IIS directly, but commercial solvers like Gurobi and CPLEX have built-in IIS methods.  For CBC, a practical approach is to relax constraints one at a time and re-solve — when the problem becomes feasible, you've found one of the conflicting constraints.
+
+Common causes of infeasibility in practice:
+
+- **Demand exceeds capacity**: Total demand is greater than total supply
+- **Contradictory bounds**: A variable's lower bound is higher than its upper bound
+- **Over-constrained problems**: Too many equality constraints that cannot all be satisfied simultaneously
+- **Data errors**: Typos in constraint coefficients or right-hand-side values
 
 ## Solvers vs. Solver Libraries
 
