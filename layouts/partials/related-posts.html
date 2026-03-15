@@ -1,0 +1,15 @@
+{{ $current := . }}
+{{ $allPages := where (where .Site.RegularPages "Section" "in" (slice "blog" "lessons" "talks")) ".RelPermalink" "!=" $current.RelPermalink }}
+{{ $shuffled := $allPages | shuffle }}
+{{ $related := first 3 $shuffled }}
+
+{{ if $related }}
+<div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+  <h2 class="text-xl font-bold mb-4">Keep Reading</h2>
+  <div class="grid grid-cols-1 gap-4">
+    {{ range $related }}
+    {{ partial "content-card.html" . }}
+    {{ end }}
+  </div>
+</div>
+{{ end }}

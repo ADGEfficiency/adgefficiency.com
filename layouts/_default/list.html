@@ -3,7 +3,7 @@
      data-pagefind-ignore>
     <div class="p-6 rounded-lg">
         <h1 class="text-3xl font-bold mb-6">{{ .Title }}</h1>
-        <div class="grid gap-4 pl-4">{{ range .Pages.ByTitle }} {{ partial "lesson-card.html" . }} {{ end }}</div>
+        <div class="grid gap-4 pl-4">{{ range .Pages.ByTitle }} {{ partial "content-card.html" . }} {{ end }}</div>
     </div>
 </div>
 {{ end }}

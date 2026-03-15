@@ -1,7 +1,9 @@
 <!-- right-sidebar.html -->
 <nav class="text-sm">
     <div class="space-y-4">
+        <h2 class="font-bold text-base">{{ .Title }}</h2>
         {{ with .TableOfContents }}
+        <hr class="border-gray-200 dark:border-gray-700" />
         <div class="[&>nav>ul]:space-y-2 [&_ul]:ml-4 [&_li]:list-none [&_a]:block [&_a]:py-1 [&_a]:px-2 [&_a]:rounded-lg [&_a]:transition-all [&_a]:duration-200 [&_a:hover]:-translate-y-1 [&_a:hover]:shadow-lg [&_a:hover]:bg-gray-800 [&_a:hover]:text-white">
             {{ . }}
         </div>

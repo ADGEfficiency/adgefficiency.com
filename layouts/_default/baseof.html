@@ -228,6 +228,73 @@
       </div>
     </header>
     {{ block "main" . }}{{ end }}
+    {{ partial "footer.html" . }}
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-center gap-2">
+      <button
+        id="back-to-top"
+        class="p-3 rounded-full bg-white text-gray-400 shadow hover:bg-gray-800 hover:text-white hover:-translate-y-1 transition-all duration-200"
+        aria-label="Back to top"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </button>
+      <div id="reading-progress-circle" class="w-12 h-12 hidden">
+        <svg viewBox="0 0 36 36" class="w-full h-full -rotate-90">
+          <circle cx="18" cy="18" r="15.5" fill="none" stroke="currentColor" stroke-width="2" class="text-gray-400 dark:text-gray-600"/>
+          <circle id="progress-ring" cx="18" cy="18" r="15.5" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-dasharray="97.4" stroke-dashoffset="97.4" stroke-linecap="round"
+            class="text-gray-700 dark:text-gray-300"/>
+        </svg>
+        <span id="progress-pct" class="absolute inset-0 flex items-center justify-center text-xs font-medium text-gray-700 dark:text-gray-200">0%</span>
+      </div>
+      <button
+        id="go-to-bottom"
+        class="p-3 rounded-full bg-white text-gray-400 shadow hover:bg-gray-800 hover:text-white hover:translate-y-1 transition-all duration-200"
+        aria-label="Go to bottom"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+    </div>
+    <script>
+      ;(function () {
+        var topBtn = document.getElementById('back-to-top')
+        var bottomBtn = document.getElementById('go-to-bottom')
+        topBtn.addEventListener('click', function () {
+          window.scrollTo({ top: 0, behavior: 'smooth' })
+        })
+        bottomBtn.addEventListener('click', function () {
+          window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+        })
+
+        var circle = document.getElementById('reading-progress-circle')
+        var ring = document.getElementById('progress-ring')
+        var label = document.getElementById('progress-pct')
+        var article = document.querySelector('[data-pagefind-body]')
+        if (!circle || !ring || !article) return
+
+        circle.classList.remove('hidden')
+        circle.style.position = 'relative'
+        var circumference = 97.4
+
+        function updateProgress() {
+          var articleRect = article.getBoundingClientRect()
+          var articleTop = articleRect.top + window.scrollY
+          var articleBottom = articleTop + article.offsetHeight
+          var viewportBottom = window.scrollY + window.innerHeight
+          var scrolled = window.scrollY - articleTop
+          var total = article.offsetHeight - window.innerHeight
+          var pct = total > 0 ? Math.min(100, Math.max(0, (scrolled / total) * 100)) : 0
+          ring.style.strokeDashoffset = circumference - (pct / 100) * circumference
+          label.textContent = Math.round(pct) + '%'
+        }
+
+        window.addEventListener('scroll', updateProgress, { passive: true })
+        updateProgress()
+      })()
+    </script>
     <script src="/js/copyCode.js">
 </script>
     <script src="/js/search.js">
