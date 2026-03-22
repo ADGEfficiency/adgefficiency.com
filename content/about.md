@@ -4,11 +4,11 @@ aliases:
   - /my-work/
 ---
 
-**👋 I'm Adam Green, an energy engineer turned data professional**.
+**I'm Adam Green, an energy engineer turned data professional** 👋
 
 I'm a data professional working on the energy transition towards a cleaner grid. I enjoy building tools & models for prescriptive analytics.
 
-I've worked:
+In my fifteen year career, I've worked:
 
 - **In Three Data Roles**: Analyst, scientist and engineer
 - **For Large and Small Companies**: Energy majors and clean-tech startups
@@ -22,7 +22,7 @@ I wear three hats:
 2. **Data Professional**: Strength in analytics with competencies frontend, engineering and architecture
 3. **Mentor**: I enjoy helping others achieve and grow
 
-Currently I'm working as a Lead Data Scientist at Meridian Energy.
+**Currently I'm working as a Lead Data Scientist at Meridian Energy in New Zealand** 🌱
 
 ## Connect
 
