@@ -1,8 +1,8 @@
 ---
 title: Linear Programming
-description: Solve constrained optimization problems by defining an objective function, decision variables, and constraints.
+description: 'Learn how to translate problems into linear or mixed-integer linear programs, and solve them using Python.'
 date_created: 2026-03-13
-date_updated: 2026-03-13
+date_updated: 2026-03-23
 competencies:
   - Optimization
   - Energy
@@ -14,29 +14,31 @@ competencies:
 
 It's applicable to any problem that can be approximated as linear - in practice it's used widely across many domains, from supply chain management to energy systems.
 
-Every linear program has three components:
+**Every linear program has three components**:
 
 1. **Objective**: The thing we want to make big (maximize) or small (minimize)
 2. **Variables**: Things we can change
 3. **Constraints**: Limits on how we can change variables, rules we must follow
 
+Learning to translate real-world problems into these three components is a necessary skill for unlocking the value of linear programming.  This lesson will show you both how to identify the components in a problem and how to implement them in Python using the PuLP library, with three example problems.
+
 ## What is Mixed Integer Linear Programming?
 
-**Mixed-integer linear programming (MILP) is a type of linear programming where some decision variables are constrained to be integers**.  When all decision variables are continuous, you have a linear program (LP). When some must be integers, you have a mixed-integer program (MIP).
+**Mixed-integer linear programming (MILP) is a type of linear programming where some decision variables are constrained to be integers**.  When all decision variables are continuous, you have a linear program (LP). When some must be integers, you have a mixed-integer linear program (MILP).
 
 Integer variables let you model discrete choices — how many units to produce, whether to build a facility, or which routes to activate.  This makes MILP a much more expressive modelling tool than LP, so many practical optimization problems end up as MILPs.
 
-The trade-off is speed.  LPs are fast to solve — the simplex algorithm finds an optimal solution in polynomial time in practice.  MIPs are harder because the solver must search over combinations of integer values, which can be exponentially slower.
+**The trade-off is speed**.  LPs are fast to solve — the simplex algorithm finds an optimal solution in polynomial time in practice.  MILPs are harder because the solver must search over combinations of integer values, which can be exponentially slower.
 
-In this lesson, the electricity dispatch and transportation problems are pure LPs — all variables are continuous quantities.  The diet problem is a MIP because we set `cat='Integer'` on the apple and orange variables, forcing the solver to find whole-number quantities of fruit.
+In this lesson, the electricity dispatch and transportation problems are pure LPs — all variables are continuous quantities.  The diet problem is a MILP because we set `cat='Integer'` on the apple and orange variables, forcing the solver to find whole-number quantities of fruit.
 
 ## What Do We Mean By Linear?
 
-Linearity concerns how things change.  In a linear system, the system changes at the same rate at all points, while in a nonlinear system, the system changes at different rates at different points.
+**Linearity concerns how things change**.  In a linear system, the system changes at the same rate at all points, while in a nonlinear system, the system changes at different rates at different points.
 
 A linear program assumes no non-linear relationships exist — or that any non-linear relationship can be adequately approximated by a linear one.
 
-For working with linear programs, the linear restriction means that:
+**For working with linear programs, the linear restriction means that all of the below are not possible**:
 
 - No variable can be multiplied by another variable (e.g. `x * y` is not linear)
 - No variable can be raised to a power (e.g. `x^2` is not linear)
@@ -124,17 +126,17 @@ A solver is a compiled, optimized program that implements algorithms like simple
 
 PuLP, Pyomo, and OR-Tools are solver libraries.  GLPK, CBC, CPLEX, and Gurobi are solvers.  Most solver libraries can talk to multiple solvers — you can define a problem in PuLP and solve it with CBC for free or switch to Gurobi for better performance on large problems.
 
-### This Lesson
+## This Lesson
 
 This lesson will show you how to create and solve linear programs in Python using PuLP.
 
-Install the following Python packages to run the examples.
+Install the following Python packages to run the examples:
 
 ```shell-session
 $ pip install pulp==3.3.0 numpy==2.4.3
 ```
 
-This lesson covers three examples:
+**This lesson covers three examples**:
 
 1. **Electricity Asset Dispatch**: Minimize generation cost subject to meeting demand, with scenario analysis over demand and price
 2. **Diet Cost Minimization**: Minimize cost of a fruit diet subject to nutritional requirements
@@ -154,7 +156,9 @@ Solver libraries:
 - [Google OR-Tools](https://developers.google.com/optimization)
 - [scipy.optimize.linprog](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linprog.html)
 
-## PuLP Cheat Sheet
+### PuLP Cheat Sheet
+
+How to do each of the three components of a linear program (objective, variables and constraints) in Python using the PuLP solver library:
 
 | Component   | Represents                            | PuLP API                          |
 |-------------|---------------------------------------|-----------------------------------|
@@ -396,11 +400,13 @@ port_to_market_cost = np.random.uniform(0, 1, size=len(ports) * len(markets)).re
 We can access the cost to ship from a port to a market by indexing `port_to_market_cost[port, market]`:
 
 ```python
-port_to_market_cost[0, 0]
-#  0.3745401188473625
+print(port_to_market_cost[0, 0])
+print(port_to_market_cost[3, 2])
+```
 
-port_to_market_cost[3, 2]
-#  0.1560186404424365
+```output
+0.3745401188473625
+0.1560186404424365
 ```
 
 We can solve this problem as below:
@@ -529,12 +535,17 @@ for p in range(len(ports)):
 
 ## Summary
 
-**Every linear program has the same three components — an objective, variables, and constraints — once you can identify them in a domain problem, the solver does the rest**.
+**Linear programming is a useful tool for finding optimal solutions to many problems**.  
 
-- **Three components**: Every LP has an objective (minimize or maximize), decision variables (things you control), and constraints (rules you must follow)
-- **LP vs MILP**: When all variables are continuous you have an LP, when some must be integers you have a MILP — the solver handles both, but MILP is harder
-- **Scenario analysis**: Once you have a working model, varying inputs like demand or price reveals how the optimal solution changes
-- **Solver libraries**: PuLP lets you define problems in Python and pass them to solvers like CBC or Gurobi
+As long as the program can be expressed using linear relationships, one of linear programming or mixed-integer linear programming can be used to find the best solution.
+
+**Every linear program has three components**:
+
+1. **Objective**: The thing we want to make big (maximize) or small (minimize)
+2. **Variables**: Things we can change
+3. **Constraints**: Limits on how we can change variables, rules we must follow
+
+Learning to define your problem in terms of these three components is as important as understanding how to build a linear program in your favourite programming language.
 
 ---
 
