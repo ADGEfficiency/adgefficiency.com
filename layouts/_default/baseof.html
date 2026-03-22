@@ -229,6 +229,7 @@
     </header>
     {{ block "main" . }}{{ end }}
     {{ partial "footer.html" . }}
+    {{ if ne .RelPermalink "/about/" }}
     <div class="fixed bottom-6 right-6 z-50 flex flex-col items-center gap-2">
       <button
         id="back-to-top"
@@ -295,6 +296,7 @@
         updateProgress()
       })()
     </script>
+    {{ end }}
     <script src="/js/copyCode.js">
 </script>
     <script src="/js/search.js">
