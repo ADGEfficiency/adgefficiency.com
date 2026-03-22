@@ -185,6 +185,12 @@ Thanks for reading!
 ### Resources
 
 ## Why Learn $SUBJECT?
+
+## Content
+
+## Full Code Snippets
+
+## Summary
 ```
 
 What could I add to this?

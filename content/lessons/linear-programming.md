@@ -529,12 +529,13 @@ for p in range(len(ports)):
 
 ## Summary
 
-**Every linear program has the same three components — an objective, variables, and constraints — once you can identify them in a domain problem, the solver does the rest**.
+Every linear program has three components:
 
-- **Three components**: Every LP has an objective (minimize or maximize), decision variables (things you control), and constraints (rules you must follow)
-- **LP vs MILP**: When all variables are continuous you have an LP, when some must be integers you have a MILP — the solver handles both, but MILP is harder
-- **Scenario analysis**: Once you have a working model, varying inputs like demand or price reveals how the optimal solution changes
-- **Solver libraries**: PuLP lets you define problems in Python and pass them to solvers like CBC or Gurobi
+1. **Objective**: The thing we want to make big (maximize) or small (minimize)
+2. **Variables**: Things we can change
+3. **Constraints**: Limits on how we can change variables, rules we must follow
+
+Linear programming is a useful tool for finding optimal solutions to many problems.  As long as the program can be expressed using linear relationships, one of linear programming or mixed-integer linear programming can be used to find the best solution.
 
 ---
 
