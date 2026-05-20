@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Load user's preferred view from localStorage
-  const savedView = localStorage.getItem('home-view-preference') || 'created-year'
+  const savedView = localStorage.getItem('home-view-preference') || 'competency'
 
   // Initialize collapsible sections functionality
   initializeCollapsibleSections()
@@ -165,17 +165,20 @@ document.addEventListener('DOMContentLoaded', function () {
    * Apply default state to all sections
    */
   function applyDefaultState() {
-    const allSections = document.querySelectorAll('.collapsible-section')
-    allSections.forEach((section) => {
-      const content = section.querySelector('.section-content')
-
-      if (DEFAULT_STATE === 'collapsed') {
-        content.classList.add('collapsed')
-        section.classList.add('collapsed')
-      } else {
-        content.classList.remove('collapsed')
-        section.classList.remove('collapsed')
-      }
+    const views = [competencyView, createdYearView, updatedYearView]
+    views.forEach((view) => {
+      const sections = view.querySelectorAll('.collapsible-section')
+      sections.forEach((section, index) => {
+        const content = section.querySelector('.section-content')
+        const shouldExpand = index === 0
+        if (DEFAULT_STATE === 'collapsed' && !shouldExpand) {
+          content.classList.add('collapsed')
+          section.classList.add('collapsed')
+        } else {
+          content.classList.remove('collapsed')
+          section.classList.remove('collapsed')
+        }
+      })
     })
   }
 

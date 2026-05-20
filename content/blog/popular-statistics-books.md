@@ -1,26 +1,28 @@
 ---
-title: A Few Things I've Learnt from Popular Statistics Books
-description: Why statistical thinking is fundamentally about embracing uncertainty, not eliminating it.
-date_created: 2026-04-05
-date_updated: 2026-04-12
-competencies:
-- Statistics
+id: popular-statistics-books
 aliases: []
+tags: []
+competencies:
+  - Statistics
+date_created: "2026-04-05"
+date_updated: "2026-04-12"
+description: Some of the lessons, tips and insights I've gained from reading books about statistics.
+draft: false
+title: A Few Things I've Learnt from Popular Statistics Books
 ---
 
-Over the past few years I've read a shelf of popular statistics books. I'm not sure how many I'd need to read to get over my statistics imposter syndrome.
+Over the past few years I've read a shelf of popular statistics books. I'm not sure how many I'd need to read to get over my statistics imposter syndrome - perhaps only more textbooks could alleviate that.
 
-This post highlights that **statistical thinking is fundamentally about decision-making under uncertainty**. The value of statistics isn't in the numbers themselves, but in how they shape our choices.
-
-**Statistics requires simplification**. Whether you're building a predictive model or calculating an average, you're throwing away information to make the problem tractable. That tractability however is what is needed for statistics to drive decision making.
-
-**What follows are a few insights from some of the popular statistics books I've read over the years**. Each section covers a single book, organised around a central idea that has changed how I think about data, decisions, and the gap between models and reality.
+**What follows are insights from some of the popular statistics books I've read over the years**. Each section covers a single book, organised around a central idea that has changed how I think about data, decisions, and the gap between models and reality.
 
 The approximate order is by increasing technical depth, starting with the societal implications of models and ending with the mathematical principles underlying statistical thinking.
 
 ## Weapons of Math Destruction
 
-*Cathy O'Neil*
+<figure class="mx-auto text-center" style="max-width: 180px">
+  <img src="https://prodimage.images-bn.com/pimages/9780553418835_p0_v2_s600x595.jpg" alt="Weapon of Math Destruction Cover" class="w-full rounded shadow-md">
+  <figcaption class="mt-2 italic text-sm">Cathy O'Neil</figcaption>
+</figure>
 
 ### The Limits of Predictive Modelling
 
@@ -40,7 +42,10 @@ Prediction models can create feedback loops, where the predictions made by a mod
 
 ## The Signal and the Noise
 
-*Nate Silver*
+<figure class="mx-auto text-center" style="max-width: 180px">
+  <img src="https://prodimage.images-bn.com/pimages/9780143125082_p0_v10_s600x595.jpg" alt="The Signal and the Noise Cover" class="w-full rounded shadow-md">
+  <figcaption class="mt-2 italic text-sm">Nate Silver</figcaption>
+</figure>
 
 ### Bias, Variance and Capacity
 
@@ -66,7 +71,10 @@ The true value of probabilistic thinking is to improve your own thinking:
 
 ## Naked Statistics
 
-*Charles Wheelan*
+<figure class="mx-auto text-center" style="max-width: 180px">
+  <img src="https://prodimage.images-bn.com/pimages/9780393347777_p0_v2_s600x595.jpg" alt="Naked Statistics Cover" class="w-full rounded shadow-md">
+  <figcaption class="mt-2 italic text-sm">Charles Wheelan</figcaption>
+</figure>
 
 ### Statistics is about simplifying the world
 
@@ -76,7 +84,10 @@ The value of simplification is that we can understand the world. The cost of thi
 
 ## Calling Bullshit
 
-*Carl T. Bergstrom & Jevin D. West*
+<figure class="mx-auto text-center" style="max-width: 180px">
+  <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1596217062i/45672909.jpg" alt="Calling Bullshit Cover" class="w-full rounded shadow-md">
+  <figcaption class="mt-2 italic text-sm">Carl T. Bergstrom & Jevin D. West</figcaption>
+</figure>
 
 ### Brandolini's principle
 
@@ -110,7 +121,10 @@ Translating these into probability statements:
 
 ## The Flaw of Averages
 
-*Sam L. Savage*
+<figure class="mx-auto text-center" style="max-width: 180px">
+  <img src="https://media.wiley.com/product_data/coverImage300/54/11180737/1118073754.jpg" alt="The Flaw of Averages Cover" class="w-full rounded shadow-md">
+  <figcaption class="mt-2 italic text-sm">Sam L. Savage</figcaption>
+</figure>
 
 ### Average Abuse
 
@@ -138,7 +152,10 @@ In the case of the quote above, the hidden dimension is the department the stude
 
 ## Fooled by Randomness
 
-*Nassim Nicholas Taleb*
+<figure class="mx-auto text-center" style="max-width: 180px">
+  <img src="https://prodimage.images-bn.com/pimages/9780812975215_p0_v1_s600x595.jpg" alt="Fooled by Randomness Cover" class="w-full rounded shadow-md">
+  <figcaption class="mt-2 italic text-sm">Nassim Nicholas Taleb</figcaption>
+</figure>
 
 ### Profiting off Variance
 
@@ -164,7 +181,10 @@ Data driven (inductive) thinking is not the only way - deductive thinking from p
 
 ## Statistics Done Wrong
 
-*Alex Reinhart*
+<figure class="mx-auto text-center" style="max-width: 180px">
+  <img src="https://nostarch.com/sites/default/files/styles/covers/public/stats_cover-front_NEW.png" alt="Statistics Done Wrong Cover" class="w-full rounded shadow-md">
+  <figcaption class="mt-2 italic text-sm">Alex Reinhart</figcaption>
+</figure>
 
 > Much of basic statistics is not intuitive (or, at least, not taught in an intuitive fashion), and the opportunity for misunderstanding and error is massive.
 
@@ -188,7 +208,10 @@ This reproducibility is a kind of sharing data - it's sharing with your future s
 
 ## Map and Territory
 
-*Eliezer Yudkowsky*
+<figure class="mx-auto text-center" style="max-width: 180px">
+  <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1547481049i/41881472.jpg" alt="Map and Territory Cover" class="w-full rounded shadow-md">
+  <figcaption class="mt-2 italic text-sm">Eliezer Yudkowsky</figcaption>
+</figure>
 
 ### Biased Sampling
 
@@ -208,7 +231,10 @@ When starting out learning machine learning, I only appreciated that model predi
 
 ## How Not to Be Wrong
 
-*Jordan Ellenberg*
+<figure class="mx-auto text-center" style="max-width: 180px">
+  <img src="https://prodimage.images-bn.com/pimages/9780143127536_p0_v12_s600x595.jpg" alt="How Not to Be Wrong Cover" class="w-full rounded shadow-md">
+  <figcaption class="mt-2 italic text-sm">Jordan Ellenberg</figcaption>
+</figure>
 
 ### Solve Easy Problems
 
@@ -237,6 +263,10 @@ Learning to expect that unexpected things happen a lot is one of my most treasur
 Every author here converges on this point, whether discussing predictive models, p-values, or the dangers of averages. The goal is never perfect knowledge. It's clearer thinking about uncertainty, and the humility to recognise when your model has simplified away something important.
 
 The best statistical thinking is **sceptical without being cynical**, quantitative without being numerically naive. Every summary statistic embeds a value judgment about what matters. In a world increasingly run by algorithms and awash in data, these lessons aren't just useful—they're essential.
+
+A central message is that **statistical thinking is fundamentally about decision-making under uncertainty**. The value of statistics isn't in the numbers themselves, but in how they shape our choices.
+
+**Statistics requires simplification**. Whether you're building a predictive model or calculating an average, you're throwing away information to make the problem tractable. That tractability however is what is needed for statistics to drive decision making.
 
 The **Popular Statistics Books Reading List** is:
 
