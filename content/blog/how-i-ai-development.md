@@ -104,9 +104,7 @@ The default is rarely the right setting. Most tools ship with a middling default
 
 You should be able to see every tool call as it happens. If you can't, switch tools or change settings until you can.
 
-Two reasons it matters. **Security**: an agent running unexpected tools is the first sign something is wrong - a tool call you didn't ask for is a prompt injection waiting to be confirmed. **Debugging**: tool failures look different from model failures. A failed `grep` is not a hallucination; a confidently wrong file edit is.
-
-The set of available tools defines what the agent can actually do. An agent with no shell tool can't `rm -rf /`. An agent with no web search can't be prompt-injected via a poisoned page. Tool selection is a security decision.
+**Tool selection is a security decision**. The set of available tools defines what an AI can do. An agent with no shell tool can't `rm -rf /`. An agent with no web search can't be prompt-injected via a poisoned page. 
 
 ### Beware Hallucinations
 
@@ -237,7 +235,7 @@ A list of capabilities to look for - some I have, some I'm still missing:
 
 ### Pi Extensions
 
-The extensions I currently use:
+I currently use:
 
 - **[npm:@aliou/pi-guardrails](https://github.com/aliou/pi-guardrails)**: Safety checks so agents are less likely to read secrets, write protected files, access paths outside the workspace, or run dangerous shell commands by accident.
 - **[npm:pi-web-access](https://github.com/nicobailon/pi-web-access)**: Web search, content extraction and video understanding for the Pi agent.
