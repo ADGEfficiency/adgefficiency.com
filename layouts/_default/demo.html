@@ -1,0 +1,157 @@
+{{ define "main" }}
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Lato:wght@400;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Literata:ital,wght@0,400;0,600;1,400&display=swap');
+
+  .demo-option {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  .dark .demo-option {
+    border-color: #374151;
+  }
+  .demo-label {
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .dark .demo-label {
+    border-color: #374151;
+  }
+
+  /* Option A: System sans-serif (current site) */
+  .typo-a { font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; }
+  .typo-a h2 { font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; font-weight: 700; }
+
+  /* Option B: Monospace (boristane-style) */
+  .typo-b { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 0.9rem; }
+  .typo-b h2 { font-family: 'JetBrains Mono', ui-monospace, monospace; font-weight: 500; }
+
+  /* Option C: Serif headings + sans body (boz-style) */
+  .typo-c { font-family: 'Lato', sans-serif; line-height: 1.75; }
+  .typo-c h2 { font-family: 'EB Garamond', serif; font-weight: 600; font-size: 1.75rem; }
+
+  /* Option D: Inter (modern readable sans) */
+  .typo-d { font-family: 'Inter', sans-serif; }
+  .typo-d h2 { font-family: 'Inter', sans-serif; font-weight: 600; }
+
+  /* Option E: Source Serif (readable serif throughout) */
+  .typo-e { font-family: 'Source Serif 4', Georgia, serif; line-height: 1.8; }
+  .typo-e h2 { font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; }
+
+  /* Option F: Literata (literary serif, designed for screens) */
+  .typo-f { font-family: 'Literata', Georgia, serif; line-height: 1.75; }
+  .typo-f h2 { font-family: 'Literata', Georgia, serif; font-weight: 600; }
+
+  /* Shared sample styles */
+  .sample h2 { font-size: 1.5rem; margin-bottom: 0.75rem; }
+  .sample p { margin-bottom: 0.75rem; }
+  .sample a { color: #2563eb; text-decoration: underline; text-underline-offset: 2px; }
+  .dark .sample a { color: #60a5fa; }
+  .sample code {
+    font-family: ui-monospace, monospace;
+    font-size: 0.85em;
+    background: #f3f4f6;
+    padding: 0.15em 0.35em;
+    border-radius: 3px;
+  }
+  .dark .sample code {
+    background: #1f2937;
+  }
+  .sample ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 0.75rem; }
+  .sample li { margin-bottom: 0.25rem; }
+
+  /* Nav preview */
+  .nav-preview {
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .dark .nav-preview {
+    border-color: #374151;
+  }
+  .nav-preview .site-name { font-weight: 600; margin-right: 1.5rem; }
+  .nav-preview .nav-links { font-size: 0.9rem; }
+  .nav-preview .nav-links a {
+    margin-right: 1rem;
+    text-decoration: none;
+    color: #6b7280;
+  }
+  .dark .nav-preview .nav-links a { color: #9ca3af; }
+
+  /* Post list preview */
+  .post-list { margin-top: 1rem; }
+  .post-entry { margin-bottom: 0.75rem; }
+  .post-date { color: #6b7280; font-size: 0.875rem; margin-right: 0.75rem; }
+  .dark .post-date { color: #9ca3af; }
+  .post-tags { font-size: 0.75rem; color: #6b7280; }
+  .dark .post-tags { color: #9ca3af; }
+</style>
+
+<div class="container mx-auto max-w-4xl p-6 pt-8">
+  <h1 class="text-3xl font-bold mb-2">Typography Options</h1>
+  <p class="text-gray-500 dark:text-gray-400 mb-8">Each option shows: nav, post list, and article content. Compare and pick.</p>
+
+  {{ $options := slice
+    (dict "class" "typo-a" "name" "A: System Sans-Serif" "desc" "Current site default. Fast, no font loading. Clean but generic.")
+    (dict "class" "typo-b" "name" "B: JetBrains Mono" "desc" "Monospace throughout (boristane-style). Developer aesthetic, compact. Slower to read long text.")
+    (dict "class" "typo-c" "name" "C: EB Garamond + Lato" "desc" "Serif headings + sans body (boz-style). Literary, elegant contrast. Two fonts to load.")
+    (dict "class" "typo-d" "name" "D: Inter" "desc" "Modern sans-serif designed for screens. Highly legible, professional. Popular (may feel generic).")
+    (dict "class" "typo-e" "name" "E: Source Serif 4" "desc" "Readable serif throughout. Warm, editorial feel. Good for long-form reading.")
+    (dict "class" "typo-f" "name" "F: Literata" "desc" "Screen-optimized serif. Designed for e-reading. Distinctive without being distracting.")
+  }}
+
+  {{ range $options }}
+  <div class="demo-option {{ .class }}">
+    <div class="demo-label">
+      <strong>{{ .name }}</strong>
+      <span class="text-gray-500 dark:text-gray-400 ml-2">{{ .desc }}</span>
+    </div>
+
+    <!-- Nav preview -->
+    <div class="nav-preview">
+      <span class="site-name">Adam Green</span>
+      <span class="nav-links">
+        <a href="#">blog</a>
+        <a href="#">lessons</a>
+        <a href="#">talks</a>
+        <a href="#">about</a>
+        <a href="#">search</a>
+        <a href="#">dark</a>
+      </span>
+    </div>
+
+    <!-- Post list preview -->
+    <div class="post-list">
+      <div class="post-entry">
+        <span class="post-date">2025-01-15</span>
+        <a href="#">Linear Programming for Energy Optimization</a>
+        <div class="post-tags">[Python] [Energy] [Machine Learning]</div>
+      </div>
+      <div class="post-entry">
+        <span class="post-date">2024-11-20</span>
+        <a href="#">Fine Tuning a Python Function Signature</a>
+        <div class="post-tags">[Python] [Software Engineering]</div>
+      </div>
+    </div>
+
+    <!-- Article content preview -->
+    <div class="sample" style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #e5e7eb;">
+      <h2>Why Linear Programming Matters</h2>
+      <p><strong>Linear programming is the most underused tool in a data scientist's toolkit</strong>. It lets you find optimal solutions to problems with linear constraints, which covers a surprising number of real-world scenarios in energy, logistics, and finance.</p>
+      <p>The key insight is that <strong>optimization is not the same as prediction</strong>. While machine learning asks "what will happen?", optimization asks "what should we do?" These are fundamentally different questions, and using <code>pulp.LpProblem</code> to answer the second one is often more valuable than a neural network.</p>
+      <ul>
+        <li><strong>dispatch optimization</strong>: Scheduling battery charge and discharge cycles</li>
+        <li><strong>portfolio allocation</strong>: Balancing risk and return across energy assets</li>
+        <li><strong>network flow</strong>: Routing electricity through a <a href="#">transmission grid</a></li>
+      </ul>
+    </div>
+  </div>
+  {{ end }}
+</div>
+{{ end }}

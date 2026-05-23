@@ -6,7 +6,9 @@ aliases:
 
 **I'm Adam Green, an energy engineer turned data professional** 👋
 
-I'm a data professional working on the energy transition towards a cleaner grid. I enjoy building tools & models for prescriptive analytics.
+I'm a data professional working on the energy transition. I enjoy building tools & creating models.
+
+I write this blog so I can better express ideas and concepts in conversations with friends and colleagues.
 
 In my fifteen year career, I've worked:
 
