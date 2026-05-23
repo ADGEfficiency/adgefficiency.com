@@ -1,19 +1,19 @@
 ---
 id: popular-statistics-books
 aliases: []
-tags: []
+tags: [ai-modified]
 competencies:
-  - Statistics
+  - Machine Learning
 date_created: "2026-04-05"
-date_updated: "2026-04-12"
+date_updated: "2026-05-21"
 description: Some of the lessons, tips and insights I've gained from reading books about statistics.
 draft: false
 title: A Few Things I've Learnt from Popular Statistics Books
 ---
 
-Over the past few years I've read a shelf of popular statistics books. I'm not sure how many I'd need to read to get over my statistics imposter syndrome - perhaps only more textbooks could alleviate that.
+**What follows are insights from a shelf of popular statistics books I've read over the years** - each section covers a single book, organised around a central idea that has changed how I think about data, decisions, and the gap between models and reality.
 
-**What follows are insights from some of the popular statistics books I've read over the years**. Each section covers a single book, organised around a central idea that has changed how I think about data, decisions, and the gap between models and reality.
+I'm not sure how many of these I'd need to read to get over my statistics imposter syndrome - perhaps only more textbooks could alleviate that.
 
 The approximate order is by increasing technical depth, starting with the societal implications of models and ending with the mathematical principles underlying statistical thinking.
 
@@ -63,11 +63,13 @@ One approach to reducing bias is through diversity - different models can captur
 
 > It's critical to have a diversity of models.
 
-### Probability is about Decision Making
+### Probability Is About Decision Making
 
 The true value of probabilistic thinking is to improve your own thinking:
 
 > The virtue in thinking probabilistically is that you will force yourself to stop and smell the data-slow down, and consider the imperfections in your thinking. Over time, you should find that this makes your decision making better.
+
+Probability is a tool for slowing down, not a tool for being right. The output is better-calibrated doubt, not better answers.
 
 ## Naked Statistics
 
@@ -76,7 +78,7 @@ The true value of probabilistic thinking is to improve your own thinking:
   <figcaption class="mt-2 italic text-sm">Charles Wheelan</figcaption>
 </figure>
 
-### Statistics is about simplifying the world
+### Statistics Is About Simplifying the World
 
 > Descriptive statistics exist to simplify, which always implies some loss of nuance or detail. Anyone working with numbers needs to recognize as much.
 
@@ -89,11 +91,13 @@ The value of simplification is that we can understand the world. The cost of thi
   <figcaption class="mt-2 italic text-sm">Carl T. Bergstrom & Jevin D. West</figcaption>
 </figure>
 
-### Brandolini's principle
+### Brandolini's Principle
 
 Part of the struggle of the rational, statistical person is Brandolini's principle:
 
 > Perhaps the most important principle in bullshit studies is Brandolini's principle. Coined by Italian software engineer Alberto Brandolini in 2014, it states: "The amount of energy needed to refute bullshit is an order of magnitude bigger than that needed to produce it."
+
+The implication for the statistical practitioner is to pick your battles. Refuting every bad chart in your feed will exhaust you before it changes anyone's mind - reserve the effort for analysis that drives a decision.
 
 ### Data Quality
 
@@ -107,9 +111,9 @@ Data is king - the quality of the data is the most important factor in any analy
 
 There are three useful types of probability:
 
-- **Marginal probability**: $P(A)$ — the probability of $A$ occurring
-- **Conditional probability**: $P(B|A)$ — the probability of $B$ occurring given $A$ has occurred
-- **Joint probability**: $P(A,B)$ — the probability of $A$ and $B$ occurring together
+- **Marginal probability**: $P(A)$ - the probability of $A$ occurring
+- **Conditional probability**: $P(B|A)$ - the probability of $B$ occurring given $A$ has occurred
+- **Joint probability**: $P(A,B)$ - the probability of $A$ and $B$ occurring together
 
 > There is a key distinction between a probabilistic cause (A increases the chance of B in a causal manner), a sufficient cause (if A happens, B always happens), and a necessary cause (unless A happens, B can't happen).
 
@@ -132,9 +136,11 @@ Translating these into probability statements:
 
 The average is the most commonly used statistic, so is also the most commonly abused.
 
-> To understand how pervasive the Flaw of Averages is, consider the hypothetical case of a marketing manager who has just been asked by his boss to forecast demand for a new-generation microchip. "That's difficult for a new product," responds the manager, "but I'm confident that annual demand will be between 50,000 and 150,000 units." "Give me a number to take to my production people," barks the boss. "I can't tell them to build a production line with a capacity between 50,000 and 150,000 units!" The phrase "Give me a number" is a dependable leading indicator of an encounter with the Flaw of Averages, but the marketing manager dutifully replies: "If you need a single number, I suggest you use the average of 100,000." The boss plugs the average demand, along with the cost of a 100,000-unit capacity production line, into a spreadsheet model of the business. The bottom line is a healthy \\$10 million, which he reports as the projected profit. Assuming that demand is the only uncertainty and that 100,000 is the correct average (or expected) demand, then \\$10 million must be the average (or expected) profit. Right? Wrong! The Flaw of Averages ensures that on average, profit will be less than the profit associated with the average demand. Why? If the actual demand is only 90,000, the boss won't make the projection of \\$10 million. If demand is 80,000, the results will be even worse. That's the downside. On the other hand, what if demand is 110,000 or 120,000? Then you exceed your capacity and can still sell only 100,000 units. So profit is capped at \\$10 million. There is no upside to balance the downside, as shown in Figure 1.1, which helps explain why, on average, everything is below projection.
+> Consider the hypothetical case of a marketing manager who has just been asked by his boss to forecast demand for a new-generation microchip. "That's difficult for a new product," responds the manager, "but I'm confident that annual demand will be between 50,000 and 150,000 units." "Give me a number to take to my production people," barks the boss. [...] "If you need a single number, I suggest you use the average of 100,000." The boss plugs the average demand into a spreadsheet model of the business. The bottom line is a healthy \$10 million, which he reports as the projected profit. [...] The Flaw of Averages ensures that on average, profit will be less than the profit associated with the average demand.
 
-### Statistics is about Decisions
+The asymmetry is what kills you. If demand comes in at 80,000, profit drops with it. If demand comes in at 120,000, you only have capacity for 100,000 and profit is capped. There is no upside to balance the downside - so the expected profit at the expected demand overstates the truth.
+
+### Statistics Is About Decisions
 
 Statistics is about decisions - any piece of work done should always be pointing towards influencing how a decision is made:
 
@@ -144,7 +150,7 @@ Statistics is about decisions - any piece of work done should always be pointing
 
 > Simpson's Paradox occurs when the variables depend on hidden dimensions in the data.
 
-Simpson's paradox is a phenomenon in statistics where a signal appears when data is aggregated, but disappears when the data is disaggregated. The classic example of Simpsons paradox is a study on gender bias in university admissions.
+Simpson's paradox is a phenomenon in statistics where a signal appears when data is aggregated, but disappears when the data is disaggregated. The classic example of Simpson's paradox is a study on gender bias in university admissions.
 
 Data aggregated across all departments showed a bias against women, but when the data was disaggregated, the data showed that while four departments were biased against women, six were biased against men.  The bias against women detected in the aggregated data occurred due to women being more likely to apply to more competitive departments.
 
@@ -157,7 +163,7 @@ In the case of the quote above, the hidden dimension is the department the stude
   <figcaption class="mt-2 italic text-sm">Nassim Nicholas Taleb</figcaption>
 </figure>
 
-### Profiting off Variance
+### Profiting Off Variance
 
 > Mild success can be explainable by skills and labor. Wild success is attributable to variance.
 
@@ -165,7 +171,7 @@ There is a lot of noise in high performance outcomes, and it's easy to attribute
 
 > Accordingly, it is not how likely an event is to happen that matters, it is how much is made when it happens that should be the consideration.
 
-Lessons from first year engineering - `risk = hazard * probability`.
+This is the engineering definition of risk - `risk = hazard * probability`. Taleb's point is that we fixate on probability and ignore magnitude - but the magnitude is where the money (or the damage) lives.
 
 ### The Danger of Data
 
@@ -213,6 +219,8 @@ This reproducibility is a kind of sharing data - it's sharing with your future s
   <figcaption class="mt-2 italic text-sm">Eliezer Yudkowsky</figcaption>
 </figure>
 
+Strictly this isn't a popular statistics book - it's the first volume of Yudkowsky's *Rationality: From AI to Zombies*, originally written as a sequence of posts on LessWrong. It earns its place here for treating statistical and cognitive bias as the same problem viewed from different sides.
+
 ### Biased Sampling
 
 > When your method of learning about the world is biased, learning more may not help. Acquiring more data can even consistently worsen a biased prediction.
@@ -225,7 +233,7 @@ When starting out learning machine learning, I only appreciated that model predi
 
 **Context changes how numbers are interpreted.** Presenting and converting absolute and relative measures is a key skill of working with data.
 
-### Cognitive versus Statistical Biases
+### Cognitive Versus Statistical Biases
 
 > A cognitive bias is a systematic error in how we think, as opposed to a random error or one that's merely caused by our ignorance. Whereas statistical bias skews a sample so that it less closely resembles a larger population, cognitive biases skew our thinking so that it less accurately tracks the truth (or less reliably serves our other goals).
 
@@ -248,7 +256,7 @@ An example of this from my career is using linear models to approximate engineer
 
 Non-linearity is closely related to state - the state of the system is important.  How variables change depends on where you are. With linear relationships, the state of the system is irrelevant.
 
-### Improbable Things Happen A Lot
+### Improbable Things Happen a Lot
 
 > The universe is big, and if you're sufficiently attuned to amazingly improbable occurrences, you'll find them. Improbable things happen a lot.
 
@@ -258,35 +266,29 @@ Learning to expect that unexpected things happen a lot is one of my most treasur
 
 ## Summary
 
-**Statistics is not about certainty—it's about making better decisions when certainty is impossible.**
+**Statistics is fundamentally about decision-making under uncertainty** - the value of statistics isn't in the numbers themselves, but in how they shape our choices.
 
-Every author here converges on this point, whether discussing predictive models, p-values, or the dangers of averages. The goal is never perfect knowledge. It's clearer thinking about uncertainty, and the humility to recognise when your model has simplified away something important.
-
-The best statistical thinking is **sceptical without being cynical**, quantitative without being numerically naive. Every summary statistic embeds a value judgment about what matters. In a world increasingly run by algorithms and awash in data, these lessons aren't just useful—they're essential.
-
-A central message is that **statistical thinking is fundamentally about decision-making under uncertainty**. The value of statistics isn't in the numbers themselves, but in how they shape our choices.
-
-**Statistics requires simplification**. Whether you're building a predictive model or calculating an average, you're throwing away information to make the problem tractable. That tractability however is what is needed for statistics to drive decision making.
+Every author here converges on this point, whether discussing predictive models, p-values, or the dangers of averages. The goal is never perfect knowledge - it's clearer thinking about uncertainty, and the humility to recognise when your model has simplified away something important.
 
 The **Popular Statistics Books Reading List** is:
 
 - [**Weapons of Math Destruction**](https://www.amazon.com/Weapons-Math-Destruction-Increases-Inequality/dp/0553418815)  
-  *Cathy O'Neil* — the limits of predictive modelling and destructive feedback loops
+  *Cathy O'Neil* - the limits of predictive modelling and destructive feedback loops
 - [**The Signal and the Noise**](https://www.amazon.com/Signal-Noise-Many-Predictions-Fail/dp/0143125087)  
-  *Nate Silver* — bias, variance, and probabilistic decision making
+  *Nate Silver* - bias, variance, and probabilistic decision making
 - [**Naked Statistics**](https://www.amazon.com/Naked-Statistics-Stripping-Dread-Data/dp/039334777X)  
-  *Charles Wheelan* — statistics as simplification
+  *Charles Wheelan* - statistics as simplification
 - [**Calling Bullshit**](https://www.amazon.com/Calling-Bullshit-Sophistry-Data-Science/dp/0525509186)  
-  *Carl T. Bergstrom & Jevin D. West* — Brandolini's principle and data quality
+  *Carl T. Bergstrom & Jevin D. West* - Brandolini's principle and data quality
 - [**The Flaw of Averages**](https://www.amazon.com/Flaw-Averages-Underestimate-Risk-Inevitably/dp/1118073754)  
-  *Sam L. Savage* — the abuse of averages and decision-focused statistics
+  *Sam L. Savage* - the abuse of averages and decision-focused statistics
 - [**Fooled by Randomness**](https://www.amazon.com/Fooled-Randomness-Hidden-Markets-Incerto/dp/1400067936)  
-  *Nassim Nicholas Taleb* — variance, survivorship bias, and the dangers of data
+  *Nassim Nicholas Taleb* - variance, survivorship bias, and the dangers of data
 - [**Statistics Done Wrong**](https://www.amazon.com/Statistics-Done-Wrong-Analysis-Scientist/dp/1593276206)  
-  *Alex Reinhart* — p-value problems and the importance of sharing data
+  *Alex Reinhart* - p-value problems and the importance of sharing data
 - [**Map and Territory**](https://www.amazon.com/Map-Territory-Rationality-Sequence-ebook/dp/B07LDF7J3Q)  
-  *Eliezer Yudkowsky* — cognitive versus statistical biases
+  *Eliezer Yudkowsky* - cognitive versus statistical biases
 - [**How Not to Be Wrong**](https://www.amazon.com/How-Not-Be-Wrong-Mathematical/dp/0143127535)  
-  *Jordan Ellenberg* — mathematical thinking and improbable events
+  *Jordan Ellenberg* - mathematical thinking and improbable events
 
 Thanks for reading!
