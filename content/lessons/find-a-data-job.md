@@ -1,10 +1,13 @@
 ---
-title: Find a Data Job
-description: Find your next role as a data professional.
-date_created: 2025-04-06
-date_updated: 2025-04-06
+id: find-a-data-job
+aliases: []
+tags: []
 competencies:
-  - "Soft Skills"
+  - Soft Skills
+date_created: "2025-04-06"
+date_updated: "2025-04-06"
+description: Find your next role as a data professional.
+title: Find a Data Job
 ---
 
 **This lesson is all about getting a job as a data professional**.  In my mentoring work, this is the most common goal of people I mentor.  People either want to start a data career, or move from one data role to another.
@@ -475,6 +478,13 @@ If you do include a skill on your CV, be prepared to be asked questions about in
 **A cover letter provides a more detailed explanation of why you are a good fit for the job**.
 
 A cover letter is a one page personalised note to support your job application. Like your CV it should be targeted, tailored and personalised.  It should be formatted consistently with your CV.  Your cover letter should be one page - between five to eight paragraphs. Ideally it is addressed to specific person.
+
+It should answer:
+
+- Why do I want to work for this company?
+- Why do I want this job?
+- Why do I believe I can do the job?
+- How would I then go about doing the job?
 
 **The goal of a cover letter is expand on your CV - not to repeat it**. A cover letter lets you expand on things like your current availability, a story of your recent successes or examples of benefit you can bring to a role.
 

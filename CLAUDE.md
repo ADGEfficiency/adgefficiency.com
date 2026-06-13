@@ -145,7 +145,7 @@ aliases:
 ---
 ```
 
-Competency values used across the site: `Software Engineering`, `Machine Learning`, `Reinforcement Learning`, `Energy`, `Python`, `Soft Skills`, `Data Engineering`.
+Competency values used across the site: `Software Engineering`, `Machine Learning`, `Reinforcement Learning`, `Energy`, `Python`, `Soft Skills`, `Data Engineering`, `AI`, `How I`.
 
 Always include `date_updated` when modifying an existing post.
 
