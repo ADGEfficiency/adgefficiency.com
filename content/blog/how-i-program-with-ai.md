@@ -7,6 +7,7 @@ competencies:
   - Software Engineering
   - How I
 date_created: "2026-05-19"
+date_updated: "2026-06-12"
 description: My current stack and habits for programming with AI — from IDE plugins to scheduled cloud agents.
 draft: false
 title: How I Program with AI
@@ -14,19 +15,31 @@ title: How I Program with AI
 
 ## Introduction
 
-**These are my notes on programming with AI** - a snapshot of my workflow in May 2026.
+These are my notes on programming with AI.
 
-**I'm writing it down as it helps me understand & improve how I work with AI**. Explaining how I work surfaces how I think and highlights gaps holding me back. It's also great for then explaining concepts like context to others.
+{{< img
+    src="/images/how-i-program-with-ai/hero.png"
+    alt="Baray at Angkor Wat, Cambodia"
+    caption="Baray at Angkor Wat, Cambodia"
+>}}
 
-**My current stack**: [Pi Coding Agent](https://pi.dev/) for an agentic terminal coding harness with Qwen, Kimi or Opus as the LLM backend. In Neovim I use [CodeCompanion](https://codecompanion.olimorris.dev/) for chat and [zbirenbaum/copilot.lua](https://github.com/zbirenbaum/copilot.lua) for inline completion.
+**Writing about how I work surfaces strengths, weaknesses and new ideas of how to work**. This helps me understand and improve my work, and helps me when I want to explain how I work to others.
+
+My current stack is:
+
+- **Agent harness**: [Pi Coding Agent](https://pi.dev/) for an agentic terminal coding harness.
+- **Model**: Qwen, Kimi or Opus.
+- **Model provider**: [OpenRouter](https://openrouter.ai/) provides access to many different models, from Anthropic to Moonshot AI.
+- **Chat**: [CodeCompanion](https://codecompanion.olimorris.dev/) for chat in Neovim.
+- **Autocomplete**: [zbirenbaum/copilot.lua](https://github.com/zbirenbaum/copilot.lua) for inline completion in Neovim with Github Copilot.
 
 ## The Basics
 
-Some (not all!) of the basic knowledge needed to work with LLM-based AI.
+Some basic knowledge for programming with LLM-based AI.
 
 ### LLMs are Random
 
-**LLMs are stochastic** - never expect the same prompt to return the same response more than once.
+**LLMs are stochastic - never expect the same prompt to return the same response**.
 
 Many things can change between one prompt and the next when using a cloud-based LLM:
 
@@ -41,7 +54,10 @@ The environment LLMs respond to prompts in is non-stationary - much of what is t
 - **Models get worse**: Bugs and optimisations can degrade quality intermittently.
 - **Models get retired**: A model you depend on will be taken away with a few months' notice.
 
-Two practical implications of this non-determinism are that output validation is important, and to not build workflows with LLM-based AI that depend on exact outputs.
+Two practical implications of this non-determinism are:
+
+1. **Validate outputs**: Don't assume an LLM returned what you asked for.
+2. **Avoid exact-output dependencies**: Don't build workflows that rely on deterministic LLM responses.
 
 ### Context
 
@@ -60,8 +76,8 @@ Context includes the system prompt (set in secret by the LLM provider), and a se
 
 **There are two skills in managing context**:
 
-1. Knowing when to add to context.
-2. Knowing when to restart a session.
+1. **Adding**: Knowing when to add to context.
+2. **Resetting**: Knowing when to restart a session.
 
 Both are important. Often adding more relevant or up-to-date content to the context is the difference between an AI generating useful or useless code.
 
@@ -115,11 +131,11 @@ You should understand every tool your AI can use, and see every tool call as it 
 
 ### Beware Hallucinations
 
-LLMs sample from a probability distribution over the next token: 
+LLMs sample from a probability distribution over the next token:
 
 $$P(\text{next token} | \text{context})$$
 
-This sampling (if done with a high temperature in the softmax) is what makes LLMs stochastic. **It also means the model can confidently produce falsehoods - hallucinations**.
+The model predicts what text is plausible, not what is true. **This means the model can confidently produce falsehoods - hallucinations**. Lowering temperature doesn't fix this - a deterministic model still hallucinates.
 
 Managing context well reduces hallucinations. Resetting a poisoned session, adding correct documentation, and giving the model the right files all cut the rate. But the rate is never zero - hallucinations should always be expected and planned for.
 
@@ -129,7 +145,7 @@ Managing context well reduces hallucinations. Resetting a poisoned session, addi
 
 **Prompt injection is the scariest risk with LLMs**. Malicious prompt text gets injected into context (e.g. during a web search the agent runs) and instructs the LLM to do bad things on whatever machine the LLM can run tools on.
 
-**The other risk is the agent doing `rm -rf /`** - or any equivalent destructive command. An agent with shell access is an agent that can delete your work.  This can happen by accident or because of prompt injection.
+**The other risk is the agent doing `rm -rf /`** - or any equivalent destructive command. An agent with shell access is an agent that can delete your work. This can happen by accident or because of prompt injection.
 
 Sandboxes help with both, but I've never used one when running an agent in my terminal. The guardrails I do use are coarse - the [pi-guardrails](https://github.com/aliou/pi-guardrails) extension blocks the worst commands, and I keep anything important in source control so I can recover the work.
 
@@ -173,7 +189,7 @@ Find notes that share themes or ideas but aren't linked to each other.
 
 Before starting, read `area/ai/index.md` (if it exists) to understand existing AI-generated content and avoid duplicating covered ground.
 
-First, randomly pick 20 markdown notes from resource/, resources/programming/, area/, area/blogs/ and area/writing/. 
+First, randomly pick 20 markdown notes from resource/, resources/programming/, area/, area/blogs/ and area/writing/.
 
 Use a randomized approach — e.g. list all .md files, shuffle, take the first 20. Read all 20 notes in full.
 
@@ -187,7 +203,7 @@ Write the output to area/ai/daily/cross-references/suggest/{short-kebab-summary}
 The filename summary should capture the dominant theme of the connections you found (e.g. suggest-complexity-and-learning.md, suggest-productivity-vs-mindfulness.md).
 ```
 
-I have no interest in installing skills written by other people, for security (prompt injection) and relevance reasons. 
+I have no interest in installing skills written by other people, for security (prompt injection) and relevance reasons.
 
 ## AI in Your IDE
 
@@ -213,7 +229,7 @@ A list of capabilities to look for in your IDE - some I have, some I'm still mis
 
 **Terminal agents are where I get the most done with AI**. I started on Claude Code, but increasingly I'm on Pi - it's open source, extensible and lightweight.
 
-**Kimi and Qwen are my daily drivers for LLM models**. GLM is on my radar but my initial experience was bad - mostly the agent acting without my permission (which is likely bad instructions on my part). I've found it's important to emphasise to an agentic coding AI to not do anything unless I ask for it. Without that line, the agent will run.
+**Kimi and Qwen are my daily drivers for LLM models**. GLM is on my radar but my initial experience was bad - mostly the agent acting without my permission (which is likely bad instructions on my part). I've found it's important to emphasise to an agentic coding AI to not do anything unless I ask for it. Without that line, the agent will run off and make changes on its own.
 
 I currently use these Pi extensions:
 
@@ -221,7 +237,7 @@ I currently use these Pi extensions:
 - **[npm:pi-web-access](https://github.com/nicobailon/pi-web-access)**: Web search, content extraction and video understanding for the Pi agent.
 - **[npm:pi-vim](https://github.com/lajarre/pi-vim)**: Vim for the Pi prompt.
 
-With Pi I use OpenRouter as a model provider. I started out with Kimi 2.5 (and have been impressed by it) and I'm now using Qwen 3.6. Coming up with an `AGENTS.md` that works for both is an interesting task in itself.
+With Pi I use OpenRouter as a model provider. OpenRouter has been a great way to quickly access different models (including OpenAI, Claude & Gemini). I started out with Kimi 2.5 (and have been impressed by it) and I'm now using Qwen 3.6. Coming up with an `AGENTS.md` that works for both is an interesting task in itself.
 
 **Terminal agents amplify whatever validation you already have**. Unit tests, linting and type checking become the loop that keeps the agent on track - the better the validation, the more you can leave the agent alone.
 
@@ -281,7 +297,7 @@ A human teacher beats AI on judgement, taste and knowing what you don't know. AI
 
 When rewriting, do it in a way where the program is runnable as often as possible - not top to bottom.
 
-This becomes a kind of repetitive practice, which is great for learning something new.  It is however hard work!
+This becomes a kind of repetitive practice, which is great for learning something new. It is, however, hard work.
 
 #### Meta-Teaching: Teach the AI to Teach You Better
 
@@ -297,7 +313,7 @@ The answers feed directly back into your `AGENTS.md`, your custom instructions, 
 
 Closely related is **meta-prompting** - asking the AI to improve a prompt before you run it. Useful for prompts you'll run more than once.
 
-These two techniques (meta-teaching & meta-prompting) can be used to improve other AI workflows, such as execution or planning.  You can as easily ask how a planning session could have been improved as a teaching session.
+These two techniques (meta-teaching & meta-prompting) can be used to improve other AI workflows, such as execution or planning. You can as easily ask how a planning session could have been improved as a teaching session.
 
 ### Planner
 
@@ -354,31 +370,52 @@ The point of the plan is not the TODO list - it's the assumptions section. Force
 
 **Letting AI write code on my machine is the newest workflow I've learnt**. It's also the one I trust & use the least.
 
-Most of the code I care about is still hand written - around 80%. The other 20% is where the agent's strengths and my validation overlap.
+Most of the code I care about is still hand written - around 80% accounting for the small AI edits and autocomplete.
 
-Validation takes this workflow from a gamble to something you can rely on. Tests, plus having the agent run the code it writes, turn a waste of tokens into something useful.
+**Currently I mostly generate one-off, throwaway proof-of-concept code with agents** - this means my most common AI writing code for me' workflow is:
 
-Currently I mostly generate one-off, throwaway proof-of-concept code with agents.
+- **Iteratively plan**: Work on multiple iterations of a plan in a Markdown file. Use fresh agents to critique the plan as needed.
+- **AI executes once**: AI generates a throwaway version of the plan.  This is used to test the plan, uncover issues and inspire ideas that I can use in the next step.
+- **User executes**: I write the final version by hand, using the throwaway code as a reference.
 
-A key factor in agent success is how well it can evaluate its own work.
-
-A good validation stack for an executing agent:
+A key factor in agent success is how well it can evaluate its own work - some of the things I've used:
 
 - **Static typing**: `mypy`, `basedpyright` or `pyright` in strict mode - catches most agent hallucinations at the type level.
 - **Unit tests**: Fast enough that the agent can run them in a loop.
 - **Linting**: `ruff` or equivalent - catches dead imports, unused variables, style drift.
-- **A single `make` target**: `make check` runs all of the above. The agent only needs to know one command.
 
-Experienced developers will note that all of this - fast, reliable, useful test suites - is also great for non-AI development. The agent just punishes you faster for not having it.
+Experienced developers will note that the things allow an agent to validate it's work, such as fast, reliable, useful test suites, are also great for non-AI development. The agent just punishes you faster for not having it, as it can generate code more quickly.
+
+## Working with Others
+
+Most of this post is about how I work with AI - the other area of my work impacted by AI is how other developers I work with do their work.
+
+I've also worked with developers who have grown up in the world of AI. Some are quite competent. I do encourage them to olearn to write by hand - but I appreciate the productivity hit is large.
 
 ## Stuff I Don't Know
 
-- **How to mark up an AI plan for changes**. I just write in a chat. I could define some syntax like `<human>Remove the section above</human>`, but it's never felt or worked as well as relying on a chat working with the file.
-- **How to replicate Cursor's TAB (next edit) functionality in Neovim**.
-- **How to quickly apply AI-generated diffs in Neovim**.
-- **How to get Copilot autocomplete to trigger reliably in Neovim**.
+- **Marking up plans**: How to mark up an AI plan for changes. I just write in a chat - defining syntax like `<human>Remove the section above</human>` has never felt or worked as well as relying on a chat working with the file.
+- **Next edit in Neovim**: How to replicate Cursor's TAB (next edit) functionality.
+- **Applying diffs**: How to quickly apply AI-generated diffs in Neovim.
+- **Copilot triggering**: How to get autocomplete to trigger reliably in Neovim.
+- **Magic words**: I'm not sure how much magic words really matter.
+- **Set expert role**: I do this, it makes sense, but no idea if it works.
 
 ## Summary
+
+My current AI programming stack is:
+
+- **Agent harness**: [Pi Coding Agent](https://pi.dev/) for an agentic terminal coding harness.
+- **Model**: Qwen, Kimi or Opus.
+- **Model provider**: [OpenRouter](https://openrouter.ai/) provides access to many different models, from Anthropic to Moonshot AI.
+- **Chat**: [CodeCompanion](https://codecompanion.olimorris.dev/) for chat in Neovim.
+- **Autocomplete**: [zbirenbaum/copilot.lua](https://github.com/zbirenbaum/copilot.lua) for inline completion in Neovim with Github Copilot.
+
+Currently, my main workflows with AI are:
+
+- **Teacher**: Learning new things with a patient, knowledgeable teacher.
+- **Planner**: Creating multiple iterations of plans on how to do programming tasks.
+- **Proof of Concept Generator**: Most of the code AI writes is proof-of-concept, throwaway implementations that I can use to test ideas quickly, or to learn from for my actual hand written implementation.
 
 A few of the key points:
 
@@ -388,6 +425,6 @@ A few of the key points:
 - **Plan, then execute**: The plan file is the artifact that survives sessions and model switches.
 - **Validation**: Static typing, tests and linting are what let you set and forget an agent.
 
-Many of the best practices for working with AI also hold true when working with others. Examples, clear evaluation, asking for a plan, and repeating the important bits are all great tips for working with people too.
+**Many of the best practices for working with AI also hold true when working with others**. Examples, clear evaluation, asking for a plan, and repeating the important bits are all great tips for working with people too.
 
 Thanks for reading!
