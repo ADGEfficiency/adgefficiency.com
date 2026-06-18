@@ -56,8 +56,8 @@ The environment LLMs respond to prompts in is non-stationary - much of what is t
 
 Two practical implications of this non-determinism are:
 
-1. Output validation is important.
-2. Don't build workflows with LLM-based AI that depend on exact outputs.
+1. **Validate outputs**: Don't assume an LLM returned what you asked for.
+2. **Avoid exact-output dependencies**: Don't build workflows that rely on deterministic LLM responses.
 
 ### Context
 
@@ -76,8 +76,8 @@ Context includes the system prompt (set in secret by the LLM provider), and a se
 
 **There are two skills in managing context**:
 
-1. Knowing when to add to context.
-2. Knowing when to restart a session.
+1. **Adding**: Knowing when to add to context.
+2. **Resetting**: Knowing when to restart a session.
 
 Both are important. Often adding more relevant or up-to-date content to the context is the difference between an AI generating useful or useless code.
 
@@ -425,6 +425,6 @@ A few of the key points:
 - **Plan, then execute**: The plan file is the artifact that survives sessions and model switches.
 - **Validation**: Static typing, tests and linting are what let you set and forget an agent.
 
-Many of the best practices for working with AI also hold true when working with others. Examples, clear evaluation, asking for a plan, and repeating the important bits are all great tips for working with people too.
+**Many of the best practices for working with AI also hold true when working with others**. Examples, clear evaluation, asking for a plan, and repeating the important bits are all great tips for working with people too.
 
 Thanks for reading!
