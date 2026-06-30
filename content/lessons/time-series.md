@@ -4,9 +4,6 @@ aliases: []
 tags: []
 ---
 
-
-
-
 ## What is a time series?
 
 A time series is characterized by it's:
@@ -17,13 +14,14 @@ A time series is characterized by it's:
 
 Evaluation
 
-Decomposition & auto-correlation
+Decomposition & auto-correlation (?)
 
 Alignment
 
 ## Descriptive Analytics
 
-- datetimes, timezones, dst
+- datetimes, timezones, dst (re-use old the stuff)
+- aggregation
 - frequency, resampling (energy, power, rates), events
 - cleaning & quality - gaps, missing datetimes etc
 - aligning time series

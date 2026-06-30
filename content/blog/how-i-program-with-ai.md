@@ -23,9 +23,9 @@ These are my notes on programming with AI.
     caption="Baray at Angkor Wat, Cambodia"
 >}}
 
-**Writing about how I work surfaces strengths, weaknesses and new ideas of how to work**. This helps me understand and improve my work, and helps me when I want to explain how I work to others.
+**Writing about how I work surfaces strengths, weaknesses and new ideas**. It helps me understand and improve, and to better explain how I work to others.
 
-My current stack is:
+My current AI programming stack is:
 
 - **Agent harness**: [Pi Coding Agent](https://pi.dev/) for an agentic terminal coding harness.
 - **Model**: Qwen, Kimi or Opus.
