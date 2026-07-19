@@ -155,15 +155,15 @@ This is likely something I'll look to improve, but as with a lot of security wor
 
 **Prompts are how you steer an LLM to program the way you want**.
 
-Context is the most important thing here - while "Make prompts good by adding good context" is a bit reductive, it's also true. Most bad output traces back to missing context, not bad phrasing.
+Context is the most important thing here - while "Make prompts good by adding good context" is certainly reductive, it's also useful advice. Most bad output traces back to missing context, not bad phrasing or use of specific words.
 
 A few prompting tips that earn their keep:
 
-- **Use examples**: Probably the highest-value prompting tip. One example beats three paragraphs of description.
-- **Set a role**: Set a role or persona at the top of the prompt.
+- **Use examples**: Probably the highest-value prompting tip - good examples narrow the scope of what you want.
+- **Set a role**: Set a role or persona at the top of the prompt - this can help set the tone of the conversation.
 - **Be clear about evaluation**: Be explicit about how the output will be judged and how much output you expect.
-- **Ask for a plan**: Ask for a plan before any code.
-- **Repeat important stuff**: Repeat the important bits at the top and bottom of large prompts.
+- **Ask for a plan**: Ask for a plan before any code.  Even a plan made inline in a chat can help an agent structure it's thinking.
+- **Repeat the important stuff**: Repeat the important bits at the top and bottom of large prompts.
 
 All these tips also work great with people.
 
