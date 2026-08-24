@@ -48,12 +48,31 @@ None
 - **Transitions between ideas** often use bold to signal the key point of the next paragraph
 - Avoid bolding entire paragraphs, bold only the core sentence or phrase
 - Typically 1-3 bold statements per section
+- Bold definitions and operational takeaways, not aphorisms - a bolded line should tell the reader what something is or what to do, not editorialize about why the topic is interesting
+- Put sentence punctuation outside the bold: `**a must have data skill**.` not `**a must have data skill.**`
+
+### Openings
+- Open with a short, plain, bolded claim - aim for under ten words
+- Prefer concrete plain words over qualifiers stacked into a definition
+- Follow the opening with what the lesson covers as a bulleted list, introduced by a plain sentence rather than its own heading
+- State tooling after the content list, and say what is used rather than what is avoided - "Timezones come from the standard library `zoneinfo` module", not "there is no `pytz` here"
 
 ### Headings
 - `##` (H2) for all main sections, `###` (H3) for subsections
 - Never use H1 in body text (the title serves as H1 via Hugo front matter)
 - Headings are title case or sentence case, be consistent within a post
 - No bold inside headings
+- Prefer a bold lead-in sentence over a `###` when the unit is only a paragraph or two - three consecutive `### What is a X?` headings should be one section with three bold lead-ins
+- Group sections by what the reader does, not by what things are - `## Datetime Manipulation` holding combine, replace and timedeltas beats scattering them through a definitions section
+- Actionable advice earns a `##` of its own, not a `###` buried inside a concept section
+- Prefer `vs.` over `versus` in heading text
+- Repeat the qualifying noun in a heading rather than compressing it - "Timezone Naive vs. Timezone Aware" over "Naive versus Aware"
+
+### What to Cut
+- **Extended fictional analogies**: No invented planets, villages or characters carrying a concept across several sections. Explain the mechanism directly and use a real example
+- **Meta-commentary about the lesson**: Do not explain why a section is placed where it is, or what the lesson is not going to do
+- **Aphoristic filler**: Lines like "the only way through is to learn the conventions" say nothing operational
+- **Restating a point that a code example already makes**: The output block is the evidence, one sentence of interpretation is enough
 
 ### Code Examples
 - Favor small, focused code blocks (3 lines or less when possible)
@@ -165,6 +184,10 @@ Competency values used across the site: `Software Engineering`, `Machine Learnin
 
 Always include `date_updated` when modifying an existing post.
 
+Titles are short noun phrases - `Time`, not `Working with Time`. Drop gerunds and filler words.
+
+Leave `tags` empty. Do not add `ai-generated` or `ai-modified` tags to content in this repo - that convention belongs to the notes vault, not the blog.
+
 Two optional keys control which heading levels appear in the sidebar table of contents:
 
 - **`toc_start_level`**: Shallowest heading shown, defaults to `2`
@@ -201,20 +224,38 @@ Thanks for reading!
 ```
 ## What is $SUBJECT?
 
-### Cheat Sheet (optional)
+**Bold one line claim, under ten words**.
 
-### This Lesson
+This lesson covers:
+
+- **Topic**: What it covers
+- **Topic**: What it covers
+
+One sentence on tooling used.
+
+### Cheat Sheet (optional)
 
 ### Resources
 
 ## Why Learn $SUBJECT?
 
-## Content
+## $CONCEPT
 
-## Full Code Snippets
+## $CONCEPT
+
+## Advice for Working with $SUBJECT (optional)
 
 ## Summary
 ```
+
+Notes on the structure:
+
+- **`### This Lesson` is not a heading**: The contents list sits directly under the opening claim, introduced by a plain sentence
+- **`## Why Learn` is prose**: Name the specific difficulties of the subject, do not sell the topic
+- **One `##` per major concept**: Sub-steps become `###` only if a reader would navigate to them
+- **`## Summary` is a bolded one line restatement, then bullets**: Order the bullets to match the emphasis of the body, most important first
+
+Lessons set `toc_end_level: 2` when they have many `###` subsections, so `##` headings carry the navigation. Write `##` headings that stand alone as a table of contents.
 
 What could I add to this?
 - could rework this - it's not quite right

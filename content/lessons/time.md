@@ -24,9 +24,8 @@ This lesson covers:
 - **Daylight saving**: Missing hours, duplicate hours, and the days that are not 24 hours long.
 - **Datetime representations**: Partitioned, offset and string representations of the same instant.
 - **Datetime strings**: ISO 8601, format codes, `strftime` and `strptime`.
-- **Datetimes in Polars**: Datetime columns, timezone-aware dtypes and time components.
 
-This lesson uses the Python standard library and [Polars](https://docs.pola.rs/). Timezones come from the standard library `zoneinfo` module.
+This lesson uses the Python standard library - timezones come from the `zoneinfo` module.
 
 ### Resources
 
@@ -34,20 +33,14 @@ This lesson uses the Python standard library and [Polars](https://docs.pola.rs/)
 - [strftime reference and sandbox](https://www.strfti.me/) - Interactive format code playground.
 - [Storing UTC is not a silver bullet](https://codeblog.jonskeet.uk/2019/03/27/storing-utc-is-not-a-silver-bullet/) - Why "just use UTC" is incomplete advice.
 - [PEP 495](https://peps.python.org/pep-0495/) - How Python represents the ambiguous hour during daylight saving.
-- [Polars temporal documentation](https://docs.pola.rs/user-guide/expressions/) - The `.dt` expression namespace.
 
 ## Why Learn About Time?
-
-- Every dataset has a time dimension.
-- Timezones
-- Daylight savings
-- Datetime representations
 
 Almost every dataset has a time dimension in at least one column - a `last_modified_utc`, a settlement period, a meter reading interval.
 
 **Managing time in data also has specific challenges** - timezones, daylight saving, and the many ways a datetime can be represented, all offer hard problems that can be mitigated to easy if you manage things correctly.
 
-Timezones force us to consider the same instant in time in different places.  Daylight saving forces up to consider a discontinuity in time itself.
+Timezones force us to consider the same instant in time in different places.  Daylight saving forces us to consider a discontinuity in time itself.
 
 Where timezone boundaries sit, whether daylight saving applies, which end of a date string the day goes - these are conventions. They are arbitrary but consistent.
 
@@ -443,17 +436,15 @@ print(day_length(datetime.date(2020, 4, 5), akl))
 
 ### Partitioned Representations
 
-**A partitioned representation is easy to read and easy to take apart.** It is also verbose, and says nothing on its own about which timezone it belongs to.
+**A partitioned representation stores each element of the datetime in its own space** - year, month, day, hour and minute, each an integer component of time.
 
-The alternative is an **offset representation** - a single number counting from a fixed anchor. We come back to this after timezones, because an offset representation needs an anchor, and the anchor is UTC.
-
-We have already met the **partitioned representation** - year, month, day, hour stored as separate integer components.
+This is the representation used everywhere above. It is easy to read and easy to take apart. It is also verbose, and says nothing on its own about which timezone it belongs to.
 
 ### Offset Representations
 
-Everything above is a **partitioned representation** - each element of the datetime is stored in its own space, as an integer component of time. Year, month, day, hour, minute.
+**An offset representation is a single number counting from a fixed anchor.**
 
-**An offset representation is the alternative - a single number counting from a fixed anchor.**
+There are no components to assemble and no ambiguity about what the number means, provided you know the anchor.
 
 ### UNIX Time
 
@@ -627,7 +618,7 @@ print(datetime.datetime.strptime('Sunday 25 of December of 2050', '%A %d of %B o
 **A datetime is only a point in time if it knows its timezone.** Everything else in this lesson follows from that:
 
 - **Naive is not UTC**: A naive datetime has no timezone, which is different from having a timezone of UTC. Do not let a naive datetime stand in for an aware one.
-- **Localize, then convert**: Localizing attaches a timezone and keeps the wall clock. Converting keeps the instant and changes the wall clock. `replace_time_zone` and `convert_time_zone` in Polars, `replace(tzinfo=...)` and `astimezone` in the standard library.
+- **Localize, then convert**: Localizing attaches a timezone and keeps the wall clock. Converting keeps the instant and changes the wall clock. Use `replace(tzinfo=...)` to localize and `astimezone` to convert.
 - **Compare in UTC**: Two datetimes an hour apart across a daylight saving boundary can compare as equal in their local timezone.
 - **Prefer standard timezones**: UTC where you can, a named location timezone where you must, and a `_utc` suffix on the column either way.
 - **Days are not always 24 hours**: Daylight saving gives you a 23 hour day with a missing hour and a 25 hour day with a duplicated one. This is where daily aggregations break.
