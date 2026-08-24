@@ -57,15 +57,31 @@ None
 
 ### Code Examples
 - Favor small, focused code blocks (3 lines or less when possible)
-- Include expected output as comments for clarity
+- Show expected output in a separate ```output block, never as comments inside the code block
+- End the Python block with a `print()` call, then follow it immediately with the ```output block
+- Put the real output in the ```output block - run the code and paste what it actually printed, do not write it from memory
 - Use realistic, domain-relevant examples (energy, data science)
 - Break complex concepts into multiple small examples rather than one large block
-- Use language annotations on all code blocks: `python`, `sql`, `bash`, `shell-session`, `makefile`
+- Use language annotations on all code blocks: `python`, `output`, `sql`, `bash`, `shell-session`, `makefile`
 - Use `shell-session` (with `$` prompt) for terminal commands showing input and output
 - Use `bash` for shell scripts or commands without output
 - Use title annotations for file-specific code: ````python { title = "filename.py" }````
 - When showing terminal output after a command, use `shell-session` with `$` prefix
 - Use `import pulp; pulp.LpVariable` rather than `from pulp import LpVariable`
+
+Example of the code and output pattern:
+
+````md
+```python
+import datetime
+
+print(datetime.date(2020, 1, 1))
+```
+
+```output
+2020-01-01
+```
+````
 
 ### Tables
 - Use markdown tables for structured comparisons and data
@@ -148,6 +164,13 @@ aliases:
 Competency values used across the site: `Software Engineering`, `Machine Learning`, `Reinforcement Learning`, `Energy`, `Python`, `Soft Skills`, `Data Engineering`, `AI`, `How I`.
 
 Always include `date_updated` when modifying an existing post.
+
+Two optional keys control which heading levels appear in the sidebar table of contents:
+
+- **`toc_start_level`**: Shallowest heading shown, defaults to `2`
+- **`toc_end_level`**: Deepest heading shown, defaults to `3`
+
+Set `toc_end_level: 2` on a post with many `###` subsections to show only `##` in the sidebar. Both keys affect the sidebar only, the body still renders every heading.
 
 ## Blog Post Structure
 
