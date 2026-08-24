@@ -2,6 +2,8 @@
 id: time-series
 aliases: []
 tags: []
+draft: true
+title: Working with Time
 ---
 
 ## What is a Time Series?

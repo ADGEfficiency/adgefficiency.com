@@ -7,7 +7,7 @@ competencies:
   - Software Engineering
   - How I
 date_created: "2026-05-19"
-date_updated: "2026-06-12"
+date_updated: "2026-08-01"
 description: My current stack and habits for programming with AI — from IDE plugins to scheduled cloud agents.
 draft: false
 title: How I Program with AI
@@ -30,7 +30,7 @@ My current stack is:
 - **Agent harness**: [Pi Coding Agent](https://pi.dev/) for an agentic terminal coding harness.
 - **Model**: Qwen, Kimi or Opus.
 - **Model provider**: [OpenRouter](https://openrouter.ai/) provides access to many different models, from Anthropic to Moonshot AI.
-- **Chat**: [CodeCompanion](https://codecompanion.olimorris.dev/) for chat in Neovim.
+- **Chat**: [CopilotChat.nvim](https://github.com/CopilotC-Nvim/CopilotChat.nvim) for chat in Neovim.
 - **Autocomplete**: [zbirenbaum/copilot.lua](https://github.com/zbirenbaum/copilot.lua) for inline completion in Neovim with Github Copilot.
 
 ## The Basics
@@ -211,17 +211,19 @@ I have no interest in installing skills written by other people, for security (p
 
 I get inline completion with GitHub Copilot via the [zbirenbaum/copilot.lua](https://github.com/zbirenbaum/copilot.lua) Neovim plugin. My completion setup is okayish - Copilot can be slow, and I'm still learning how to trigger completions reliably - I really should learn those shortcuts.
 
-I chat with AI in Neovim via [CodeCompanion](https://codecompanion.olimorris.dev/), having recently switched from [CopilotChat.nvim](https://github.com/CopilotC-Nvim/CopilotChat.nvim).
+I chat with AI in Neovim via [CopilotChat.nvim](https://github.com/CopilotC-Nvim/CopilotChat.nvim). I switched back to it after trying [CodeCompanion](https://codecompanion.olimorris.dev/). CodeCompanion is capable, but it felt too agentic for what I want inside my editor.
 
-An `AGENTS.md` is commonly used as the place to write custom instructions for agents. CodeCompanion looks for these kinds of agent-steering files and adds them to the IDE chat context automatically. This means the same file steers my terminal agent (Pi) and my IDE chat (CodeCompanion).
+I already use Pi for agentic coding: reading and editing files, running commands and validating changes. **All I want from in-editor AI is chat**. I ask CopilotChat questions, read its suggestions and manually copy useful code into my buffers. That friction is deliberate - it keeps me in control of what enters the codebase and makes me review the code as I integrate it.
+
+CopilotChat has a custom system prompt based on my `AGENTS.md` preferences. Its read-only tools are trusted, but tools are not enabled by default; I can explicitly add `@copilot` when I want them. The normal workflow remains conversation rather than delegation.
 
 A list of capabilities to look for in your IDE - some I have, some I'm still missing:
 
-- **Add files to context**: Add a buffer with `#{buffer}` or a file with `/file` (CodeCompanion syntax).
+- **Add files to context**: Add the active buffer with `#buffer:active`, another file with `#file:path`, or a diff with `#gitdiff:staged`.
 - **Edit prompts in your editor**: Copy and paste between buffer and chat without friction.
-- **Quickly apply AI-generated diffs**: I can't do this yet - it's my biggest gap.
+- **Manually integrate generated code**: Copy only the parts you understand and want rather than handing control to an editor agent.
 - **Jump to next edit**: Cursor's flagship feature - I haven't replicated it in Neovim.
-- **Use `/slash` commands**: Most AI tools expose configuration and tool use through slash commands.
+- **Use `/slash` commands**: Most AI tools expose reusable prompts and configuration through slash commands.
 - **Compact memory**: Take part of a session and throw it away or summarise it.
 - **Token usage tracking**: Understand where your tokens are going.
 
@@ -279,6 +281,16 @@ One useful learning trick is to use AI as a translator from what you know to wha
 - Generate the raw SQL alongside the SQLAlchemy.
 
 It's about taking advantage of the fact that the AI knows both topics, allowing you to anchor new knowledge to your existing knowledge.
+
+Another trick is to create hypotheses about what an AI will show you, or generate, and test them against it's actual output.  For example:
+
+- You are implementing an AI generated plan, and have written some of the code.
+- Read that code and theorize about how & where it will be used.
+- Continue implementation and test your hypothesis against the plan next steps.
+
+It's similar to the `predict the missing token` that LLMs use to learn - predict the next step in an AI generated plan.
+
+Adding comments onto AI generated code, ask for review/check.
 
 #### Why AI is a Good Teacher
 
@@ -396,7 +408,6 @@ I've also worked with developers who have grown up in the world of AI. Some are 
 
 - **Marking up plans**: How to mark up an AI plan for changes. I just write in a chat - defining syntax like `<human>Remove the section above</human>` has never felt or worked as well as relying on a chat working with the file.
 - **Next edit in Neovim**: How to replicate Cursor's TAB (next edit) functionality.
-- **Applying diffs**: How to quickly apply AI-generated diffs in Neovim.
 - **Copilot triggering**: How to get autocomplete to trigger reliably in Neovim.
 - **Magic words**: I'm not sure how much magic words really matter.
 - **Set expert role**: I do this, it makes sense, but no idea if it works.
@@ -408,7 +419,7 @@ My current AI programming stack is:
 - **Agent harness**: [Pi Coding Agent](https://pi.dev/) for an agentic terminal coding harness.
 - **Model**: Qwen, Kimi or Opus.
 - **Model provider**: [OpenRouter](https://openrouter.ai/) provides access to many different models, from Anthropic to Moonshot AI.
-- **Chat**: [CodeCompanion](https://codecompanion.olimorris.dev/) for chat in Neovim.
+- **Chat**: [CopilotChat.nvim](https://github.com/CopilotC-Nvim/CopilotChat.nvim) for chat in Neovim.
 - **Autocomplete**: [zbirenbaum/copilot.lua](https://github.com/zbirenbaum/copilot.lua) for inline completion in Neovim with Github Copilot.
 
 Currently, my main workflows with AI are:

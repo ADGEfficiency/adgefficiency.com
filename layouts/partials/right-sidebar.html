@@ -2,10 +2,12 @@
 <nav class="text-sm">
     <div class="space-y-4">
         <h2 class="font-bold text-base"><a href="#" class="block py-1 px-2 -mx-2 rounded-lg transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:bg-gray-800 hover:text-white">{{ .Title }}</a></h2>
-        {{ with .TableOfContents }}
+        {{ $start := .Params.toc_start_level | default 2 }}
+        {{ $end := .Params.toc_end_level | default 3 }}
+        {{ if .Fragments.Headings }}
         <hr class="border-gray-200 dark:border-gray-700" />
         <div class="[&>nav>ul]:space-y-2 [&_ul]:ml-4 [&_li]:list-none [&_a]:block [&_a]:py-1 [&_a]:px-2 [&_a]:rounded-lg [&_a]:transition-all [&_a]:duration-200 [&_a:hover]:-translate-y-1 [&_a:hover]:shadow-lg [&_a:hover]:bg-gray-800 [&_a:hover]:text-white">
-            {{ . }}
+            {{ .Fragments.ToHTML $start $end false }}
         </div>
         {{ end }}
     </div>

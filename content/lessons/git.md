@@ -1,11 +1,15 @@
 ---
-title: Git
-description: How Git enables version control and code collaboration.
-date_created: 2024-12-07
-date_updated: 2024-12-07
+id: git
+aliases: []
+tags: []
 competencies:
-- Software Engineering
-- Data Engineering
+  - Software Engineering
+  - Data Engineering
+date_created: "2024-12-07"
+date_updated: "2026-08-24"
+description: How Git enables version control and code collaboration.
+title: Git
+toc_end_level: 2
 ---
 
 ## What is Git?
