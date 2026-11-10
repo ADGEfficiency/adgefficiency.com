@@ -11,3 +11,13 @@ Requires [Hugo](https://gohugo.io/installation/):
 ```shell-session
 $ make
 ```
+## Dev
+
+Image tag:
+
+```markdown
+{{< img
+    src="/images/bash-enables-git-cicd.svg"
+    width="500"
+>}}
+```

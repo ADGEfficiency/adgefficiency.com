@@ -1,7 +1,9 @@
 ---
-title: "About"
+id: about
 aliases:
   - /my-work/
+tags: []
+title: About
 ---
 
 **I'm Adam Green, an energy engineer turned data professional** 👋
