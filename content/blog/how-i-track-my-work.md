@@ -21,9 +21,8 @@ Across a single day, I will use a large post-it to write one to three tasks to a
 
 {{< img
     src="/images/how-i-track-my-work/daily.png"
-    alt="TODO"
-    title="TODO"
-    caption="TODO"
+    caption="A daily post-it - two tasks, thrown away at the end of the day"
+    width="600"
 >}}
 
 These short term, temporary TODO lists are just a few bullet points on a post-it note.
@@ -40,9 +39,8 @@ Short term TODO lists - few bullet points on page or in a notebook.
 
 {{< img
     src="/images/how-i-track-my-work/weekly.png"
-    alt="TODO"
-    title="TODO"
-    caption="TODO"
+    caption="A weekly notebook spread - one section per project, items crossed off as they are done"
+    width="800"
 >}}
 
 Contain sections for each project I'm working on that week
@@ -57,9 +55,8 @@ My bulk storage is in a Markdown file, stored either in a `./todo.md` or in a ce
 
 {{< img
     src="/images/how-i-track-my-work/project.png"
-    alt="TODO"
-    title="TODO"
-    caption="TODO"
+    caption="A project note in Neovim - TODO, DONE, SOMEDAY and THOUGHTS sections"
+    width="800"
 >}}
 
 I use a shell script `todo` to find a Markdown file in ~/personal/projects/$PROJECT_NAME.

@@ -64,6 +64,8 @@ The `search.sh` script is not the prettiest bit of shell code, but it gives me f
 
 Once running Neovim, I often want to open more files. I almost always work from the root of a Git repo, so the files I want are local to my current working directory.
 
+My leader key is comma, so `<leader>j` means press `,` then `j`.
+
 `<leader>j` opens a Telescope file picker, with fzf providing the fuzzy matching, in my running Neovim session:
 
 {{< img
@@ -116,21 +118,21 @@ local function pickDirAndFindFiles()
 	require("telescope.pickers")
 		.new(require("telescope.themes").get_ivy({ prompt_title = "<Directories>" }), {
 			finder = require("telescope.finders").new_oneshot_job({
-                "fd",
-                "-H",
-                "-a",
-                "--type",
-                "d",
-                "--max-depth",
-                "2",
-                "--exclude",
-                "node_modules",
-                "--exclude",
-                "venv",
-                "--exclude",
-                ".git",
-                ".",
-                home
+				"fd",
+				"-H",
+				"-a",
+				"--type",
+				"d",
+				"--max-depth",
+				"2",
+				"--exclude",
+				"node_modules",
+				"--exclude",
+				"venv",
+				"--exclude",
+				".git",
+				".",
+				home,
 			}, {}),
 			sorter = require("telescope.config").values.file_sorter({}),
 			attach_mappings = function(prompt_bufnr)
@@ -170,7 +172,7 @@ When in Neovim, I can open recent files with `<leader>'`:
 Under the hood this maps to:
 
 ```lua
-:lua require'telescope.builtin'.oldfiles(require('telescope.themes').get_ivy({}))<cr>
+require("telescope.builtin").oldfiles(require("telescope.themes").get_ivy({}))
 ```
 
 ## Navigating Open Buffers
@@ -191,6 +193,22 @@ I've changed these shortcuts and their Lua implementations more than anything el
 `<leader>.` runs a Lua function to grep for the word under the cursor:
 
 ```lua
+local function grep_opts(text, extra)
+	return vim.tbl_deep_extend("force", {
+		default_text = text,
+		layout_strategy = "vertical",
+		sorting_strategy = "ascending",
+		layout_config = {
+			mirror = true,
+			prompt_position = "top",
+			width = 0.95,
+			height = 0.95,
+			preview_height = 0.5,
+			preview_cutoff = 0,
+		},
+	}, extra or {})
+end
+
 local function grep_word(extra)
 	return function()
 		require("telescope.builtin").live_grep(grep_opts(vim.fn.expand("<cword>"), extra))
