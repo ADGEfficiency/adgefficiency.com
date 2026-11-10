@@ -3,7 +3,7 @@ id: time
 aliases: []
 tags: []
 competencies:
-  - Analytics
+  - Data Engineering
   - Software Engineering
 date_created: "2025-08-23"
 date_updated: "2026-08-24"

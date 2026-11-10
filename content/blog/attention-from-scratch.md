@@ -1,13 +1,16 @@
 ---
-title: Attention from Scratch
-description: Attention and Multi-Head Attention in NumPy.
-date_created: 2024-04-24
-date_updated: 2024-04-24
-competencies:
-- Machine Learning
+id: attention-from-scratch
 aliases:
   - /attention-from-scratch
   - /blog/attention-from-scratch
+tags: []
+competencies:
+  - Machine Learning
+  - AI
+date_created: "2024-04-24"
+date_updated: "2024-04-24"
+description: Attention and Multi-Head Attention in NumPy.
+title: Attention from Scratch
 ---
 
 ## Embedding Words

@@ -5,7 +5,7 @@ tags: []
 competencies:
   - AI
   - Software Engineering
-  - How I
+  - How I Work
 date_created: "2026-05-19"
 date_updated: "2026-08-01"
 description: My current stack and habits for programming with AI — from IDE plugins to scheduled cloud agents.
@@ -31,7 +31,7 @@ My current stack is:
 - **Model**: Qwen, Kimi or Opus.
 - **Model provider**: [OpenRouter](https://openrouter.ai/) provides access to many different models, from Anthropic to Moonshot AI.
 - **Chat**: [CopilotChat.nvim](https://github.com/CopilotC-Nvim/CopilotChat.nvim) for chat in Neovim.
-- **Autocomplete**: [zbirenbaum/copilot.lua](https://github.com/zbirenbaum/copilot.lua) for inline completion in Neovim with Github Copilot.
+- **Autocomplete**: [zbirenbaum/copilot.lua](https://github.com/zbirenbaum/copilot.lua) for inline completion in Neovim with GitHub Copilot.
 
 ## The Basics
 
@@ -48,7 +48,7 @@ Many things can change between one prompt and the next when using a cloud-based 
 - **System prompts and tools**: Provider-side changes to system prompts, tools and skills are invisible to you.
 - **Routing**: Meta systems that route prompts to different underlying models can change which model you actually hit.
 
-The environment LLMs respond to prompts in is non-stationary - much of what is true about LLMs today might not be true next month:
+LLMs live in a non-stationary environment - much of what is true about LLMs today might not be true next month:
 
 - **Models get better**: Previously necessary instructions or techniques become counterproductive.
 - **Models get worse**: Bugs and optimisations can degrade quality intermittently.
@@ -113,7 +113,7 @@ All Python must be statically typed.
 Do not start implementing anything without a plan and user approval.
 ```
 
-The last one matters a lot for agentic coding. Without it, the agent will often write code the moment you describe a problem, rather than after you have both agreed on an approach in a concrete plan.
+The last one matters for agentic coding. Without it, the agent will often write code the moment you describe a problem, rather than after you have both agreed on an approach in a concrete plan.
 
 ### Control Thinking Level
 
@@ -162,7 +162,7 @@ A few prompting tips that earn their keep:
 - **Use examples**: Probably the highest-value prompting tip - good examples narrow the scope of what you want.
 - **Set a role**: Set a role or persona at the top of the prompt - this can help set the tone of the conversation.
 - **Be clear about evaluation**: Be explicit about how the output will be judged and how much output you expect.
-- **Ask for a plan**: Ask for a plan before any code.  Even a plan made inline in a chat can help an agent structure it's thinking.
+- **Ask for a plan**: Ask for a plan before any code.  Even a plan made inline in a chat can help an agent structure its thinking.
 - **Repeat the important stuff**: Repeat the important bits at the top and bottom of large prompts.
 
 All these tips also work great with people.
@@ -280,9 +280,9 @@ One useful learning trick is to use AI as a translator from what you know to wha
 - Convert Python to JavaScript.
 - Generate the raw SQL alongside the SQLAlchemy.
 
-It's about taking advantage of the fact that the AI knows both topics, allowing you to anchor new knowledge to your existing knowledge.
+It's about taking advantage of the AI knowing both topics, allowing you to anchor new knowledge to your existing knowledge.
 
-Another trick is to create hypotheses about what an AI will show you, or generate, and test them against it's actual output.  For example:
+Another trick is to create hypotheses about what an AI will show you, or generate, and test them against its actual output.  For example:
 
 - You are implementing an AI generated plan, and have written some of the code.
 - Read that code and theorize about how & where it will be used.
@@ -290,7 +290,7 @@ Another trick is to create hypotheses about what an AI will show you, or generat
 
 It's similar to the `predict the missing token` that LLMs use to learn - predict the next step in an AI generated plan.
 
-Adding comments onto AI generated code, ask for review/check.
+A related trick is to add your own comments to AI generated code, then ask the AI to review them - it will tell you where your understanding is wrong.
 
 #### Why AI is a Good Teacher
 
@@ -309,11 +309,11 @@ A human teacher beats AI on judgement, taste and knowing what you don't know. AI
 
 When rewriting, do it in a way where the program is runnable as often as possible - not top to bottom.
 
-This becomes a kind of repetitive practice, which is great for learning something new. It is, however, hard work.
+This becomes repetitive practice, which is great for learning something new. It is, however, hard work.
 
 #### Meta-Teaching: Teach the AI to Teach You Better
 
-This is all about looking at a finished session and finding where it went wrong before it went right.
+This is about looking at a finished session and finding where it went wrong before it went right.
 
 After a chat session, ask the AI:
 
@@ -384,7 +384,7 @@ The point of the plan is not the TODO list - it's the assumptions section. Force
 
 Most of the code I care about is still hand written - around 80% accounting for the small AI edits and autocomplete.
 
-**Currently I mostly generate one-off, throwaway proof-of-concept code with agents** - this means my most common AI writing code for me' workflow is:
+**Currently I mostly generate one-off, throwaway proof-of-concept code with agents** - this means my most common 'AI writing code for me' workflow is:
 
 - **Iteratively plan**: Work on multiple iterations of a plan in a Markdown file. Use fresh agents to critique the plan as needed.
 - **AI executes once**: AI generates a throwaway version of the plan.  This is used to test the plan, uncover issues and inspire ideas that I can use in the next step.
@@ -396,20 +396,20 @@ A key factor in agent success is how well it can evaluate its own work - some of
 - **Unit tests**: Fast enough that the agent can run them in a loop.
 - **Linting**: `ruff` or equivalent - catches dead imports, unused variables, style drift.
 
-Experienced developers will note that the things allow an agent to validate it's work, such as fast, reliable, useful test suites, are also great for non-AI development. The agent just punishes you faster for not having it, as it can generate code more quickly.
+Experienced developers will note that the things that allow an agent to validate its work, such as fast, reliable, useful test suites, are also great for non-AI development. The agent just punishes you faster for not having it, as it can generate code more quickly.
 
 ## Working with Others
 
 Most of this post is about how I work with AI - the other area of my work impacted by AI is how other developers I work with do their work.
 
-I've also worked with developers who have grown up in the world of AI. Some are quite competent. I do encourage them to olearn to write by hand - but I appreciate the productivity hit is large.
+I've also worked with developers who have grown up in the world of AI. Some are quite competent. I do encourage them to learn to write by hand - but I appreciate the productivity hit is large.
 
 ## Stuff I Don't Know
 
 - **Marking up plans**: How to mark up an AI plan for changes. I just write in a chat - defining syntax like `<human>Remove the section above</human>` has never felt or worked as well as relying on a chat working with the file.
 - **Next edit in Neovim**: How to replicate Cursor's TAB (next edit) functionality.
 - **Copilot triggering**: How to get autocomplete to trigger reliably in Neovim.
-- **Magic words**: I'm not sure how much magic words really matter.
+- **Magic words**: I'm not sure how much magic words matter.
 - **Set expert role**: I do this, it makes sense, but no idea if it works.
 
 ## Summary
@@ -420,13 +420,13 @@ My current AI programming stack is:
 - **Model**: Qwen, Kimi or Opus.
 - **Model provider**: [OpenRouter](https://openrouter.ai/) provides access to many different models, from Anthropic to Moonshot AI.
 - **Chat**: [CopilotChat.nvim](https://github.com/CopilotC-Nvim/CopilotChat.nvim) for chat in Neovim.
-- **Autocomplete**: [zbirenbaum/copilot.lua](https://github.com/zbirenbaum/copilot.lua) for inline completion in Neovim with Github Copilot.
+- **Autocomplete**: [zbirenbaum/copilot.lua](https://github.com/zbirenbaum/copilot.lua) for inline completion in Neovim with GitHub Copilot.
 
 Currently, my main workflows with AI are:
 
 - **Teacher**: Learning new things with a patient, knowledgeable teacher.
 - **Planner**: Creating multiple iterations of plans on how to do programming tasks.
-- **Proof of Concept Generator**: Most of the code AI writes is proof-of-concept, throwaway implementations that I can use to test ideas quickly, or to learn from for my actual hand written implementation.
+- **Executor**: Most of the code AI writes is proof-of-concept, throwaway implementations that I can use to test ideas quickly, or to learn from for my actual hand written implementation.
 
 A few of the key points:
 

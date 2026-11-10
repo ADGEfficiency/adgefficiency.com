@@ -1,14 +1,17 @@
 ---
-title: 'OpenAI Function Calling in Python'
-description: 'Why this new feature is a game changer for developers.'
-date_created: '2023-08-15'
-date_updated: '2023-08-15'
-competencies:
-- Software Engineering
-- Machine Learning
+id: openai-functions
 aliases:
   - /openai-functions
   - /blog/openai-functions
+tags: []
+competencies:
+  - Software Engineering
+  - Machine Learning
+  - AI
+date_created: "2023-08-15"
+date_updated: "2023-08-15"
+description: Why this new feature is a game changer for developers.
+title: OpenAI Function Calling in Python
 ---
 
 **OpenAI function calling is a game changer for developers**.

@@ -1,11 +1,14 @@
 ---
-title: Statistics
-description: Don't be fooled by randomness!
-date_created: 2025-01-13
-date_updated: 2025-01-13
+id: statistics
+aliases: []
+tags: []
 competencies:
-- Analytics
+  - Analytics
+date_created: "2025-01-13"
+date_updated: "2025-01-13"
+description: Don't be fooled by randomness!
 draft: true
+title: Statistics
 ---
 
 ## Why Learn Statistics?
@@ -24,7 +27,7 @@ Examples of uncertainty in decision making include:
 - **Choosing Where to Live** - Changes in the neighborhood, whether you'll enjoy the community, job opportunities, and how housing prices will change over time.
 - **Climate Change** - The rate of warming, effectiveness of mitigation efforts, impact on specific regions, and how different ecosystems will adapt to changing conditions.
 
-### Sources of Uncertainty
+### Sources of Uncertainty (Stats Perspective)
 
 Navigating uncertainty is required to make good decisions - so where does uncertainty come from?
 
@@ -60,6 +63,25 @@ Examples include:
 - **Climate Predictions** - Models that can't capture all feedback loops between atmosphere, oceans, and land systems
 - **Credit Scoring** - Models that miss important factors about a person's creditworthiness due to limited variables
 - **Traffic Prediction** - Navigation apps that don't account for local events, construction, or changing traffic patterns
+
+### Sources of Uncertainty (Uncertainty Quantification)
+
+- Parameter: Model inputs are unknown.
+- Parametric: Variability of input variables.
+- Strutural uncertantity: Model bias or inadequacy.
+- Algorithmic: Numeric uncertantity (numerical errors/approximation).
+
+### Classification of Uncertainty
+
+Aleatoric:
+
+- Stochastic uncertantity
+- Unknowns that differ each time we run the same experiment
+
+Epistemic:
+- Systematic uncertantity
+- Things you could know but don't
+- Generally understood through lens of Bayesian probability
 
 ## What is Statistics?
 
