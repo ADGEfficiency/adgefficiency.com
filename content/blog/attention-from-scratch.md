@@ -226,7 +226,7 @@ In previous sections we:
 
 **The attention score is a measure of how similar a query is to a key. It's computed using a dot-product**.
 
-## Attention Scores for One Word with One Other Word
+### Attention Scores for One Word with One Other Word
 
 We can start by calculating the attention scores for a single word:
 
@@ -258,7 +258,7 @@ print(f"{scores.shape=}")
 scores.shape=()
 ```
 
-## Attention Scores for One Word with All Other Words
+### Attention Scores for One Word with All Other Words
 
 We can extend this to calculate attention scores for one word with all other words:
 
@@ -275,7 +275,7 @@ print(f"{scores.shape=}")
 scores.shape=(4,)
 ```
 
-## Attention Scores for All Words with All Other Words
+### Attention Scores for All Words with All Other Words
 
 Finally, we can calculate the attention scores for all words with all other words:
 
@@ -301,7 +301,7 @@ scores.shape=(4, 4)
 - It helps maintain reasonable gradients even for large input sequences, facilitating the training process.
 - It becomes particularly important when using multi-headed attention, as it allows each head to specialize and attend to different aspects of the input.
 
-## Scaled Attention Scores
+### Scaled Attention Scores
 
 <!--phmdoctest-share-names-->
 ```python
