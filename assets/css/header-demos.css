@@ -142,6 +142,11 @@
   height: 100%;
 }
 
+.header-demo[data-demo="mosaic"] .header-demo-art svg {
+  width: auto;
+  max-width: none;
+}
+
 .header-demo-caption {
   display: flex;
   flex-wrap: wrap;

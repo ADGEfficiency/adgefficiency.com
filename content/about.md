@@ -4,6 +4,7 @@ aliases:
   - /my-work/
 tags: []
 title: About
+show_sidebar: false
 ---
 
 **I'm Adam Green, an energy engineer turned data professional, working on the energy transition** 👋

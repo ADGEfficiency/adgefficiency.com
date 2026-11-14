@@ -23,7 +23,8 @@ body {
 
 .header-animation-art svg {
   display: block;
-  width: 100%;
+  width: auto;
+  max-width: none;
   height: 100%;
 }
 
@@ -57,6 +58,25 @@ body {
 
 .header-animation-control[aria-disabled="true"] {
   cursor: default;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .header-animation-control:not(:focus-visible) {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .header-animation:hover .header-animation-control {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@media (any-pointer: coarse) {
+  .header-animation-control:not(:focus-visible) {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
 
 @media (max-width: 767px) {

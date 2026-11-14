@@ -1,7 +1,7 @@
 {{ $kind := .id }}
 {{ $palette := slice "#08306b" "#2171b5" "#6baed6" "#c6dbef" "#f7f7f7" "#fcbba1" "#fb6a4a" "#cb181d" "#67000d" }}
 {{ $colours := slice 0 1 0 2 1 0 1 2 0 1 2 1 3 1 2 3 2 1 3 2 4 3 2 3 4 3 5 4 3 5 4 5 6 5 4 6 5 7 6 5 7 6 8 7 6 8 7 8 }}
-<svg viewBox="0 0 1000 200" preserveAspectRatio="none" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 {{ if eq $kind "mosaic" }}30720{{ else }}1000{{ end }} 200" preserveAspectRatio="{{ if eq $kind "mosaic" }}xMinYMid meet{{ else }}none{{ end }}" focusable="false" xmlns="http://www.w3.org/2000/svg">
   {{ if eq $kind "silk" }}
     {{ range $i, $colour := $colours }}
       {{ $x := mul $i (div 1000.0 48) }}
@@ -14,13 +14,40 @@
       <rect x="{{ add (mul $i (div 1000.0 48)) 3 }}" y="{{ sub 186 $height }}" width="14.8" height="{{ $height }}" rx="3" fill="{{ index $palette $colour }}" />
     {{ end }}
   {{ else if eq $kind "mosaic" }}
-    {{ range $row := seq 0 5 }}
-      {{ range $column := seq 0 31 }}
-        {{ $index := int (math.Round (mul (div $column 31.0) 47)) }}
-        {{ $colour := index $colours $index }}
-        {{ $visible := gt (add (math.Sin (mul $column 0.28)) (math.Cos (mul $row 0.8))) -0.35 }}
-        <rect data-column="{{ $column }}" data-row="{{ $row }}" x="{{ add (mul $column 31.25) 1.5 }}" y="{{ add (mul $row 30) 11 }}" width="28" height="26" rx="2" fill="{{ index $palette $colour }}" visibility="{{ if $visible }}visible{{ else }}hidden{{ end }}" />
+    {{/* Dummy Jan-Feb through Nov-Dec temperatures, repeated for each illustrative year. */}}
+    {{ $temperatures := slice 8 10 12 14 16 18 }}
+    {{ $temperatureRange := float (sub (index $temperatures 5) (index $temperatures 0)) }}
+    {{/* Share the colour pattern; each section has its own visible-cell path. */}}
+    <defs>
+      <pattern id="header-mosaic-tiles" width="960" height="200" patternUnits="userSpaceOnUse">
+        {{ range $row, $temperature := $temperatures }}
+          {{ $strength := add 0.35 (mul 0.65 (div (sub $temperature (index $temperatures 0)) $temperatureRange)) }}
+          {{ range $column := seq 0 31 }}
+            {{ $index := int (math.Round (mul (div $column 31.0) 47)) }}
+            {{ $colour := index $palette (index $colours $index) }}
+            {{ $rgb := slice }}
+            {{ range $offset := slice 1 3 5 }}
+              {{ $channel := int (printf "0x%s" (substr $colour $offset 2)) }}
+              {{ $rgb = $rgb | append (int (math.Round (sub 255 (mul (sub 255 $channel) $strength)))) }}
+            {{ end }}
+            {{ $fill := printf "rgb(%d,%d,%d)" (index $rgb 0) (index $rgb 1) (index $rgb 2) }}
+            <rect data-column="{{ $column }}" data-row="{{ $row }}" data-month-start="{{ add (mul $row 2) 1 }}" data-month-end="{{ mul (add $row 1) 2 }}" data-temperature-celsius="{{ $temperature }}" x="{{ add (mul $column 30) 2 }}" y="{{ add (mul $row 30) 12 }}" width="26" height="26" rx="2" fill="{{ $fill }}" />
+          {{ end }}
+        {{ end }}
+      </pattern>
+    </defs>
+    {{ range $section := seq 0 31 }}
+      {{ $phase := mul $section 2.4 }}
+      {{ $cells := slice }}
+      {{ range $row := seq 0 5 }}
+        {{ $rowWave := math.Cos (add (sub (mul $row 0.8) $phase) (mul $section 0.37)) }}
+        {{ range $column := seq 0 31 }}
+          {{ if gt (add (math.Sin (add (mul $column 0.28) $phase)) $rowWave) -0.35 }}
+            {{ $cells = $cells | append (printf "M%d %dh30v30h-30z" (mul $column 30) (add (mul $row 30) 10)) }}
+          {{ end }}
+        {{ end }}
       {{ end }}
+      <path data-section="{{ $section }}" transform="translate({{ mul $section 960 }} 0)" d="{{ delimit $cells "" }}" fill="url(#header-mosaic-tiles)" />
     {{ end }}
   {{ else if eq $kind "lens" }}
     {{ range $i, $colour := $colours }}

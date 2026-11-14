@@ -1,3 +1,5 @@
+import * as mosaic from './header-mosaic.js'
+
 ;(function () {
   /** Play the selected mosaic without scheduling work between its discrete steps. */
   function initHeaderAnimation(root, { durationMs = 24000, steps = 64 } = {}) {
@@ -11,8 +13,8 @@
     ) return
 
     const control = root.querySelector('.header-animation-control')
-    const tiles = [...root.querySelectorAll('.header-animation-art rect')].map(rect => ({
-      rect, column: Number(rect.dataset.column), row: Number(rect.dataset.row),
+    const sections = [...root.querySelectorAll('.header-animation-art path[data-section]')].map(path => ({
+      path, section: Number(path.dataset.section),
     }))
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
     const printMedia = window.matchMedia('print')
@@ -84,9 +86,9 @@
       if (startedAt === null) return
       const currentTime = (elapsedMs + window.performance.now() - startedAt) % durationMs
       const phase = Math.floor(currentTime / stepMs) / steps * 2 * Math.PI
-      for (const { rect, column, row } of tiles) {
-        const visibility = isMosaicTileVisible(column, row, phase) ? 'visible' : 'hidden'
-        if (rect.getAttribute('visibility') !== visibility) rect.setAttribute('visibility', visibility)
+      for (const { path, section } of sections) {
+        const shape = mosaic.createSectionPath(section, phase)
+        if (path.getAttribute('d') !== shape) path.setAttribute('d', shape)
       }
       timerId = window.setTimeout(renderStep, Math.ceil(stepMs - currentTime % stepMs))
     }
@@ -95,11 +97,6 @@
   /** Decide whether playback can advance without reading the DOM. */
   function canPlayHeaderAnimation({ manualPauseFlag, onScreenFlag, pageHiddenFlag, tabHiddenFlag, reducedMotionFlag, printingFlag }) {
     return onScreenFlag && !manualPauseFlag && !pageHiddenFlag && !tabHiddenFlag && !reducedMotionFlag && !printingFlag
-  }
-
-  /** Match the Mosaic comparison's fixed-colour tile pattern. */
-  function isMosaicTileVisible(column, row, phase) {
-    return Math.sin(column * 0.28 + phase) + Math.cos(row * 0.8 - phase) > -0.35
   }
 
   initHeaderAnimation(document.querySelector('.header-animation'))

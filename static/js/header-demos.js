@@ -1,3 +1,5 @@
+import * as mosaic from './header-mosaic.js'
+
 ;(function () {
   /** Run only the visible, unpaused previews, at no more than 30 frames per second. */
   function initHeaderDemos(root, { frameIntervalMs = 1000 / 30 } = {}) {
@@ -117,19 +119,15 @@
           rect.setAttribute('height', height)
         })
       case 'mosaic': {
-        const tiles = rects.map(rect => ({
-          rect, column: Number(rect.dataset.column), row: Number(rect.dataset.row),
-        }))
+        const sections = paths.map(path => ({ path, section: Number(path.dataset.section) }))
         let previousStep = -1
         return phase => {
           const step = Math.floor(phase / (2 * Math.PI) * 64)
           if (step === previousStep) return
           previousStep = step
           const steppedPhase = step / 64 * 2 * Math.PI
-          for (const { rect, column, row } of tiles) {
-            const visibleFlag = Math.sin(column * 0.28 + steppedPhase) +
-              Math.cos(row * 0.8 - steppedPhase) > -0.35
-            rect.setAttribute('visibility', visibleFlag ? 'visible' : 'hidden')
+          for (const { path, section } of sections) {
+            path.setAttribute('d', mosaic.createSectionPath(section, steppedPhase))
           }
         }
       }
