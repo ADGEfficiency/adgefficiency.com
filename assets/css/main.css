@@ -7,6 +7,70 @@ body {
   transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.header-animation {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  background-color: #111827;
+}
+
+.header-animation-art {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.header-animation-art svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.header-animation-control {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid #6b7280;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #111827;
+  font-size: 0.875rem;
+  line-height: 1.25;
+  cursor: pointer;
+}
+
+.dark .header-animation-control {
+  background: #111827;
+  color: #ffffff;
+  border-color: #9ca3af;
+}
+
+.header-animation-control:focus-visible {
+  outline: 3px solid #111827;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px #ffffff;
+}
+
+.header-animation-control[aria-disabled="true"] {
+  cursor: default;
+}
+
+@media (max-width: 767px) {
+  .header-animation {
+    height: 80px;
+  }
+}
+
+@media print {
+  .header-animation-control {
+    display: none !important;
+  }
+}
+
 /* Dark mode prose styles */
 .dark .prose {
   --tw-prose-body: theme('colors.white');

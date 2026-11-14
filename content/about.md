@@ -6,9 +6,9 @@ tags: []
 title: About
 ---
 
-**I'm Adam Green, an energy engineer turned data professional** 👋
+**I'm Adam Green, an energy engineer turned data professional, working on the energy transition** 👋
 
-I'm a data professional working on the energy transition. I enjoy building tools & creating models.
+I've been working in energy and data for over a decade. I enjoy building tools & creating models.
 
 I write this blog so I can better express ideas and concepts in conversations with friends and colleagues.
 

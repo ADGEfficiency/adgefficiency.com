@@ -1,5 +1,5 @@
 app:
-	hugo server --disableFastRender
+	hugo server --disableFastRender --bind 0.0.0.0
 
 PHMDOCTEST_DIR=.phmdoctest
 test:

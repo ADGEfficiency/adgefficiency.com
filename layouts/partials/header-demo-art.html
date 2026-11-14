@@ -1,0 +1,58 @@
+{{ $kind := .id }}
+{{ $palette := slice "#08306b" "#2171b5" "#6baed6" "#c6dbef" "#f7f7f7" "#fcbba1" "#fb6a4a" "#cb181d" "#67000d" }}
+{{ $colours := slice 0 1 0 2 1 0 1 2 0 1 2 1 3 1 2 3 2 1 3 2 4 3 2 3 4 3 5 4 3 5 4 5 6 5 4 6 5 7 6 5 7 6 8 7 6 8 7 8 }}
+<svg viewBox="0 0 1000 200" preserveAspectRatio="none" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  {{ if eq $kind "silk" }}
+    {{ range $i, $colour := $colours }}
+      {{ $x := mul $i (div 1000.0 48) }}
+      {{ $right := add $x 20.2 }}
+      <path fill="{{ index $palette $colour }}" d="M {{ $x }} -20 C {{ add $x 14 }} 60 {{ sub $x 14 }} 140 {{ $x }} 220 L {{ $right }} 220 C {{ sub $right 14 }} 140 {{ add $right 14 }} 60 {{ $right }} -20 Z" />
+    {{ end }}
+  {{ else if eq $kind "tide" }}
+    {{ range $i, $colour := $colours }}
+      {{ $height := add 85 (mul 45 (math.Sin (mul $i 0.25))) }}
+      <rect x="{{ add (mul $i (div 1000.0 48)) 3 }}" y="{{ sub 186 $height }}" width="14.8" height="{{ $height }}" rx="3" fill="{{ index $palette $colour }}" />
+    {{ end }}
+  {{ else if eq $kind "mosaic" }}
+    {{ range $row := seq 0 5 }}
+      {{ range $column := seq 0 31 }}
+        {{ $index := int (math.Round (mul (div $column 31.0) 47)) }}
+        {{ $colour := index $colours $index }}
+        {{ $visible := gt (add (math.Sin (mul $column 0.28)) (math.Cos (mul $row 0.8))) -0.35 }}
+        <rect data-column="{{ $column }}" data-row="{{ $row }}" x="{{ add (mul $column 31.25) 1.5 }}" y="{{ add (mul $row 30) 11 }}" width="28" height="26" rx="2" fill="{{ index $palette $colour }}" visibility="{{ if $visible }}visible{{ else }}hidden{{ end }}" />
+      {{ end }}
+    {{ end }}
+  {{ else if eq $kind "lens" }}
+    {{ range $i, $colour := $colours }}
+      <rect x="{{ mul $i (div 1000.0 48) }}" y="0" width="21.2" height="200" fill="{{ index $palette $colour }}" />
+    {{ end }}
+  {{ else if eq $kind "contours" }}
+    {{ range $i, $colour := $palette }}
+      {{ $y := add 24 (mul $i 18) }}
+      <path fill="{{ $colour }}" d="M -40 {{ $y }} C 180 {{ sub $y 28 }} 320 {{ add $y 28 }} 500 {{ $y }} S 820 {{ sub $y 28 }} 1040 {{ $y }} L 1040 220 L -40 220 Z" />
+    {{ end }}
+  {{ else if eq $kind "organic" }}
+    <defs>
+      <filter id="header-demo-goo" x="-150" y="-100" width="1300" height="400" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur" />
+        <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -9" />
+      </filter>
+    </defs>
+    {{ $layers := slice
+      (dict "colour" 2 "count" 9 "rx" 90 "ry" 58 "offset" 0)
+      (dict "colour" 0 "count" 8 "rx" 66 "ry" 44 "offset" 45)
+      (dict "colour" 3 "count" 6 "rx" 48 "ry" 32 "offset" 85)
+      (dict "colour" 5 "count" 4 "rx" 64 "ry" 41 "offset" 100)
+      (dict "colour" 6 "count" 4 "rx" 50 "ry" 35 "offset" 130)
+      (dict "colour" 7 "count" 3 "rx" 34 "ry" 26 "offset" 170)
+    }}
+    {{ range $layerIndex, $layer := $layers }}
+    <g fill="{{ index $palette .colour }}" filter="url(#header-demo-goo)">
+      {{ range $i := seq 0 (sub .count 1) }}
+        {{ $seed := add (mul $layerIndex 7) $i }}
+        <ellipse data-seed="{{ $seed }}" cx="{{ add $layer.offset (mul $i (div 1000.0 $layer.count)) }}" cy="{{ add 50 (mod (mul $seed 29) 65) }}" rx="{{ $layer.rx }}" ry="{{ $layer.ry }}" />
+      {{ end }}
+    </g>
+    {{ end }}
+  {{ end }}
+</svg>

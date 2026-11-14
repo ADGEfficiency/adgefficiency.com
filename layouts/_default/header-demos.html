@@ -1,0 +1,47 @@
+{{ define "main" }}
+{{ $style := resources.Get "css/header-demos.css" | resources.Minify }}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}" />
+{{ $options := slice
+  (dict "id" "silk" "name" "Silk" "description" "Fine ribbons, gently folding through the same colour field." "duration" 36)
+  (dict "id" "tide" "name" "Tide" "description" "A travelling wave of crisp, rounded bands. More space, less weight." "duration" 24)
+  (dict "id" "mosaic" "name" "Mosaic" "description" "Small tiles switching in and out of a shifting pattern. No fades." "duration" 24)
+  (dict "id" "lens" "name" "Lens" "description" "Straight stripes that stretch and compress through a slow optical wave." "duration" 32)
+  (dict "id" "contours" "name" "Contours" "description" "Layered curves, like a slowly changing landscape." "duration" 40)
+  (dict "id" "organic" "name" "Organic" "description" "Slow, merging pools of colour. The palette without the stripes." "duration" 48)
+}}
+<main class="header-demos" data-pagefind-ignore>
+  <div class="header-demos-intro">
+    <p class="header-demos-eyebrow">Colour / motion / space</p>
+    <h1>{{ .Title }}</h1>
+    <p>Six directions. One palette. Pick a number, or mix what you like.</p>
+    <nav class="header-demos-index" aria-label="Header alternatives">
+      {{ range $i, $option := $options }}
+      <a href="#{{ .id }}"><span>{{ printf "%02d" (add $i 1) }}</span> {{ .name }}</a>
+      {{ end }}
+    </nav>
+    <p class="header-demos-note">Try the theme toggle above. Each preview pauses when it leaves the screen. These are colour studies, not climate data.</p>
+  </div>
+
+  {{ range $i, $option := $options }}
+  <section class="header-demo" id="{{ .id }}" data-demo="{{ .id }}" data-duration="{{ .duration }}" aria-labelledby="{{ .id }}-title">
+    <div class="header-demo-heading">
+      <div>
+        <h2 id="{{ .id }}-title"><span>{{ printf "%02d" (add $i 1) }}</span> {{ .name }}</h2>
+        <p>{{ .description }}</p>
+      </div>
+      <button type="button" class="header-demo-control" aria-label="Pause {{ .name }} animation" aria-controls="{{ .id }}-art" hidden>Pause</button>
+    </div>
+    <div class="header-demo-art" id="{{ .id }}-art" aria-hidden="true">
+      {{ partial "header-demo-art.html" . }}
+    </div>
+    <div class="header-demo-caption">
+      <span>{{ .duration }}-second loop</span>
+      {{ if eq .id "organic" }}
+      <a href="https://lucumr.pocoo.org/2026/1/18/agent-psychosis/">Inspired by Armin Ronacher's header</a>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+</main>
+<script src="/js/header-demos.js" defer></script>
+{{ end }}

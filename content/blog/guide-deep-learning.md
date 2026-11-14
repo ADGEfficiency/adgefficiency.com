@@ -1,15 +1,18 @@
 ---
-title: 'A Guide to Deep Learning Layers'
-description: Explaining the fully connected, convolution, LSTM and attention deep learning layer architectures.
-date_created: 2020-11-16
-date_updated: 2025-10-30
-competencies:
-  - Machine Learning
+id: guide-deep-learning
 aliases:
   - /2020-11-16-guide-deep-learning
   - /guide-deep-learning
   - /blog/2020-11-16-guide-deep-learning
   - /blog/guide-deep-learning
+tags: []
+competencies:
+  - Machine Learning
+  - AI
+date_created: "2020-11-16"
+date_updated: "2025-10-30"
+description: Explaining the fully connected, convolution, LSTM and attention deep learning layer architectures.
+title: "Deep Learning Layers: A Guide"
 ---
 
 **This post is about four fundamental neural network layer architectures** - the building blocks that machine learning engineers use to construct deep learning models.

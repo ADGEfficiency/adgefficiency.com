@@ -6,6 +6,8 @@ You can test this app using Playwright, BUT ONLY IF YOU REALLY NEED IT. Do NOT a
 
 You do not need to start a Hugo server - never start a Hugo server yourself, use the one that is already running.
 
+Inside a dev container, `localhost:1313` is the container, not the host running the server. Use `http://host.docker.internal:1313/` instead. The host server must run with `--bind 0.0.0.0` to accept connections from the Docker network.
+
 This codebase is for a data science education website, with content provided as lessons and blogs.  
 
 The core taxonomy is competencies, which really is just a tag.

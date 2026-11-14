@@ -149,7 +149,10 @@
   <body
     class="font-sans leading-normal bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-200"
   >
-    <header class="bg-gray-800 dark:bg-gray-900 sticky top-0 z-50 p-1 pt-2">
+    {{ if not .Params.hide_header_animation_flag }}
+    {{ partial "header-animation.html" . }}
+    {{ end }}
+    <header class="bg-gray-900 sticky top-0 z-50 p-1 pt-2">
       <div class="container mx-auto flex justify-between items-center">
         <a
           href="/"
@@ -226,6 +229,7 @@
         </div>
       </div>
     </header>
+
     {{ block "main" . }}{{ end }}
     {{ partial "footer.html" . }}
     {{ if ne .RelPermalink "/about/" }}
