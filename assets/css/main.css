@@ -66,7 +66,8 @@ body {
     pointer-events: none;
   }
 
-  .header-animation:hover .header-animation-control {
+  .header-animation:hover .header-animation-control,
+  .header-animation-control[data-mosaic-inspecting] {
     opacity: 1;
     pointer-events: auto;
   }
@@ -87,6 +88,45 @@ body {
 
 @media print {
   .header-animation-control {
+    display: none !important;
+  }
+}
+
+.header-animation-art[data-mosaic-inspector],
+.header-demo-art[data-mosaic-inspector] {
+  pointer-events: auto;
+}
+
+[data-mosaic-inspector]:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: -4px;
+  box-shadow: inset 0 0 0 6px #111827;
+}
+
+.mosaic-highlight {
+  pointer-events: none;
+}
+
+.mosaic-tooltip {
+  position: fixed;
+  z-index: 60;
+  box-sizing: border-box;
+  max-width: min(260px, calc(100vw - 16px));
+  max-height: calc(100vh - 16px);
+  overflow: auto;
+  padding: 10px 12px;
+  border: 1px solid #6b7280;
+  border-radius: 6px;
+  background: #111827;
+  color: #ffffff;
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+@media print {
+  .mosaic-tooltip,
+  .mosaic-highlight {
     display: none !important;
   }
 }

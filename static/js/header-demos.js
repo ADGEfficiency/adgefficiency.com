@@ -5,6 +5,7 @@ import * as mosaic from './header-mosaic.js'
   function initHeaderDemos(root, { frameIntervalMs = 1000 / 30 } = {}) {
     if (!root || root.hasAttribute('data-initialized')) return
     root.setAttribute('data-initialized', '')
+    mosaic.initTooltip(root.querySelector('[data-demo="mosaic"] .header-demo-art'))
     if (
       typeof window.matchMedia !== 'function' ||
       typeof window.requestAnimationFrame !== 'function' ||
@@ -28,6 +29,10 @@ import * as mosaic from './header-mosaic.js'
 
     for (const state of states) {
       observer.observe(state.art)
+      state.art.addEventListener('mosaic-inspection', event => {
+        state.inspectingFlag = event.detail
+        updatePlayback()
+      })
       state.control.hidden = false
       state.control.addEventListener('click', () => {
         if (reducedMotion.matches) return
@@ -49,7 +54,7 @@ import * as mosaic from './header-mosaic.js'
     updatePlayback()
 
     function canPlay(state) {
-      return state.onScreenFlag && !state.manualPauseFlag && !document.hidden &&
+      return state.onScreenFlag && !state.manualPauseFlag && !state.inspectingFlag && !document.hidden &&
         !pageHiddenFlag && !reducedMotion.matches && !printMedia.matches
     }
 
@@ -99,6 +104,7 @@ import * as mosaic from './header-mosaic.js'
       elapsedMs: 0,
       lastTimestamp: null,
       manualPauseFlag: false,
+      inspectingFlag: false,
       onScreenFlag: false,
     }
   }

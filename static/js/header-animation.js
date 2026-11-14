@@ -5,6 +5,8 @@ import * as mosaic from './header-mosaic.js'
   function initHeaderAnimation(root, { durationMs = 24000, steps = 64 } = {}) {
     if (!root || root.hasAttribute('data-initialized')) return
     root.setAttribute('data-initialized', '')
+    const art = root.querySelector('.header-animation-art')
+    mosaic.initTooltip(art)
     if (
       typeof window.matchMedia !== 'function' ||
       typeof window.performance?.now !== 'function' ||
@@ -20,6 +22,7 @@ import * as mosaic from './header-mosaic.js'
     const printMedia = window.matchMedia('print')
     const stepMs = durationMs / steps
     let manualPauseFlag = false
+    let inspectingFlag = false
     let onScreenFlag = false
     let pageHiddenFlag = false
     let elapsedMs = 0
@@ -31,6 +34,10 @@ import * as mosaic from './header-mosaic.js'
       updatePlayback()
     })
     observer.observe(root)
+    art.addEventListener('mosaic-inspection', event => {
+      inspectingFlag = event.detail
+      updatePlayback()
+    })
     document.addEventListener('visibilitychange', updatePlayback)
     reducedMotion.addEventListener('change', updatePlayback)
     printMedia.addEventListener('change', updatePlayback)
@@ -59,7 +66,7 @@ import * as mosaic from './header-mosaic.js'
       else control.removeAttribute('aria-disabled')
 
       if (!canPlayHeaderAnimation({
-        manualPauseFlag, onScreenFlag, pageHiddenFlag,
+        manualPauseFlag, inspectingFlag, onScreenFlag, pageHiddenFlag,
         tabHiddenFlag: document.hidden,
         reducedMotionFlag: reducedMotion.matches,
         printingFlag: printMedia.matches,
@@ -95,8 +102,8 @@ import * as mosaic from './header-mosaic.js'
   }
 
   /** Decide whether playback can advance without reading the DOM. */
-  function canPlayHeaderAnimation({ manualPauseFlag, onScreenFlag, pageHiddenFlag, tabHiddenFlag, reducedMotionFlag, printingFlag }) {
-    return onScreenFlag && !manualPauseFlag && !pageHiddenFlag && !tabHiddenFlag && !reducedMotionFlag && !printingFlag
+  function canPlayHeaderAnimation({ manualPauseFlag, inspectingFlag = false, onScreenFlag, pageHiddenFlag, tabHiddenFlag, reducedMotionFlag, printingFlag }) {
+    return onScreenFlag && !manualPauseFlag && !inspectingFlag && !pageHiddenFlag && !tabHiddenFlag && !reducedMotionFlag && !printingFlag
   }
 
   initHeaderAnimation(document.querySelector('.header-animation'))
